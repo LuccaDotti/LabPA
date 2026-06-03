@@ -3,3 +3,6 @@ void funcionPrueba(){
 
 }
 
+void funcionPrueba2(){
+
+}
