@@ -1,6 +1,7 @@
 #include "logica/controladores/AdminController.h"
 
-AdminController::AdminController() {}
+AdminController::AdminController() {
+}
 
 AdminController::~AdminController() {
 
@@ -12,9 +13,14 @@ AdminController::~AdminController() {
 
     for (Proveedor* p : proveedores)
         delete p;
+
+    for (ProveedorProducto* pp : proveedorProductos)
+        delete pp;
 }
 
-// ===== PRODUCTOS =====
+// ====================================
+// PRODUCTOS
+// ====================================
 
 bool AdminController::agregarProducto(
     int codigo,
@@ -23,8 +29,7 @@ bool AdminController::agregarProducto(
     float precioUnitario,
     int stockActual,
     int stockMinimo,
-    Categoria* categoria,
-    Proveedor* proveedor
+    Categoria* categoria
 ) {
 
     if (buscarProducto(codigo) != nullptr)
@@ -38,19 +43,22 @@ bool AdminController::agregarProducto(
             precioUnitario,
             stockActual,
             stockMinimo,
-            categoria,
-            proveedor
+            categoria
         )
     );
 
     return true;
 }
 
-Producto* AdminController::buscarProducto(int codigo) const {
+Producto* AdminController::buscarProducto(
+    int codigo
+) const {
 
-    for (Producto* p : productos)
+    for (Producto* p : productos) {
+
         if (p->getCodigo() == codigo)
             return p;
+    }
 
     return nullptr;
 }
@@ -60,7 +68,9 @@ vector<Producto*> AdminController::listarProductos() const {
     return productos;
 }
 
-bool AdminController::eliminarProducto(int codigo) {
+bool AdminController::eliminarProducto(
+    int codigo
+) {
 
     for (int i = 0; i < productos.size(); i++) {
 
@@ -79,7 +89,9 @@ bool AdminController::eliminarProducto(int codigo) {
     return false;
 }
 
-// ===== CATEGORIAS =====
+// ====================================
+// CATEGORIAS
+// ====================================
 
 bool AdminController::agregarCategoria(
     const string& nombre,
@@ -103,9 +115,11 @@ Categoria* AdminController::buscarCategoria(
     const string& nombre
 ) const {
 
-    for (Categoria* c : categorias)
+    for (Categoria* c : categorias) {
+
         if (c->getNombre() == nombre)
             return c;
+    }
 
     return nullptr;
 }
@@ -115,7 +129,9 @@ vector<Categoria*> AdminController::listarCategorias() const {
     return categorias;
 }
 
-// ===== PROVEEDORES =====
+// ====================================
+// PROVEEDORES
+// ====================================
 
 bool AdminController::agregarProveedor(
     int rut,
@@ -143,9 +159,11 @@ Proveedor* AdminController::buscarProveedor(
     int rut
 ) const {
 
-    for (Proveedor* p : proveedores)
+    for (Proveedor* p : proveedores) {
+
         if (p->getRut() == rut)
             return p;
+    }
 
     return nullptr;
 }
@@ -153,4 +171,57 @@ Proveedor* AdminController::buscarProveedor(
 vector<Proveedor*> AdminController::listarProveedores() const {
 
     return proveedores;
+}
+
+// ====================================
+// PROVEEDOR - PRODUCTO
+// ====================================
+
+bool AdminController::asociarProveedorProducto(
+    int rutProveedor,
+    int codigoProducto,
+    float precioCompra,
+    Fecha* fechaEntrega
+) {
+
+    Proveedor* proveedor =
+        buscarProveedor(rutProveedor);
+
+    Producto* producto =
+        buscarProducto(codigoProducto);
+
+    if (
+        proveedor == nullptr ||
+        producto == nullptr
+    ) {
+        return false;
+    }
+
+    ProveedorProducto* relacion =
+        new ProveedorProducto(
+            precioCompra,
+            fechaEntrega,
+            proveedor,
+            producto
+        );
+
+    proveedorProductos.push_back(
+        relacion
+    );
+
+    proveedor->agregarProducto(
+        relacion
+    );
+
+    producto->agregarProveedor(
+        relacion
+    );
+
+    return true;
+}
+
+vector<ProveedorProducto*>
+AdminController::listarProveedorProductos() const {
+
+    return proveedorProductos;
 }

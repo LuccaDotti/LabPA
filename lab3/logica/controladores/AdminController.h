@@ -6,6 +6,8 @@
 #include "logica/dominio/Producto.h"
 #include "logica/dominio/Categoria.h"
 #include "logica/dominio/Proveedor.h"
+#include "logica/dominio/ProveedorProducto.h"
+#include "logica/dominio/Fecha.h"
 
 using namespace std;
 
@@ -16,51 +18,55 @@ private:
     vector<Producto*> productos;
     vector<Categoria*> categorias;
     vector<Proveedor*> proveedores;
+    vector<ProveedorProducto*> proveedorProductos;
 
 public:
 
     AdminController();
     ~AdminController();
 
-    // Productos
+    // ===== PRODUCTOS =====
 
     bool agregarProducto(
         int codigo,
-        string nombre,
-        string descripcion,
+        const string& nombre,
+        const string& descripcion,
         float precioUnitario,
         int stockActual,
         int stockMinimo,
-        Categoria* categoria,
-        Proveedor* proveedor
+        Categoria* categoria
     );
 
-    Producto* buscarProducto(int codigo) const;
+    Producto* buscarProducto(
+        int codigo
+    ) const;
 
     vector<Producto*> listarProductos() const;
 
-    bool eliminarProducto(int codigo);
+    bool eliminarProducto(
+        int codigo
+    );
 
-    // Categorias
+    // ===== CATEGORIAS =====
 
     bool agregarCategoria(
-        string nombre,
-        string descripcion
+        const string& nombre,
+        const string& descripcion
     );
 
     Categoria* buscarCategoria(
-        string nombre
+        const string& nombre
     ) const;
 
     vector<Categoria*> listarCategorias() const;
 
-    // Proveedores
+    // ===== PROVEEDORES =====
 
     bool agregarProveedor(
         int rut,
-        string nombreEmpresa,
+        const string& nombreEmpresa,
         int telefono,
-        string nombreContacto
+        const string& nombreContacto
     );
 
     Proveedor* buscarProveedor(
@@ -68,4 +74,15 @@ public:
     ) const;
 
     vector<Proveedor*> listarProveedores() const;
+
+    // ===== PROVEEDOR-PRODUCTO =====
+
+    bool asociarProveedorProducto(
+        int rutProveedor,
+        int codigoProducto,
+        float precioCompra,
+        Fecha* fechaEntrega
+    );
+
+    vector<ProveedorProducto*> listarProveedorProductos() const;
 };
