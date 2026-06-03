@@ -1,2 +1,5 @@
+#include "ClienteRegistrado.h"
+void funcionPrueba(){
 
-hola
+}
+
