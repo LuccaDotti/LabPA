@@ -1,17 +1,40 @@
 #include "LineaCompra.h"
+#include "OrdenCompra.h"
 using namespace std;
 
-LineaCompra::LineaCompra(Producto *producto, int cantidad) : producto(producto), cantidad(cantidad) {}
+LineaCompra::LineaCompra(Producto* producto, ProveedorProducto* proveedorProducto,
+                         int cantidad, float precioUnitario)
+    : ordenCompra(nullptr), producto(producto), proveedorProducto(proveedorProducto),
+      cantidad(cantidad), precioUnitario(precioUnitario) {}
 
-Producto *LineaCompra::getProducto() const
-{
+OrdenCompra* LineaCompra::getOrdenCompra() const {
+    return ordenCompra;
+}
+
+Producto* LineaCompra::getProducto() const {
     return producto;
 }
-int LineaCompra::getCantidad() const
-{
+
+ProveedorProducto* LineaCompra::getProveedorProducto() const {
+    return proveedorProducto;
+}
+
+int LineaCompra::getCantidad() const {
     return cantidad;
 }
-void LineaCompra::setCantidad(int cantidad)
-{
+
+float LineaCompra::getPrecioUnitario() const {
+    return precioUnitario;
+}
+
+float LineaCompra::getSubtotal() const {
+    return cantidad * precioUnitario;
+}
+
+void LineaCompra::setCantidad(int cantidad) {
     this->cantidad = cantidad;
+}
+
+void LineaCompra::setOrdenCompra(OrdenCompra* orden) {
+    this->ordenCompra = orden;
 }
