@@ -3,26 +3,26 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class ProveedorProducto;
 
-class Proveedor {
-
+class Proveedor
+{
 private:
-
     int rut;
-    std::string nombreEmpresa;
+    string nombreEmpresa;
     int telefono;
-    std::string nombreContacto;
+    string nombreContacto;
 
-    std::vector<ProveedorProducto*> productosProveidos;
+    vector<ProveedorProducto*> productosProveidos;
 
 public:
-
     Proveedor(
         int rut,
-        const std::string& nombreEmpresa,
+        const string& nombreEmpresa,
         int telefono,
-        const std::string& nombreContacto
+        const string& nombreContacto
     );
 
     ~Proveedor();
@@ -30,16 +30,20 @@ public:
     int getRut() const;
     void setRut(int rut);
 
-    std::string getNombreEmpresa() const;
-    void setNombreEmpresa(const std::string& nombreEmpresa);
+    string getNombreEmpresa() const;
+    void setNombreEmpresa(
+        const string& nombreEmpresa
+    );
 
     int getTelefono() const;
     void setTelefono(int telefono);
 
-    std::string getNombreContacto() const;
-    void setNombreContacto(const std::string& nombreContacto);
+    string getNombreContacto() const;
+    void setNombreContacto(
+        const string& nombreContacto
+    );
 
-    std::vector<ProveedorProducto*> getProductosProveidos() const;
+    vector<ProveedorProducto*> getProductosProveidos() const;
 
     void agregarProducto(
         ProveedorProducto* proveedorProducto
