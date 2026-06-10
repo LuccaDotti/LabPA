@@ -25,15 +25,11 @@ public:
 
     ~VentaController();
 
-    bool registrarVenta(
-        Venta* venta
-    );
+    bool registrarVenta(Venta* venta);
 
     vector<Venta*> listarVentas() const;
 
-    bool agregarCalificacion(
-        Calificacion* calificacion
-    );
+    bool agregarCalificacion(Calificacion* calificacion);
 
     vector<Calificacion*> listarCalificaciones() const;
 };
