@@ -1,13 +1,6 @@
 #include "logica/dominio/Fecha.h"
 
-Fecha::Fecha(
-    int dia,
-    int mes,
-    int anio,
-    int hora,
-    int minutos,
-    int segundos
-) {
+Fecha::Fecha(int dia,int mes,int anio,int hora,int minutos,int segundos) {
     this->dia = dia;
     this->mes = mes;
     this->anio = anio;
