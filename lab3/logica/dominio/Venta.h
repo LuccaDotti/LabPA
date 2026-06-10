@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "lofica/dominio/Fecha.h"
+#include "logica/dominio/Fecha.h"
 #include "logica/dominio/Cliente.h"
 #include "logica/dominio/LineaDetalle.h"
 using namespace std;
