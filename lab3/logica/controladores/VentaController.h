@@ -2,9 +2,8 @@
 
 #include <vector>
 
-#include "logica/dominio/Venta.h"
-#include "logica/dominio/Calificacion.h"
-
+class Venta;
+class Calificacion;
 class AdminController;
 
 using namespace std;
