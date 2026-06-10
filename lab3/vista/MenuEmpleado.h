@@ -12,10 +12,7 @@ private:
 
 public:
 
-    MenuEmpleado(
-        EmpleadoController& empleadoController,
-        AdminController& adminController
-    );
+    MenuEmpleado(EmpleadoController& empleadoController, AdminController& adminController);
 
     void mostrar();
 };
