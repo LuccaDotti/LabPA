@@ -6,10 +6,7 @@
 
 using namespace std;
 
-VentaController::VentaController(
-    AdminController& adminController
-)
-: adminController(adminController)
+VentaController::VentaController(AdminController& adminController) : adminController(adminController)
 {
 }
 
@@ -24,9 +21,8 @@ VentaController::~VentaController() {
 
 // ===== VENTAS =====
 
-bool VentaController::registrarVenta(
-    Venta* venta
-) {
+bool VentaController::registrarVenta(Venta* venta)
+{
 
     ventas.push_back(venta);
 
@@ -40,9 +36,8 @@ vector<Venta*> VentaController::listarVentas() const {
 
 // ===== CALIFICACIONES =====
 
-bool VentaController::agregarCalificacion(
-    Calificacion* calificacion
-) {
+bool VentaController::agregarCalificacion(Calificacion* calificacion)
+{
 
     calificaciones.push_back(calificacion);
 
