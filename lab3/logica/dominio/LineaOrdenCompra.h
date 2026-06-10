@@ -7,8 +7,7 @@ class OrdenCompra;
 
 class LineaOrdenCompra {
 public:
-    LineaOrdenCompra(Producto* producto, ProveedorProducto* proveedorProducto,
-                     int cantidad, float precioUnitario);
+    LineaOrdenCompra(Producto* producto, ProveedorProducto* proveedorProducto, int cantidad, float precioUnitario);
 
     OrdenCompra* getOrdenCompra() const;
     Producto* getProducto() const;
