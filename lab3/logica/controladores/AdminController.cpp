@@ -38,12 +38,15 @@ bool AdminController::agregarProducto(
     productos.push_back(
         new Producto(
             codigo,
-            nombre,
-            descripcion,
-            precioUnitario,
-            stockActual,
-            stockMinimo,
-            categoria
+        nombre,
+        descripcion,
+        precioUnitario,
+        stockActual,
+        stockMinimo,
+        0.0,
+        0,
+        false,
+        categoria
         )
     );
 
