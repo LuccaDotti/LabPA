@@ -12,11 +12,7 @@ int main()
 
     VentaController ventaCtrl(adminCtrl);
 
-    MenuPrincipal menu(
-        adminCtrl,
-        empleadoCtrl,
-        ventaCtrl
-    );
+    MenuPrincipal menu(adminCtrl, empleadoCtrl, ventaCtrl);
 
     menu.mostrar();
 
