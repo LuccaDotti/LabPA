@@ -21,9 +21,7 @@ private:
 
 public:
 
-    EmpleadoController(
-        AdminController& adminController
-    );
+    EmpleadoController(AdminController& adminController);
 
     ~EmpleadoController();
 
