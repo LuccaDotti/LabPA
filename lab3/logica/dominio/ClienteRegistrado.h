@@ -1,6 +1,6 @@
 #pragma once
 using namespace std;
-#include "Cliente.h"
+#include "logica/dominio/Cliente.h"
 #include <string>
 
 class ClienteRegistrado : public Cliente {
