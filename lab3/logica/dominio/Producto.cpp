@@ -5,19 +5,7 @@
 
 using namespace std;
 
-Producto::Producto(
-    int codigo,
-    const string &nombre,
-    const string &descripcion,
-    float precioUnitario,
-    int stockActual,
-    int stockMinimo,
-    float puntajePromedio,
-    int unidadesVendidas,
-    bool bajoStock,
-    Categoria *categoria
-)
-: codigo(codigo),
+Producto::Producto(int codigo, const string &nombre, const string &descripcion, float precioUnitario, int stockActual, int stockMinimo, float puntajePromedio, int unidadesVendidas, bool bajoStock, Categoria *categoria) : codigo(codigo),
   nombre(nombre),
   descripcion(descripcion),
   precioUnitario(precioUnitario),
@@ -27,7 +15,7 @@ Producto::Producto(
   unidadesVendidas(unidadesVendidas),
   bajoStock(bajoStock),
   categoria(categoria)
-{
+{    
 }
 
 Producto::~Producto() = default;
