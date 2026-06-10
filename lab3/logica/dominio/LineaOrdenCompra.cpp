@@ -2,10 +2,7 @@
 #include "logica/dominio/LineaOrdenCompra.h"
 using namespace std;
 
-LineaOrdenCompra::LineaOrdenCompra(Producto* producto, ProveedorProducto* proveedorProducto,
-                                   int cantidad, float precioUnitario)
-    : ordenCompra(nullptr), producto(producto), proveedorProducto(proveedorProducto),
-      cantidad(cantidad), precioUnitario(precioUnitario) {}
+LineaOrdenCompra::LineaOrdenCompra(Producto* producto, ProveedorProducto* proveedorProducto, int cantidad, float precioUnitario) : ordenCompra(nullptr), producto(producto), proveedorProducto(proveedorProducto), cantidad(cantidad), precioUnitario(precioUnitario) {}
 
 OrdenCompra* LineaOrdenCompra::getOrdenCompra() const {
     return ordenCompra;
