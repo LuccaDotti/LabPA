@@ -1,8 +1,12 @@
 #pragma once
-using namespace std;
 
 #include <string>
-class Categoria; // forward declaration
+#include <vector>
+
+using namespace std;
+
+class Categoria;
+class ProveedorProducto;
 
 class Producto
 {
@@ -13,13 +17,30 @@ private:
     float precioUnitario;
     int stockActual;
     int stockMinimo;
+
     float puntajePromedio;
     int unidadesVendidas;
     bool bajoStock;
-    Categoria *categoria;
+
+    Categoria* categoria;
+
+    vector<ProveedorProducto*> proveedores;
 
 public:
-    Producto(int codigo, const string &nombre, const string &descripcion, float precioUnitario, int stockActual, int stockMinimo, float puntajePromedio, int unidadesVendidas, bool bajoStock, Categoria *categoria = nullptr);
+
+    Producto(
+        int codigo,
+        const string &nombre,
+        const string &descripcion,
+        float precioUnitario,
+        int stockActual,
+        int stockMinimo,
+        float puntajePromedio,
+        int unidadesVendidas,
+        bool bajoStock,
+        Categoria *categoria = nullptr
+    );
+
     ~Producto();
 
     int getCodigo() const;
@@ -49,8 +70,14 @@ public:
     bool isBajoStock() const;
     void setBajoStock(bool bajoStock);
 
-    Categoria *getCategoria() const;
+    Categoria* getCategoria() const;
     void setCategoria(Categoria *categoria);
+
+    vector<ProveedorProducto*> getProveedores() const;
+
+    void agregarProveedor(
+        ProveedorProducto* proveedorProducto
+    );
 
     // Métodos de dominio (stubs)
     void vender(int unidades);
