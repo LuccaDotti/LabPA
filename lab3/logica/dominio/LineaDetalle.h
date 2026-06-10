@@ -1,5 +1,5 @@
 #pragma once
-#include "Producto.h"
+#include "logica/dominio/Producto.h"
 using namespace std;
 
 class LineaDetalle {
