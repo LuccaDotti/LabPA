@@ -1,10 +1,9 @@
 #include "logica/dominio/Direccion.h"
+using namespace std;
+#include <string>
 
-Direccion::Direccion(
-    int nroPuerta,
-    std::string calle,
-    std::string ciudad
-) {
+Direccion::Direccion(int nroPuerta, string calle, string ciudad) 
+{
     this->nroPuerta = nroPuerta;
     this->calle = calle;
     this->ciudad = ciudad;
@@ -14,11 +13,11 @@ int Direccion::getNroPuerta() {
     return nroPuerta;
 }
 
-std::string Direccion::getCalle() {
+string Direccion::getCalle() {
     return calle;
 }
 
-std::string Direccion::getCiudad() {
+string Direccion::getCiudad() {
     return ciudad;
 }
 
@@ -30,6 +29,6 @@ void Direccion::setCalle(std::string calle) {
     this->calle = calle;
 }
 
-void Direccion::setCiudad(std::string ciudad) {
+void Direccion::setCiudad(string ciudad) {
     this->ciudad = ciudad;
 }
