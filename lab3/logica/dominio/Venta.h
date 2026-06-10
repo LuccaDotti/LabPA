@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
-#include "Fecha.h"
-#include "Cliente.h"
-#include "LineaDetalle.h"
+#include "lofica/dominio/Fecha.h"
+#include "logica/dominio/Cliente.h"
+#include "logica/dominio/LineaDetalle.h"
 using namespace std;
 
 class Venta {
