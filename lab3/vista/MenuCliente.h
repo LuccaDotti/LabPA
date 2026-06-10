@@ -12,10 +12,7 @@ private:
 
 public:
 
-    MenuCliente(
-        VentaController& ventaController,
-        AdminController& adminController
-    );
+    MenuCliente(VentaController& ventaController, AdminController& adminController);
 
     void mostrar();
 };
