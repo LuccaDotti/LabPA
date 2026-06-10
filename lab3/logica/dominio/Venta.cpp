@@ -1,8 +1,7 @@
 #include "logica/dominio/Venta.h"
 using namespace std;
 
-Venta::Venta(const Fecha& fecha, Cliente* cliente)
-    : fecha(fecha), cliente(cliente) {}
+Venta::Venta(const Fecha& fecha, Cliente* cliente) : fecha(fecha), cliente(cliente) {}
 
 Fecha Venta::getFecha() const {
     return fecha;
