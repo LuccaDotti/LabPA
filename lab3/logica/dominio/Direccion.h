@@ -1,5 +1,5 @@
 #pragma once
-
+using namespace std;
 #include <string>
 
 class Direccion {
@@ -7,22 +7,22 @@ class Direccion {
 private:
 
     int nroPuerta;
-    std::string calle;
-    std::string ciudad;
+    string calle;
+    string ciudad;
 
 public:
 
     Direccion(
         int nroPuerta,
-        std::string calle,
-        std::string ciudad
+        string calle,
+        string ciudad
     );
 
     int getNroPuerta();
-    std::string getCalle();
-    std::string getCiudad();
+    string getCalle();
+    string getCiudad();
 
     void setNroPuerta(int nroPuerta);
-    void setCalle(std::string calle);
-    void setCiudad(std::string ciudad);
+    void setCalle(string calle);
+    void setCiudad(string ciudad);
 };
