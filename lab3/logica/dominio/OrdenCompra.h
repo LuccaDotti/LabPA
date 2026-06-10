@@ -26,32 +26,20 @@ private:
     vector<LineaCompra*> lineasCompra;
 
 public:
-    OrdenCompra(
-        Fecha* fechaEmision,
-        EstadoOrden estado,
-        Proveedor* proveedor
-    );
+    OrdenCompra(Fecha* fechaEmision, EstadoOrden estado, Proveedor* proveedor);
 
     ~OrdenCompra();
 
     Fecha* getFechaEmision() const;
-    void setFechaEmision(
-        Fecha* fechaEmision
-    );
+    void setFechaEmision(Fecha* fechaEmision);
 
     EstadoOrden getEstado() const;
-    void setEstado(
-        EstadoOrden estado
-    );
+    void setEstado(EstadoOrden estado);
 
     Proveedor* getProveedor() const;
-    void setProveedor(
-        Proveedor* proveedor
-    );
+    void setProveedor(Proveedor* proveedor);
 
     vector<LineaCompra*> getLineasCompra() const;
 
-    void agregarLineaCompra(
-        LineaCompra* lineaCompra
-    );
+    void agregarLineaCompra(LineaCompra* lineaCompra);
 };
