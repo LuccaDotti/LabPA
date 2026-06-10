@@ -202,10 +202,10 @@ bool AdminController::asociarProveedorProducto(
 
     ProveedorProducto* relacion =
         new ProveedorProducto(
-            precioCompra,
-            fechaEntrega,
             proveedor,
-            producto
+            producto,
+            precioCompra,
+            *fechaEntrega
         );
 
     proveedorProductos.push_back(
