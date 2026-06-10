@@ -14,11 +14,7 @@ private:
 
 public:
 
-    MenuPrincipal(
-        AdminController& adminController,
-        EmpleadoController& empleadoController,
-        VentaController& ventaController
-    );
+    MenuPrincipal(AdminController& adminController, EmpleadoController& empleadoController, VentaController& ventaController);
 
     void mostrar();
 };
