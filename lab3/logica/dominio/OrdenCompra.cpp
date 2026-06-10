@@ -2,20 +2,14 @@
 
 using namespace std;
 
-OrdenCompra::OrdenCompra(
-    Fecha* fechaEmision,
-    EstadoOrden estado,
-    Proveedor* proveedor
-)
+OrdenCompra::OrdenCompra( Fecha* fechaEmision, EstadoOrden estado, Proveedor* proveedor)
 {
     this->fechaEmision = fechaEmision;
     this->estado = estado;
     this->proveedor = proveedor;
 }
 
-OrdenCompra::~OrdenCompra()
-{
-}
+OrdenCompra::~OrdenCompra(){}
 
 Fecha* OrdenCompra::getFechaEmision() const
 {
