@@ -7,12 +7,7 @@
 
 using namespace std;
 
-MenuEmpleado::MenuEmpleado(
-    EmpleadoController& empleadoController,
-    AdminController& adminController
-)
-: empleadoController(empleadoController),
-  adminController(adminController)
+MenuEmpleado::MenuEmpleado(EmpleadoController& empleadoController, AdminController& adminController) : empleadoController(empleadoController), adminController(adminController)
 {
 }
 
