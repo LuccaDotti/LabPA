@@ -1,4 +1,4 @@
-#include "Venta.h"
+#include "logica/dominio/Venta.h"
 using namespace std;
 
 Venta::Venta(const Fecha& fecha, Cliente* cliente)

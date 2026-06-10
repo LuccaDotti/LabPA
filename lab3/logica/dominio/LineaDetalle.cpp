@@ -1,4 +1,4 @@
-#include "LineaDetalle.h"
+#include "logica/dominio/LineaDetalle.h"
 using namespace std;
 
 LineaDetalle::LineaDetalle(Producto* producto, int cantidad, float precioUnitario)

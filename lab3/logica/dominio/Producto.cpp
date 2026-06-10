@@ -1,4 +1,4 @@
-#include "Producto.h"
+#include "logica/dominio/Producto.h"
 #include <string>
 using namespace std;
 

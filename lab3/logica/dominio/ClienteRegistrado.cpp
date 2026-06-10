@@ -1,4 +1,4 @@
-#include "ClienteRegistrado.h"
+#include "logica/dominio/ClienteRegistrado.h"
 using namespace std;
 
 ClienteRegistrado::ClienteRegistrado(int id, int rut, const string &direccion, const string &correo, const string &nombreCompleto, float totalFacturado) : Cliente(id), rut(rut), direccion(direccion), correo(correo), nombreCompleto(nombreCompleto), totalFacturado(totalFacturado) {}

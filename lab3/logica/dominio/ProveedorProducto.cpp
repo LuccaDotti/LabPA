@@ -1,4 +1,4 @@
-#include "ProveedorProducto.h"
+#include "logica/dominio/ProveedorProducto.h"
 using namespace std;
 
 ProveedorProducto::ProveedorProducto(Proveedor* proveedor, Producto* producto,

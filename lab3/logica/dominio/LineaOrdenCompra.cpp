@@ -1,5 +1,5 @@
-#include "LineaOrdenCompra.h"
-#include "OrdenCompra.h"
+#include "logica/dominio/Calificacion.h"
+#include "logica/dominio/LineaOrdenCompra.h"
 using namespace std;
 
 LineaOrdenCompra::LineaOrdenCompra(Producto* producto, ProveedorProducto* proveedorProducto,

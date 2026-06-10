@@ -1,4 +1,4 @@
-#include "Categoria.h"
+#include "logica/dominio/Categoria.h"
 using namespace std;
 #include <string>
 
