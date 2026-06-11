@@ -3,7 +3,6 @@
 #include <vector>
 
 class Venta;
-class Calificacion;
 class AdminController;
 
 using namespace std;
