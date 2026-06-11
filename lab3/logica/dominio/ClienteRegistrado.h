@@ -1,15 +1,18 @@
 #pragma once
 using namespace std;
-#include "logica/dominio/Cliente.h"
+#include "logica/dominio/Calificacion.h"
 #include <string>
 
-class ClienteRegistrado : public Cliente {
+class ClienteRegistrad
+{
 private:
 	int rut;
 	string direccion;
 	string correo;
 	string nombreCompleto;
 	float totalFacturado;
+
+	vector<Calificacion*> calificaciones;
 public:
 	ClienteRegistrado(int id, int rut, const string& direccion, const string& correo, const string& nombreCompleto, float totalFacturado);
 	~ClienteRegistrado() override;
@@ -33,5 +36,7 @@ public:
 
 	// Métodos de dominio (stubs)
 	void agregarFacturacion(float monto);
+
+	void agregarCalificacion(Calificacion* calificacion);
 };
 
