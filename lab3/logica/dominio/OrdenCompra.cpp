@@ -2,14 +2,20 @@
 
 using namespace std;
 
-OrdenCompra::OrdenCompra( Fecha* fechaEmision, EstadoOrden estado, Proveedor* proveedor)
+OrdenCompra::OrdenCompra(
+    Fecha* fechaEmision,
+    EstadoOrden estado,
+    Proveedor* proveedor
+)
 {
     this->fechaEmision = fechaEmision;
     this->estado = estado;
     this->proveedor = proveedor;
 }
 
-OrdenCompra::~OrdenCompra(){}
+OrdenCompra::~OrdenCompra()
+{
+}
 
 Fecha* OrdenCompra::getFechaEmision() const
 {
@@ -58,5 +64,19 @@ void OrdenCompra::agregarLineaCompra(
 {
     lineasCompra.push_back(
         lineaCompra
+    );
+}
+
+vector<OrdenCompra*> OrdenCompra::getOrdenesCompra() const
+{
+    return ordenesCompra;
+}
+
+void OrdenCompra::agregarOrdenCompra(
+    OrdenCompra* ordenCompra
+)
+{
+    ordenesCompra.push_back(
+        ordenCompra
     );
 }
