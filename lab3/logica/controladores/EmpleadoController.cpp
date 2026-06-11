@@ -1,63 +1,68 @@
 #include "logica/controladores/EmpleadoController.h"
-#include "logica/dominio/ClienteRegistrado.h"
 
-EmpleadoController::EmpleadoController(AdminController &adminController) : adminController(adminController) {}
+using namespace std;
+
+EmpleadoController::EmpleadoController(
+    AdminController& adminController
+)
+: adminController(adminController)
+{
+}
 
 EmpleadoController::~EmpleadoController()
 {
-
-    for (Cliente *c : clientes)
+    for (ClienteRegistrado* c : clientes)
         delete c;
 
-    for (OrdenCompra *o : ordenesCompra)
+    for (OrdenCompra* o : ordenesCompra)
         delete o;
 }
 
 // ====================================
-// CLIENTES
+// CLIENTES REGISTRADOS
 // ====================================
 
-bool EmpleadoController::agregarCliente(Cliente *cliente)
+bool EmpleadoController::agregarCliente(
+    ClienteRegistrado* cliente
+)
 {
     clientes.push_back(cliente);
 
     return true;
 }
 
-Cliente *EmpleadoController::buscarCliente(int rut) const
+ClienteRegistrado* EmpleadoController::buscarCliente(
+    int rut
+) const
 {
-
-    for (Cliente *c : clientes)
+    for (ClienteRegistrado* c : clientes)
     {
-
-        ClienteRegistrado *cr =
-            dynamic_cast<ClienteRegistrado *>(c);
-
-        if (cr != nullptr &&
-            cr->getRut() == rut)
+        if (c->getRut() == rut)
             return c;
     }
 
     return nullptr;
 }
 
-vector<Cliente *> EmpleadoController::listarClientes() const
+vector<ClienteRegistrado*> EmpleadoController::listarClientes() const
 {
     return clientes;
 }
 
 // ====================================
-// ORDENES
+// ORDENES DE COMPRA
 // ====================================
 
-bool EmpleadoController::crearOrdenCompra(OrdenCompra *orden)
+bool EmpleadoController::crearOrdenCompra(
+    OrdenCompra* orden
+)
 {
     ordenesCompra.push_back(orden);
 
     return true;
 }
 
-vector<OrdenCompra *> EmpleadoController::listarOrdenes() const
+vector<OrdenCompra*> EmpleadoController::listarOrdenes() const
 {
     return ordenesCompra;
 }
