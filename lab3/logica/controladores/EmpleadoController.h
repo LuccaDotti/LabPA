@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <string>
 
 #include "logica/dominio/ClienteRegistrado.h"
 #include "logica/dominio/OrdenCompra.h"
@@ -14,26 +13,36 @@ class EmpleadoController {
 
 private:
 
-    vector<Cliente*> clientes;
+    vector<ClienteRegistrado*> clientes;
     vector<OrdenCompra*> ordenesCompra;
 
     AdminController& adminController;
 
 public:
 
-    EmpleadoController(AdminController& adminController);
+    EmpleadoController(
+        AdminController& adminController
+    );
 
     ~EmpleadoController();
 
-    // Clientes
+    // ====================================
+    // CLIENTES REGISTRADOS
+    // ====================================
 
-    bool agregarCliente(Cliente* cliente);
+    bool agregarCliente(
+        ClienteRegistrado* cliente
+    );
 
-    Cliente* buscarCliente(int rut) const;
+    ClienteRegistrado* buscarCliente(
+        int rut
+    ) const;
 
-    vector<Cliente*> listarClientes() const;
+    vector<ClienteRegistrado*> listarClientes() const;
 
-    // Ordenes
+    // ====================================
+    // ORDENES DE COMPRA
+    // ====================================
 
     bool crearOrdenCompra(
         OrdenCompra* orden
