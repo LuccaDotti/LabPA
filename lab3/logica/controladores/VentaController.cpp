@@ -5,27 +5,22 @@
 
 using namespace std;
 
-VentaController::VentaController(AdminController& adminController) : adminController(adminController)
+VentaController::VentaController(
+    AdminController& adminController
+)
+: adminController(adminController)
 {
 }
 
-VentaController::~VentaController() {
-
-    for (Venta* v : ventas)
-        delete v;
+VentaController::~VentaController()
+{
 }
 
 // ===== VENTAS =====
 
-bool VentaController::registrarVenta(Venta* venta)
+bool VentaController::registrarVenta(
+    Venta* venta
+)
 {
-
-    ventas.push_back(venta);
-
     return true;
-}
-
-vector<Venta*> VentaController::listarVentas() const {
-
-    return ventas;
 }
