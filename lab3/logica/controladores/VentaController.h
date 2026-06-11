@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 class Venta;
 class AdminController;
 
@@ -11,7 +9,6 @@ class VentaController {
 
 private:
 
-    vector<Venta*> ventas;
     AdminController& adminController;
 
 public:
@@ -22,7 +19,7 @@ public:
 
     ~VentaController();
 
-    bool registrarVenta(Venta* venta);
-
-    vector<Venta*> listarVentas() const;
+    bool registrarVenta(
+        Venta* venta
+    );
 };
