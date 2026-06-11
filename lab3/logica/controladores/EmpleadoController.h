@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#include "logica/dominio/Cliente.h"
+#include "logica/dominio/ClienteRegistrado.h"
 #include "logica/dominio/OrdenCompra.h"
 
 class AdminController;
