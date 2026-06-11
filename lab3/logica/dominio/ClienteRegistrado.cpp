@@ -61,3 +61,9 @@ void ClienteRegistrado::agregarFacturacion(float monto)
     // Stub: acumular facturación
     totalFacturado += monto;
 }
+
+void ClienteRegistrado::agregarCalificacion(Calificacion *calificacion)
+{
+    // Stub: agregar calificación a la lista
+    calificaciones.push_back(calificacion);
+}
