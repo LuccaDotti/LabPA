@@ -13,8 +13,6 @@ class VentaController {
 private:
 
     vector<Venta*> ventas;
-    vector<Calificacion*> calificaciones;
-
     AdminController& adminController;
 
 public:
@@ -28,8 +26,4 @@ public:
     bool registrarVenta(Venta* venta);
 
     vector<Venta*> listarVentas() const;
-
-    bool agregarCalificacion(Calificacion* calificacion);
-
-    vector<Calificacion*> listarCalificaciones() const;
 };
