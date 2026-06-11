@@ -15,7 +15,7 @@ private:
 	vector<Calificacion*> calificaciones;
 public:
 	ClienteRegistrado(int id, int rut, const string& direccion, const string& correo, const string& nombreCompleto, float totalFacturado);
-	~ClienteRegistrado() override;
+	~ClienteRegistrado() ;
 
 	int getRut() const;
 	void setRut(int rut);
@@ -32,7 +32,7 @@ public:
 	float getTotalFacturado() const;
 	void setTotalFacturado(float totalFacturado);
 
-	string clienteTipo() const override;
+	string clienteTipo() const;
 
 	// Métodos de dominio (stubs)
 	void agregarFacturacion(float monto);
