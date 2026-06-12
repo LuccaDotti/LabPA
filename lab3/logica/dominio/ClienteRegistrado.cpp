@@ -11,11 +11,11 @@ ClienteRegistrado::ClienteRegistrado(
     float totalFacturado
 )
 {
-    this->rut = rut;
-    this->direccion = direccion;
-    this->correo = correo;
-    this->nombreCompleto = nombreCompleto;
-    this->totalFacturado = totalFacturado;
+    : rut(rut),
+      direccion(direccion),
+      correo(correo),
+      nombreCompleto(nombreCompleto),
+      totalFacturado(totalFacturado)
 }
 
 ClienteRegistrado::~ClienteRegistrado()
