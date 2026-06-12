@@ -10,12 +10,12 @@ ClienteRegistrado::ClienteRegistrado(
     const string& nombreCompleto,
     float totalFacturado
 )
-{
     : rut(rut),
       direccion(direccion),
       correo(correo),
       nombreCompleto(nombreCompleto),
       totalFacturado(totalFacturado)
+{
 }
 
 ClienteRegistrado::~ClienteRegistrado()
