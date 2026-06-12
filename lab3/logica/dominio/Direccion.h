@@ -12,6 +12,8 @@ private:
 
 public:
 
+    Direccion();
+
     Direccion(
         int nroPuerta,
         string calle,
