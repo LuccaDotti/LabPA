@@ -2,7 +2,13 @@
 using namespace std;
 #include <string>
 
+Direccion::Direccion()
+    : nroPuerta(0), calle(""), ciudad("")
+{
+}
+
 Direccion::Direccion(int nroPuerta, string calle, string ciudad) 
+    : nroPuerta(nroPuerta), calle(calle), ciudad(ciudad)
 {
     this->nroPuerta = nroPuerta;
     this->calle = calle;
