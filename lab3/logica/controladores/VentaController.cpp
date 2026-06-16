@@ -24,3 +24,23 @@ bool VentaController::registrarVenta(
 {
     return true;
 }
+
+vector<Calificacion*> VentaController::listarCalificaciones() const {
+
+    return calificaciones;
+}
+
+vector<Calificacion*> VentaController::getCalificacionesPorProducto(
+    int codigoProducto
+) const {
+    vector<Calificacion*> calificacionesProducto;
+
+    for (Calificacion* calificacion : calificaciones) {
+        Producto* producto = calificacion->getProducto();
+        if (producto && producto->getCodigo() == codigoProducto) {
+            calificacionesProducto.push_back(calificacion);
+        }
+    }
+
+    return calificacionesProducto;
+}

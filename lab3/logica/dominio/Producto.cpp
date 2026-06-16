@@ -120,18 +120,14 @@ void Producto::setCategoria(Categoria *categoria)
     this->categoria = categoria;
 }
 
-vector<ProveedorProducto*> Producto::getProveedores() const
+void Producto::agregarProveedor(ProveedorProducto* proveedorProducto)
 {
-    return proveedores;
+    proveedores.push_back(proveedorProducto);
 }
 
-void Producto::agregarProveedor(
-    ProveedorProducto* proveedorProducto
-)
+std::vector<ProveedorProducto*> Producto::getProveedores() const
 {
-    proveedores.push_back(
-        proveedorProducto
-    );
+    return proveedores;
 }
 
 void Producto::vender(int unidades)

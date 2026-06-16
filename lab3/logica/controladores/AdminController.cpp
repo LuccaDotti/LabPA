@@ -27,7 +27,20 @@ bool AdminController::agregarProducto(int codigo, const string& nombre, const st
     if (buscarProducto(codigo) != nullptr)
         return false;
 
-    productos.push_back(new Producto(codigo, nombre, descripcion, precioUnitario, stockActual, stockMinimo, 0.0, 0, false, categoria));
+    productos.push_back(
+        new Producto(
+            codigo,
+            nombre,
+            descripcion,
+            precioUnitario,
+            stockActual,
+            stockMinimo,
+            0.0f, // puntajePromedio por defecto
+            0,    // unidadesVendidas por defecto
+            false,// bajoStock por defecto
+            categoria
+        )
+    );
 
     return true;
 }
@@ -146,13 +159,25 @@ bool AdminController::asociarProveedorProducto(int rutProveedor, int codigoProdu
         return false;
     }
 
-    ProveedorProducto* relacion = new ProveedorProducto(proveedor, producto, precioCompra, *fechaEntrega);
+    ProveedorProducto* relacion =
+        new ProveedorProducto(
+            proveedor,
+            producto,
+            precioCompra,
+            *fechaEntrega
+        );
 
-    proveedorProductos.push_back(relacion);
+    proveedorProductos.push_back(
+        relacion
+    );
 
-    proveedor->agregarProducto(relacion);
+    proveedor->agregarProducto(
+        relacion
+    );
 
-    producto->agregarProveedor(relacion);
+    producto->agregarProveedor(
+        relacion
+    );
 
     return true;
 }

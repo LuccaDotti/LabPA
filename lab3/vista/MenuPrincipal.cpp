@@ -20,7 +20,11 @@ void MenuPrincipal::mostrar() {
 
     MenuAdministrador menuAdmin(adminController);
 
-    MenuEmpleado menuEmpleado(empleadoController,adminController);
+    MenuEmpleado menuEmpleado(
+        empleadoController,
+        adminController,
+        ventaController
+    );
 
     MenuCliente menuCliente(ventaController, adminController);
 
