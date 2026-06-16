@@ -2,12 +2,7 @@
 
 using namespace std;
 
-Calificacion::Calificacion(
-    int puntaje,
-    const string& comentarioOpcional,
-    Fecha* fecha,
-    Producto* producto
-)
+Calificacion::Calificacion(int puntaje, const string& comentarioOpcional, Fecha* fecha, Producto* producto)
 {
     this->puntaje = puntaje;
     this->comentarioOpcional = comentarioOpcional;
@@ -15,9 +10,7 @@ Calificacion::Calificacion(
     this->producto = producto;
 }
 
-Calificacion::~Calificacion()
-{
-}
+Calificacion::~Calificacion(){}
 
 int Calificacion::getPuntaje() const
 {
@@ -34,9 +27,7 @@ string Calificacion::getComentarioOpcional() const
     return comentarioOpcional;
 }
 
-void Calificacion::setComentarioOpcional(
-    const string& comentarioOpcional
-)
+void Calificacion::setComentarioOpcional(const string& comentarioOpcional)
 {
     this->comentarioOpcional = comentarioOpcional;
 }

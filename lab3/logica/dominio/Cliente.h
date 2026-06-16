@@ -1,4 +1,4 @@
- #pragma once
+#pragma once
 using namespace std;
 #include <string>
 
@@ -15,4 +15,3 @@ public:
 	// Hace la clase abstracta para permitir polimorfismo
 	virtual string clienteTipo() const = 0;
 };
-

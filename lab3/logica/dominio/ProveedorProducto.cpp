@@ -1,10 +1,8 @@
 #include "logica/dominio/ProveedorProducto.h"
 using namespace std;
 
-ProveedorProducto::ProveedorProducto(Proveedor* proveedor, Producto* producto,
-                                     float precioCompra, const Fecha& fechaEntrega)
-    : proveedor(proveedor), producto(producto), precioCompra(precioCompra),
-      fechaEntrega(fechaEntrega) {}
+ProveedorProducto::ProveedorProducto(Proveedor* proveedor, Producto* producto, float precioCompra, const Fecha& fechaEntrega)
+    : proveedor(proveedor), producto(producto), precioCompra(precioCompra), fechaEntrega(fechaEntrega) {}
 
 Proveedor* ProveedorProducto::getProveedor() const {
     return proveedor;

@@ -1,7 +1,7 @@
 #pragma once
-#include "Fecha.h"
-#include "Proveedor.h"
-#include "Producto.h"
+#include "logica/dominio/Fecha.h"
+#include "logica/dominio/Proveedor.h"
+#include "logica/dominio/Producto.h"
 using namespace std;
 
 class ProveedorProducto {

@@ -5,10 +5,7 @@
 
 using namespace std;
 
-MenuAdministrador::MenuAdministrador(
-    AdminController& adminController
-)
-: adminController(adminController)
+MenuAdministrador::MenuAdministrador(AdminController& adminController) : adminController(adminController)
 {
 }
 

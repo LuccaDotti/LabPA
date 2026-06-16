@@ -25,6 +25,9 @@ private:
 
     vector<LineaCompra*> lineasCompra;
 
+    // Lista de todas las órdenes de compra
+    vector<OrdenCompra*> ordenesCompra;
+
 public:
     OrdenCompra(
         Fecha* fechaEmision,
@@ -53,5 +56,11 @@ public:
 
     void agregarLineaCompra(
         LineaCompra* lineaCompra
+    );
+
+    vector<OrdenCompra*> getOrdenesCompra() const;
+
+    void agregarOrdenCompra(
+        OrdenCompra* ordenCompra
     );
 };

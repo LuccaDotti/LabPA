@@ -10,4 +10,3 @@ public:
 
 	string clienteTipo() const override;
 };
-

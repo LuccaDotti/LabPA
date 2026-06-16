@@ -1,8 +1,7 @@
 #include "logica/dominio/LineaDetalle.h"
 using namespace std;
 
-LineaDetalle::LineaDetalle(Producto* producto, int cantidad, float precioUnitario)
-    : producto(producto), cantidad(cantidad), precioUnitario(precioUnitario) {}
+LineaDetalle::LineaDetalle(Producto* producto, int cantidad, float precioUnitario) : producto(producto), cantidad(cantidad), precioUnitario(precioUnitario) {}
 
 Producto* LineaDetalle::getProducto() const {
     return producto;
