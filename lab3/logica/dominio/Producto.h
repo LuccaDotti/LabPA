@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 
 #include <string>
 #include <vector>
@@ -16,6 +15,7 @@ private:
     float precioUnitario;
     int stockActual;
     int stockMinimo;
+
     float puntajePromedio;
     int unidadesVendidas;
     bool bajoStock;
@@ -25,7 +25,20 @@ private:
     std::vector<ProveedorProducto*> proveedores;
 
 public:
-    Producto(int codigo, const string &nombre, const string &descripcion, float precioUnitario, int stockActual, int stockMinimo, float puntajePromedio, int unidadesVendidas, bool bajoStock, Categoria *categoria = nullptr);
+
+    Producto(
+        int codigo,
+        const string &nombre,
+        const string &descripcion,
+        float precioUnitario,
+        int stockActual,
+        int stockMinimo,
+        float puntajePromedio,
+        int unidadesVendidas,
+        bool bajoStock,
+        Categoria *categoria = nullptr
+    );
+
     ~Producto();
 
     int getCodigo() const;
@@ -55,7 +68,7 @@ public:
     bool isBajoStock() const;
     void setBajoStock(bool bajoStock);
 
-    Categoria *getCategoria() const;
+    Categoria* getCategoria() const;
     void setCategoria(Categoria *categoria);
 
     void agregarProveedor(ProveedorProducto* proveedorProducto);

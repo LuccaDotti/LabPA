@@ -12,22 +12,13 @@
 
 using namespace std;
 
-MenuPrincipal::MenuPrincipal(
-    AdminController& adminController,
-    EmpleadoController& empleadoController,
-    VentaController& ventaController
-)
-: adminController(adminController),
-  empleadoController(empleadoController),
-  ventaController(ventaController)
+MenuPrincipal::MenuPrincipal(AdminController& adminController, EmpleadoController& empleadoController,VentaController& ventaController) : adminController(adminController),empleadoController(empleadoController),ventaController(ventaController)
 {
 }
 
 void MenuPrincipal::mostrar() {
 
-    MenuAdministrador menuAdmin(
-        adminController
-    );
+    MenuAdministrador menuAdmin(adminController);
 
     MenuEmpleado menuEmpleado(
         empleadoController,
@@ -35,10 +26,7 @@ void MenuPrincipal::mostrar() {
         ventaController
     );
 
-    MenuCliente menuCliente(
-        ventaController,
-        adminController
-    );
+    MenuCliente menuCliente(ventaController, adminController);
 
     int opcion;
 

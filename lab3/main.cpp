@@ -64,3 +64,19 @@ int main() {
 	return 0;
 }
 
+#include "vista/MenuPrincipal.h"
+
+int main()
+{
+    AdminController adminCtrl;
+
+    EmpleadoController empleadoCtrl(adminCtrl);
+
+    VentaController ventaCtrl(adminCtrl);
+
+    MenuPrincipal menu(adminCtrl, empleadoCtrl, ventaCtrl);
+
+    menu.mostrar();
+
+    return 0;
+}

@@ -1,24 +1,47 @@
 #include "logica/dominio/ClienteRegistrado.h"
+#include "logica/dominio/Venta.h"
+
 using namespace std;
 
-ClienteRegistrado::ClienteRegistrado(int id, int rut, const string &direccion, const string &correo, const string &nombreCompleto, float totalFacturado) : Cliente(id), rut(rut), direccion(direccion), correo(correo), nombreCompleto(nombreCompleto), totalFacturado(totalFacturado) {}
+ClienteRegistrado::ClienteRegistrado(
+    int rut,
+    const Direccion& direccion,
+    const string& correo,
+    const string& nombreCompleto,
+    float totalFacturado
+)
+    : rut(rut),
+      direccion(direccion),
+      correo(correo),
+      nombreCompleto(nombreCompleto),
+      totalFacturado(totalFacturado)
+{
+}
 
-ClienteRegistrado::~ClienteRegistrado() = default;
+ClienteRegistrado::~ClienteRegistrado()
+{
+}
 
 int ClienteRegistrado::getRut() const
 {
     return rut;
 }
-void ClienteRegistrado::setRut(int rut)
+
+void ClienteRegistrado::setRut(
+    int rut
+)
 {
     this->rut = rut;
 }
 
-string ClienteRegistrado::getDireccion() const
+Direccion ClienteRegistrado::getDireccion() const
 {
     return direccion;
 }
-void ClienteRegistrado::setDireccion(const string &direccion)
+
+void ClienteRegistrado::setDireccion(
+    const Direccion& direccion
+)
 {
     this->direccion = direccion;
 }
@@ -27,7 +50,10 @@ string ClienteRegistrado::getCorreo() const
 {
     return correo;
 }
-void ClienteRegistrado::setCorreo(const string &correo)
+
+void ClienteRegistrado::setCorreo(
+    const string& correo
+)
 {
     this->correo = correo;
 }
@@ -36,7 +62,10 @@ string ClienteRegistrado::getNombreCompleto() const
 {
     return nombreCompleto;
 }
-void ClienteRegistrado::setNombreCompleto(const string &nombreCompleto)
+
+void ClienteRegistrado::setNombreCompleto(
+    const string& nombreCompleto
+)
 {
     this->nombreCompleto = nombreCompleto;
 }
@@ -46,18 +75,44 @@ float ClienteRegistrado::getTotalFacturado() const
     return totalFacturado;
 }
 
-void ClienteRegistrado::setTotalFacturado(float totalFacturado)
+void ClienteRegistrado::setTotalFacturado(
+    float totalFacturado
+)
 {
     this->totalFacturado = totalFacturado;
 }
 
-string ClienteRegistrado::clienteTipo() const
+vector<Venta*> ClienteRegistrado::getVentas() const
 {
-    return "Registrado";
+    return ventas;
 }
 
-void ClienteRegistrado::agregarFacturacion(float monto)
+void ClienteRegistrado::agregarVenta(
+    Venta* venta
+)
 {
-    // Stub: acumular facturación
+    ventas.push_back(
+        venta
+    );
+}
+
+vector<Calificacion*> ClienteRegistrado::getCalificaciones() const
+{
+    return calificaciones;
+}
+
+void ClienteRegistrado::agregarCalificacion(
+    Calificacion* calificacion
+)
+{
+    calificaciones.push_back(
+        calificacion
+    );
+}
+
+void ClienteRegistrado::agregarFacturacion(
+    float monto
+)
+{
     totalFacturado += monto;
 }
