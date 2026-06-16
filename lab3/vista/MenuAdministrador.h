@@ -10,9 +10,7 @@ private:
 
 public:
 
-    MenuAdministrador(
-        AdminController& adminController
-    );
+    MenuAdministrador(AdminController& adminController);
 
     void mostrar();
 };

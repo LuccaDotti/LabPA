@@ -1,37 +1,78 @@
 #pragma once
-using namespace std;
-#include "Cliente.h"
+
 #include <string>
+#include <vector>
 
-class ClienteRegistrado : public Cliente {
+#include "logica/dominio/Calificacion.h"
+#include "logica/dominio/Direccion.h"
+
+using namespace std;
+
+class Venta;
+
+class ClienteRegistrado
+{
 private:
-	int rut;
-	string direccion;
-	string correo;
-	string nombreCompleto;
-	float totalFacturado;
+
+    int rut;
+    Direccion direccion;
+    string correo;
+    string nombreCompleto;
+
+    float totalFacturado;
+
+    vector<Venta*> ventas;
+
+    vector<Calificacion*> calificaciones;
+
 public:
-	ClienteRegistrado(int id, int rut, const string& direccion, const string& correo, const string& nombreCompleto, float totalFacturado);
-	~ClienteRegistrado() override;
 
-	int getRut() const;
-	void setRut(int rut);
+    ClienteRegistrado(
+        int rut,
+        const Direccion& direccion,
+        const string& correo,
+        const string& nombreCompleto,
+        float totalFacturado
+    );
 
-	string getDireccion() const;
-	void setDireccion(const string& direccion);
+    ~ClienteRegistrado();
 
-	string getCorreo() const;
-	void setCorreo(const string& correo);
+    int getRut() const;
+    void setRut(int rut);
 
-	string getNombreCompleto() const;
-	void setNombreCompleto(const string& nombreCompleto);
+    Direccion getDireccion() const;
+    void setDireccion(
+        const Direccion& direccion
+    );
 
-	float getTotalFacturado() const;
-	void setTotalFacturado(float totalFacturado);
+    string getCorreo() const;
+    void setCorreo(
+        const string& correo
+    );
 
-	string clienteTipo() const override;
+    string getNombreCompleto() const;
+    void setNombreCompleto(
+        const string& nombreCompleto
+    );
 
-	// Métodos de dominio (stubs)
-	void agregarFacturacion(float monto);
+    float getTotalFacturado() const;
+    void setTotalFacturado(
+        float totalFacturado
+    );
+
+    vector<Venta*> getVentas() const;
+
+    void agregarVenta(
+        Venta* venta
+    );
+
+    vector<Calificacion*> getCalificaciones() const;
+
+    void agregarCalificacion(
+        Calificacion* calificacion
+    );
+
+    void agregarFacturacion(
+        float monto
+    );
 };
-

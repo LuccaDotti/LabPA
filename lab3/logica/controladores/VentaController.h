@@ -1,10 +1,6 @@
 #pragma once
 
-#include <vector>
-
-#include "logica/dominio/Venta.h"
-#include "logica/dominio/Calificacion.h"
-
+class Venta;
 class AdminController;
 
 using namespace std;
@@ -12,9 +8,6 @@ using namespace std;
 class VentaController {
 
 private:
-
-    vector<Venta*> ventas;
-    vector<Calificacion*> calificaciones;
 
     AdminController& adminController;
 

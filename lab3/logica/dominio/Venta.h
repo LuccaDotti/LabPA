@@ -1,24 +1,55 @@
 #pragma once
+
 #include <vector>
-#include "Fecha.h"
-#include "Cliente.h"
-#include "LineaDetalle.h"
+
+#include "logica/dominio/Fecha.h"
+#include "logica/dominio/LineaDetalle.h"
+
 using namespace std;
 
-class Venta {
+class ClienteRegistrado;
+
+class Venta
+{
+private:
+
+    Fecha fecha;
+
+    ClienteRegistrado* cliente;
+
+    vector<LineaDetalle*> lineas;
+
+    // Lista de ventas
+    vector<Venta*> ventas;
+
 public:
-    Venta(const Fecha& fecha, Cliente* cliente);
+
+    Venta(
+        const Fecha& fecha,
+        ClienteRegistrado* cliente
+    );
+
+    ~Venta();
 
     Fecha getFecha() const;
-    Cliente* getCliente() const;
 
-    void agregarLineaDetalle(LineaDetalle* linea);
+    ClienteRegistrado* getCliente() const;
+
+    void setCliente(
+        ClienteRegistrado* cliente
+    );
+
+    void agregarLineaDetalle(
+        LineaDetalle* linea
+    );
+
     const vector<LineaDetalle*>& getLineas() const;
 
     float getTotal() const;
 
-private:
-    Fecha fecha;
-    Cliente* cliente;
-    vector<LineaDetalle*> lineas;
+    vector<Venta*> getVentas() const;
+
+    void agregarVenta(
+        Venta* venta
+    );
 };

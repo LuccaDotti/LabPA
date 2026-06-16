@@ -10,12 +10,7 @@
 
 using namespace std;
 
-MenuCliente::MenuCliente(
-    VentaController& ventaController,
-    AdminController& adminController
-)
-: ventaController(ventaController),
-  adminController(adminController)
+MenuCliente::MenuCliente(VentaController& ventaController, AdminController& adminController) : ventaController(ventaController), adminController(adminController)
 {
 }
 

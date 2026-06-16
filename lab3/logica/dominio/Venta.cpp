@@ -1,28 +1,74 @@
 #include "logica/dominio/Venta.h"
+#include "logica/dominio/ClienteRegistrado.h"
+
 using namespace std;
 
-Venta::Venta(const Fecha& fecha, Cliente* cliente)
-    : fecha(fecha), cliente(cliente) {}
+Venta::Venta(
+    const Fecha& fecha,
+    ClienteRegistrado* cliente
+)
+: fecha(fecha),
+  cliente(cliente)
+{
+}
 
-Fecha Venta::getFecha() const {
+Venta::~Venta()
+{
+}
+
+Fecha Venta::getFecha() const
+{
     return fecha;
 }
 
-Cliente* Venta::getCliente() const {
+ClienteRegistrado* Venta::getCliente() const
+{
     return cliente;
 }
 
-void Venta::agregarLineaDetalle(LineaDetalle* linea) {
-    lineas.push_back(linea);
+void Venta::setCliente(
+    ClienteRegistrado* cliente
+)
+{
+    this->cliente = cliente;
 }
 
-const vector<LineaDetalle*>& Venta::getLineas() const {
+void Venta::agregarLineaDetalle(
+    LineaDetalle* linea
+)
+{
+    lineas.push_back(
+        linea
+    );
+}
+
+const vector<LineaDetalle*>& Venta::getLineas() const
+{
     return lineas;
 }
 
-float Venta::getTotal() const {
+float Venta::getTotal() const
+{
     float total = 0.0f;
+
     for (const auto* l : lineas)
+    {
         total += l->getSubtotal();
+    }
+
     return total;
+}
+
+vector<Venta*> Venta::getVentas() const
+{
+    return ventas;
+}
+
+void Venta::agregarVenta(
+    Venta* venta
+)
+{
+    ventas.push_back(
+        venta
+    );
 }

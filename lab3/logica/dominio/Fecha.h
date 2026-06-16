@@ -14,14 +14,7 @@ private:
 
 public:
 
-    Fecha(
-        int dia,
-        int mes,
-        int anio,
-        int hora,
-        int minutos,
-        int segundos
-    );
+    Fecha(int dia, int mes, int anio, int hora, int minutos, int segundos);
 
     int getDia();
     int getMes();

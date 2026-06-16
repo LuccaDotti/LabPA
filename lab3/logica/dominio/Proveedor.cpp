@@ -2,12 +2,7 @@
 
 using namespace std;
 
-Proveedor::Proveedor(
-    int rut,
-    const string& nombreEmpresa,
-    int telefono,
-    const string& nombreContacto
-)
+Proveedor::Proveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto)
 {
     this->rut = rut;
     this->nombreEmpresa = nombreEmpresa;
@@ -15,9 +10,7 @@ Proveedor::Proveedor(
     this->nombreContacto = nombreContacto;
 }
 
-Proveedor::~Proveedor()
-{
-}
+Proveedor::~Proveedor(){}
 
 int Proveedor::getRut() const
 {

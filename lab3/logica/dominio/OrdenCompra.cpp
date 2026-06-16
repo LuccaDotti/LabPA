@@ -66,3 +66,17 @@ void OrdenCompra::agregarLineaCompra(
         lineaCompra
     );
 }
+
+vector<OrdenCompra*> OrdenCompra::getOrdenesCompra() const
+{
+    return ordenesCompra;
+}
+
+void OrdenCompra::agregarOrdenCompra(
+    OrdenCompra* ordenCompra
+)
+{
+    ordenesCompra.push_back(
+        ordenCompra
+    );
+}
