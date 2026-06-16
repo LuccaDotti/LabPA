@@ -31,7 +31,8 @@ void MenuPrincipal::mostrar() {
 
     MenuEmpleado menuEmpleado(
         empleadoController,
-        adminController
+        adminController,
+        ventaController
     );
 
     MenuCliente menuCliente(

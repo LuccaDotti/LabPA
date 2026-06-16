@@ -43,6 +43,9 @@ bool AdminController::agregarProducto(
             precioUnitario,
             stockActual,
             stockMinimo,
+            0.0f, // puntajePromedio por defecto
+            0,    // unidadesVendidas por defecto
+            false,// bajoStock por defecto
             categoria
         )
     );
@@ -199,10 +202,10 @@ bool AdminController::asociarProveedorProducto(
 
     ProveedorProducto* relacion =
         new ProveedorProducto(
-            precioCompra,
-            fechaEntrega,
             proveedor,
-            producto
+            producto,
+            precioCompra,
+            *fechaEntrega
         );
 
     proveedorProductos.push_back(

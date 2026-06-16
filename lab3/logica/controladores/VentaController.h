@@ -37,4 +37,8 @@ public:
     );
 
     vector<Calificacion*> listarCalificaciones() const;
+
+    vector<Calificacion*> getCalificacionesPorProducto(
+        int codigoProducto
+    ) const;
 };

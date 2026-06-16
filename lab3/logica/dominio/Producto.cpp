@@ -96,6 +96,16 @@ void Producto::setCategoria(Categoria *categoria)
     this->categoria = categoria;
 }
 
+void Producto::agregarProveedor(ProveedorProducto* proveedorProducto)
+{
+    proveedores.push_back(proveedorProducto);
+}
+
+std::vector<ProveedorProducto*> Producto::getProveedores() const
+{
+    return proveedores;
+}
+
 void Producto::vender(int unidades)
 {
     // Stub: actualizar unidades vendidas y stock

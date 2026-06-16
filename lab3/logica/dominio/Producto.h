@@ -2,7 +2,10 @@
 using namespace std;
 
 #include <string>
+#include <vector>
+
 class Categoria; // forward declaration
+class ProveedorProducto; // forward declaration
 
 class Producto
 {
@@ -17,6 +20,9 @@ private:
     int unidadesVendidas;
     bool bajoStock;
     Categoria *categoria;
+    
+    // Relación a proveedores (ProveedorProducto)
+    std::vector<ProveedorProducto*> proveedores;
 
 public:
     Producto(int codigo, const string &nombre, const string &descripcion, float precioUnitario, int stockActual, int stockMinimo, float puntajePromedio, int unidadesVendidas, bool bajoStock, Categoria *categoria = nullptr);
@@ -51,6 +57,9 @@ public:
 
     Categoria *getCategoria() const;
     void setCategoria(Categoria *categoria);
+
+    void agregarProveedor(ProveedorProducto* proveedorProducto);
+    std::vector<ProveedorProducto*> getProveedores() const;
 
     // Métodos de dominio (stubs)
     void vender(int unidades);

@@ -10,6 +10,8 @@ private:
     VentaController& ventaController;
     AdminController& adminController;
 
+    void consultarDetalleProducto();
+
 public:
 
     MenuCliente(
