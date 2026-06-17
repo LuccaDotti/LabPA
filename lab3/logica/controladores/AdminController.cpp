@@ -168,10 +168,7 @@ bool AdminController::agregarCategoria(const string& nombre, const string& descr
     }
 
     categorias.push_back(
-        new Categoria(
-            nombre,
-            descripcion
-        )
+        new Categoria(nombre, descripcion)
     );
 
     return true;
