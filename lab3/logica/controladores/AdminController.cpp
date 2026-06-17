@@ -145,18 +145,18 @@ int AdminController::eliminarProducto(
     return 2;
 }
 
-int AdminController::agregarCategoria(const string& nombre, const string& descripcion)
+bool AdminController::agregarCategoria(const string& nombre, const string& descripcion)
 {
     if (buscarCategoria(nombre) != nullptr)
     {
-        return 1;
+        return false;
     }
 
     categorias.push_back(
         new Categoria(nombre, descripcion)
     );
 
-    return 0;
+    return true;
 }
 
 Categoria* AdminController::buscarCategoria(const string& nombre) const
@@ -207,18 +207,18 @@ int AdminController::modificarCategoria(const string& nombreActual, const string
     return 0;
 }
 
-int AdminController::agregarProveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto)
+bool AdminController::agregarProveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto)
 {
     if (buscarProveedor(rut) != nullptr)
     {
-        return 1;
+        return false;
     }
 
     proveedores.push_back(
         new Proveedor(rut, nombreEmpresa, telefono, nombreContacto)
     );
 
-    return 0;
+    return true;
 }
 
 Proveedor* AdminController::buscarProveedor(int rut) const
@@ -237,14 +237,14 @@ vector<Proveedor*> AdminController::listarProveedores() const
     return proveedores;
 }
 
-int AdminController::modificarProveedor(int rut, const string& nuevoNombreEmpresa, int nuevoTelefono, const string& nuevoNombreContacto)
+bool AdminController::modificarProveedor(int rut, const string& nuevoNombreEmpresa, int nuevoTelefono, const string& nuevoNombreContacto)
 {
     Proveedor* proveedor =
         buscarProveedor(rut);
 
     if (proveedor == nullptr)
     {
-        return 1;
+        return false;
     }
 
     proveedor->setNombreEmpresa(
@@ -259,7 +259,7 @@ int AdminController::modificarProveedor(int rut, const string& nuevoNombreEmpres
         nuevoNombreContacto
     );
 
-    return 0;
+    return true;
 }
 
 int AdminController::asociarProveedorProducto(int rutProveedor, int codigoProducto, float precioCompra, Fecha* fechaEntrega)
