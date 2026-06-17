@@ -31,29 +31,22 @@ AdminController::~AdminController()
         delete pp;
 }
 
-bool AdminController::agregarProducto(
-    int codigo, const string& nombre, const string& descripcion, float precioUnitario, int stockActual, int stockMinimo, Categoria* categoria
-)
+int AdminController::agregarProducto(int codigo, const string& nombre, const string& descripcion, float precioUnitario, int stockActual, int stockMinimo, Categoria* categoria)
 {
     if (buscarProducto(codigo) != nullptr)
     {
-        throw runtime_error(
-            "Ya existe un producto con ese codigo."
-        );
+        return 1;
     }
 
     if (stockActual < 0)
     {
-        throw runtime_error(
-            "El stock no puede ser negativo."
-        );
+        return 2;
     }
 
-    productos.push_back(
-        new Producto(codigo, nombre, descripcion, precioUnitario, stockActual, stockMinimo, 0.0, 0, false, categoria)
+    productos.push_back(new Producto(codigo, nombre, descripcion, precioUnitario, stockActual, stockMinimo, 0.0, 0, false, categoria)
     );
 
-    return true;
+    return 0;
 }
 
 Producto* AdminController::buscarProducto(int codigo) const
@@ -72,16 +65,14 @@ vector<Producto*> AdminController::listarProductos() const
     return productos;
 }
 
-bool AdminController::modificarProducto(int codigo, const string& nuevoNombre, const string& nuevaDescripcion, float nuevoPrecio, Categoria* nuevaCategoria, int nuevoStockMinimo)
+int AdminController::modificarProducto(int codigo, const string& nuevoNombre, const string& nuevaDescripcion, float nuevoPrecio, Categoria* nuevaCategoria, int nuevoStockMinimo)
 {
     Producto* producto =
         buscarProducto(codigo);
 
     if (producto == nullptr)
     {
-        throw runtime_error(
-            "Producto inexistente."
-        );
+        return 1;
     }
 
     for (Producto* p : productos)
@@ -91,9 +82,7 @@ bool AdminController::modificarProducto(int codigo, const string& nuevoNombre, c
             p->getNombre() == nuevoNombre
         )
         {
-            throw runtime_error(
-                "Ya existe un producto con ese nombre."
-            );
+            return 2;
         }
     }
 
@@ -117,10 +106,10 @@ bool AdminController::modificarProducto(int codigo, const string& nuevoNombre, c
         nuevoStockMinimo
     );
 
-    return true;
+    return 0;
 }
 
-bool AdminController::eliminarProducto(
+int AdminController::eliminarProducto(
     int codigo
 )
 {
@@ -129,9 +118,7 @@ bool AdminController::eliminarProducto(
 
     if (producto == nullptr)
     {
-        throw runtime_error(
-            "Producto inexistente."
-        );
+        return 1;
     }
 
     for (
@@ -151,27 +138,25 @@ bool AdminController::eliminarProducto(
                 productos.begin() + i
             );
 
-            return true;
+            return 0;
         }
     }
 
-    return false;
+    return 2;
 }
 
-bool AdminController::agregarCategoria(const string& nombre, const string& descripcion)
+int AdminController::agregarCategoria(const string& nombre, const string& descripcion)
 {
     if (buscarCategoria(nombre) != nullptr)
     {
-        throw runtime_error(
-            "Ya existe una categoria con ese nombre."
-        );
+        return 1;
     }
 
     categorias.push_back(
         new Categoria(nombre, descripcion)
     );
 
-    return true;
+    return 0;
 }
 
 Categoria* AdminController::buscarCategoria(const string& nombre) const
@@ -190,16 +175,14 @@ vector<Categoria*> AdminController::listarCategorias() const
     return categorias;
 }
 
-bool AdminController::modificarCategoria(const string& nombreActual, const string& nuevoNombre, const string& nuevaDescripcion)
+int AdminController::modificarCategoria(const string& nombreActual, const string& nuevoNombre, const string& nuevaDescripcion)
 {
     Categoria* categoria =
         buscarCategoria(nombreActual);
 
     if (categoria == nullptr)
     {
-        throw runtime_error(
-            "La categoria no existe."
-        );
+        return 1;
     }
 
     for (Categoria* c : categorias)
@@ -209,9 +192,7 @@ bool AdminController::modificarCategoria(const string& nombreActual, const strin
             c->getNombre() == nuevoNombre
         )
         {
-            throw runtime_error(
-                "Ya existe una categoria con ese nombre."
-            );
+            return 2;
         }
     }
 
@@ -223,23 +204,21 @@ bool AdminController::modificarCategoria(const string& nombreActual, const strin
         nuevaDescripcion
     );
 
-    return true;
+    return 0;
 }
 
-bool AdminController::agregarProveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto)
+int AdminController::agregarProveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto)
 {
     if (buscarProveedor(rut) != nullptr)
     {
-        throw runtime_error(
-            "Ya existe un proveedor con ese RUT."
-        );
+        return 1;
     }
 
     proveedores.push_back(
         new Proveedor(rut, nombreEmpresa, telefono, nombreContacto)
     );
 
-    return true;
+    return 0;
 }
 
 Proveedor* AdminController::buscarProveedor(int rut) const
@@ -258,16 +237,14 @@ vector<Proveedor*> AdminController::listarProveedores() const
     return proveedores;
 }
 
-bool AdminController::modificarProveedor(int rut, const string& nuevoNombreEmpresa, int nuevoTelefono, const string& nuevoNombreContacto)
+int AdminController::modificarProveedor(int rut, const string& nuevoNombreEmpresa, int nuevoTelefono, const string& nuevoNombreContacto)
 {
     Proveedor* proveedor =
         buscarProveedor(rut);
 
     if (proveedor == nullptr)
     {
-        throw runtime_error(
-            "Proveedor inexistente."
-        );
+        return 1;
     }
 
     proveedor->setNombreEmpresa(
@@ -282,10 +259,10 @@ bool AdminController::modificarProveedor(int rut, const string& nuevoNombreEmpre
         nuevoNombreContacto
     );
 
-    return true;
+    return 0;
 }
 
-bool AdminController::asociarProveedorProducto(int rutProveedor, int codigoProducto, float precioCompra, Fecha* fechaEntrega)
+int AdminController::asociarProveedorProducto(int rutProveedor, int codigoProducto, float precioCompra, Fecha* fechaEntrega)
 {
     Proveedor* proveedor =
         buscarProveedor(
@@ -294,9 +271,7 @@ bool AdminController::asociarProveedorProducto(int rutProveedor, int codigoProdu
 
     if (proveedor == nullptr)
     {
-        throw runtime_error(
-            "Proveedor inexistente."
-        );
+        return 1;
     }
 
     Producto* producto =
@@ -306,9 +281,7 @@ bool AdminController::asociarProveedorProducto(int rutProveedor, int codigoProdu
 
     if (producto == nullptr)
     {
-        throw runtime_error(
-            "Producto inexistente."
-        );
+        return 2;
     }
 
     for (
@@ -328,7 +301,7 @@ bool AdminController::asociarProveedorProducto(int rutProveedor, int codigoProdu
                 precioCompra
             );
 
-            return true;
+            return 0;
         }
     }
 
@@ -347,7 +320,7 @@ bool AdminController::asociarProveedorProducto(int rutProveedor, int codigoProdu
         relacion
     );
 
-    return true;
+    return 0;
 }
 
 vector<ProveedorProducto*>
