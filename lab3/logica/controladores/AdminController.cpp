@@ -32,13 +32,7 @@ AdminController::~AdminController()
 }
 
 bool AdminController::agregarProducto(
-    int codigo,
-    const string& nombre,
-    const string& descripcion,
-    float precioUnitario,
-    int stockActual,
-    int stockMinimo,
-    Categoria* categoria
+    int codigo, const string& nombre, const string& descripcion, float precioUnitario, int stockActual, int stockMinimo, Categoria* categoria
 )
 {
     if (buscarProducto(codigo) != nullptr)
@@ -56,18 +50,7 @@ bool AdminController::agregarProducto(
     }
 
     productos.push_back(
-        new Producto(
-            codigo,
-            nombre,
-            descripcion,
-            precioUnitario,
-            stockActual,
-            stockMinimo,
-            0.0,
-            0,
-            false,
-            categoria
-        )
+        new Producto(codigo, nombre, descripcion, precioUnitario, stockActual, stockMinimo, 0.0, 0, false, categoria)
     );
 
     return true;
@@ -89,14 +72,7 @@ vector<Producto*> AdminController::listarProductos() const
     return productos;
 }
 
-bool AdminController::modificarProducto(
-    int codigo,
-    const string& nuevoNombre,
-    const string& nuevaDescripcion,
-    float nuevoPrecio,
-    Categoria* nuevaCategoria,
-    int nuevoStockMinimo
-)
+bool AdminController::modificarProducto(int codigo, const string& nuevoNombre, const string& nuevaDescripcion, float nuevoPrecio, Categoria* nuevaCategoria, int nuevoStockMinimo)
 {
     Producto* producto =
         buscarProducto(codigo);
@@ -182,10 +158,7 @@ bool AdminController::eliminarProducto(
     return false;
 }
 
-bool AdminController::agregarCategoria(
-    const string& nombre,
-    const string& descripcion
-)
+bool AdminController::agregarCategoria(const string& nombre, const string& descripcion)
 {
     if (buscarCategoria(nombre) != nullptr)
     {
@@ -204,9 +177,7 @@ bool AdminController::agregarCategoria(
     return true;
 }
 
-Categoria* AdminController::buscarCategoria(
-    const string& nombre
-) const
+Categoria* AdminController::buscarCategoria(const string& nombre) const
 {
     for (Categoria* c : categorias)
     {
@@ -222,11 +193,7 @@ vector<Categoria*> AdminController::listarCategorias() const
     return categorias;
 }
 
-bool AdminController::modificarCategoria(
-    const string& nombreActual,
-    const string& nuevoNombre,
-    const string& nuevaDescripcion
-)
+bool AdminController::modificarCategoria(const string& nombreActual, const string& nuevoNombre, const string& nuevaDescripcion)
 {
     Categoria* categoria =
         buscarCategoria(nombreActual);
@@ -262,12 +229,7 @@ bool AdminController::modificarCategoria(
     return true;
 }
 
-bool AdminController::agregarProveedor(
-    int rut,
-    const string& nombreEmpresa,
-    int telefono,
-    const string& nombreContacto
-)
+bool AdminController::agregarProveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto)
 {
     if (buscarProveedor(rut) != nullptr)
     {
@@ -277,12 +239,7 @@ bool AdminController::agregarProveedor(
     }
 
     proveedores.push_back(
-        new Proveedor(
-            rut,
-            nombreEmpresa,
-            telefono,
-            nombreContacto
-        )
+        new Proveedor(rut, nombreEmpresa, telefono, nombreContacto)
     );
 
     return true;
@@ -304,12 +261,7 @@ vector<Proveedor*> AdminController::listarProveedores() const
     return proveedores;
 }
 
-bool AdminController::modificarProveedor(
-    int rut,
-    const string& nuevoNombreEmpresa,
-    int nuevoTelefono,
-    const string& nuevoNombreContacto
-)
+bool AdminController::modificarProveedor(int rut, const string& nuevoNombreEmpresa, int nuevoTelefono, const string& nuevoNombreContacto)
 {
     Proveedor* proveedor =
         buscarProveedor(rut);
@@ -336,12 +288,7 @@ bool AdminController::modificarProveedor(
     return true;
 }
 
-bool AdminController::asociarProveedorProducto(
-    int rutProveedor,
-    int codigoProducto,
-    float precioCompra,
-    Fecha* fechaEntrega
-)
+bool AdminController::asociarProveedorProducto(int rutProveedor, int codigoProducto, float precioCompra, Fecha* fechaEntrega)
 {
     Proveedor* proveedor =
         buscarProveedor(
@@ -389,12 +336,7 @@ bool AdminController::asociarProveedorProducto(
     }
 
     ProveedorProducto* relacion =
-        new ProveedorProducto(
-            proveedor,
-            producto,
-            precioCompra,
-            *fechaEntrega
-        );
+        new ProveedorProducto(proveedor, producto, precioCompra, *fechaEntrega);
 
     proveedorProductos.push_back(
         relacion
