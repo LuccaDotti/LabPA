@@ -33,24 +33,9 @@ public:
     AdminController(const AdminController&) = delete;
     AdminController& operator=(const AdminController&) = delete;
 
-    bool agregarProducto(
-        int codigo,
-        const string& nombre,
-        const string& descripcion,
-        float precioUnitario,
-        int stockActual,
-        int stockMinimo,
-        Categoria* categoria
-    );
+    bool agregarProducto(int codigo, const string& nombre, const string& descripcion, float precioUnitario, int stockActual, int stockMinimo, Categoria* categoria);
 
-    bool modificarProducto(
-        int codigo,
-        const string& nuevoNombre,
-        const string& nuevaDescripcion,
-        float nuevoPrecio,
-        Categoria* nuevaCategoria,
-        int nuevoStockMinimo
-    );
+    bool modificarProducto(int codigo, const string& nuevoNombre, const string& nuevaDescripcion, float nuevoPrecio, Categoria* nuevaCategoria, int nuevoStockMinimo);
 
     Producto* buscarProducto(
         int codigo
@@ -58,53 +43,25 @@ public:
 
     vector<Producto*> listarProductos() const;
 
-    bool eliminarProducto(
-        int codigo
-    );
+    bool eliminarProducto(int codigo);
 
-    bool agregarCategoria(
-        const string& nombre,
-        const string& descripcion
-    );
+    bool agregarCategoria(const string& nombre, const string& descripcion);
 
-    bool modificarCategoria(
-        const string& nombreActual,
-        const string& nuevoNombre,
-        const string& nuevaDescripcion
-    );
+    bool modificarCategoria(const string& nombreActual, const string& nuevoNombre, const string& nuevaDescripcion);
 
-    Categoria* buscarCategoria(
-        const string& nombre
-    ) const;
+    Categoria* buscarCategoria(const string& nombre) const;
 
     vector<Categoria*> listarCategorias() const;
 
-    bool agregarProveedor(
-        int rut,
-        const string& nombreEmpresa,
-        int telefono,
-        const string& nombreContacto
-    );
+    bool agregarProveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto);
 
-    bool modificarProveedor(
-        int rut,
-        const string& nuevoNombreEmpresa,
-        int nuevoTelefono,
-        const string& nuevoNombreContacto
-    );
+    bool modificarProveedor(int rut, const string& nuevoNombreEmpresa, int nuevoTelefono, const string& nuevoNombreContacto);
 
-    Proveedor* buscarProveedor(
-        int rut
-    ) const;
+    Proveedor* buscarProveedor(int rut) const;
 
     vector<Proveedor*> listarProveedores() const;
 
-    bool asociarProveedorProducto(
-        int rutProveedor,
-        int codigoProducto,
-        float precioCompra,
-        Fecha* fechaEntrega
-    );
+    bool asociarProveedorProducto(int rutProveedor, int codigoProducto, float precioCompra, Fecha* fechaEntrega);
 
     vector<ProveedorProducto*> listarProveedorProductos() const;
 };
