@@ -27,16 +27,11 @@ bool EmpleadoController::agregarCliente(Cliente *cliente)
 Cliente *EmpleadoController::buscarCliente(int rut) const
 {
 
-    for (Cliente *c : clientes)
-    {
-
-        ClienteRegistrado *cr =
-            dynamic_cast<ClienteRegistrado *>(c);
-
-        if (cr != nullptr &&
-            cr->getRut() == rut)
-            return c;
-    }
+for (ClienteRegistrado* c : clientes)
+{
+    if (c->getRut() == rut)
+        return c;
+}
 
     return nullptr;
 }
