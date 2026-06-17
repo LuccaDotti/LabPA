@@ -4,17 +4,17 @@ class AdminController;
 class EmpleadoController;
 class VentaController;
 
-class MenuPrincipal {
-
+class MenuPrincipal
+{
 private:
 
-    AdminController& adminController;
-    EmpleadoController& empleadoController;
-    VentaController& ventaController;
+    AdminController* adminController;
+    EmpleadoController* empleadoController;
+    VentaController* ventaController;
 
 public:
 
-    MenuPrincipal(AdminController& adminController, EmpleadoController& empleadoController, VentaController& ventaController);
+    MenuPrincipal();
 
     void mostrar();
 };
