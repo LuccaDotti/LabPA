@@ -2,23 +2,18 @@
 using namespace std;
 #include <string>
 
-class Direccion {
+class Direccion
+{
 
 private:
-
     int nroPuerta;
     string calle;
     string ciudad;
 
 public:
-
     Direccion();
 
-    Direccion(
-        int nroPuerta,
-        string calle,
-        string ciudad
-    );
+    Direccion(int nroPuerta, string calle, string ciudad);
 
     int getNroPuerta();
     string getCalle();
