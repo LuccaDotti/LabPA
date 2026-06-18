@@ -1,7 +1,9 @@
 #pragma once
 
-enum class TipoRet {
+enum class TipoRet
+{
     OK,
+    ERROR_CORREO_EXISTENTE,
     ERROR_PRODUCTO_EXISTENTE,
     ERROR_PRODUCTO_INEXISTENTE,
     ERROR_CATEGORIA_EXISTENTE,
