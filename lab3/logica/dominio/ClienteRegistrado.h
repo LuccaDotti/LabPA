@@ -13,66 +13,55 @@ class Venta;
 class ClienteRegistrado
 {
 private:
-
     int rut;
     Direccion direccion;
     string correo;
     string nombreCompleto;
+    int contrasenia;
 
     float totalFacturado;
 
-    vector<Venta*> ventas;
+    vector<Venta *> ventas;
 
-    vector<Calificacion*> calificaciones;
+    vector<Calificacion *> calificaciones;
 
 public:
-
-    ClienteRegistrado(
-        int rut,
-        const Direccion& direccion,
-        const string& correo,
-        const string& nombreCompleto,
-        float totalFacturado
-    );
+    ClienteRegistrado(int rut, const Direccion &direccion, const string &correo, const string &nombreCompleto, int contrasenia, float totalFacturado);
 
     ~ClienteRegistrado();
+
+    int getContrasenia() const;
+    void setContrasenia(int contrasenia);
 
     int getRut() const;
     void setRut(int rut);
 
     Direccion getDireccion() const;
     void setDireccion(
-        const Direccion& direccion
-    );
+        const Direccion &direccion);
 
     string getCorreo() const;
     void setCorreo(
-        const string& correo
-    );
+        const string &correo);
 
     string getNombreCompleto() const;
     void setNombreCompleto(
-        const string& nombreCompleto
-    );
+        const string &nombreCompleto);
 
     float getTotalFacturado() const;
     void setTotalFacturado(
-        float totalFacturado
-    );
+        float totalFacturado);
 
-    vector<Venta*> getVentas() const;
+    vector<Venta *> getVentas() const;
 
     void agregarVenta(
-        Venta* venta
-    );
+        Venta *venta);
 
-    vector<Calificacion*> getCalificaciones() const;
+    vector<Calificacion *> getCalificaciones() const;
 
     void agregarCalificacion(
-        Calificacion* calificacion
-    );
+        Calificacion *calificacion);
 
     void agregarFacturacion(
-        float monto
-    );
+        float monto);
 };
