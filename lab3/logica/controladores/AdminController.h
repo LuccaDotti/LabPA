@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include "logica/controladores/TipoRetorno.h"
+
 #include "logica/dominio/Producto.h"
 #include "logica/dominio/Categoria.h"
 #include "logica/dominio/Proveedor.h"
@@ -11,8 +13,8 @@
 
 using namespace std;
 
-class AdminController {
-
+class AdminController
+{
 private:
 
     static AdminController* instancia;
@@ -33,35 +35,33 @@ public:
     AdminController(const AdminController&) = delete;
     AdminController& operator=(const AdminController&) = delete;
 
-    int agregarProducto(int codigo, const string& nombre, const string& descripcion, float precioUnitario, int stockActual, int stockMinimo, Categoria* categoria);
+    TipoRet agregarProducto(int codigo, const string& nombre, const string& descripcion, float precioUnitario, int stockActual, int stockMinimo, Categoria* categoria);
 
-    int modificarProducto(int codigo, const string& nuevoNombre, const string& nuevaDescripcion, float nuevoPrecio, Categoria* nuevaCategoria, int nuevoStockMinimo);
+    TipoRet modificarProducto(int codigo, const string& nuevoNombre, const string& nuevaDescripcion, float nuevoPrecio, Categoria* nuevaCategoria, int nuevoStockMinimo);
 
-    Producto* buscarProducto(
-        int codigo
-    ) const;
+    Producto* buscarProducto(int codigo) const;
 
     vector<Producto*> listarProductos() const;
 
-    int eliminarProducto(int codigo);
+    TipoRet eliminarProducto(int codigo);
 
-    bool agregarCategoria(const string& nombre, const string& descripcion);
+    TipoRet agregarCategoria(const string& nombre, const string& descripcion);
 
-    int modificarCategoria(const string& nombreActual, const string& nuevoNombre, const string& nuevaDescripcion);
+    TipoRet modificarCategoria(const string& nombreActual, const string& nuevoNombre, const string& nuevaDescripcion);
 
     Categoria* buscarCategoria(const string& nombre) const;
 
     vector<Categoria*> listarCategorias() const;
 
-    bool agregarProveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto);
+    TipoRet agregarProveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto);
 
-    bool modificarProveedor(int rut, const string& nuevoNombreEmpresa, int nuevoTelefono, const string& nuevoNombreContacto);
+    TipoRet modificarProveedor(int rut, const string& nuevoNombreEmpresa, int nuevoTelefono, const string& nuevoNombreContacto);
 
     Proveedor* buscarProveedor(int rut) const;
 
     vector<Proveedor*> listarProveedores() const;
 
-    int asociarProveedorProducto(int rutProveedor, int codigoProducto, float precioCompra, Fecha* fechaEntrega);
+    TipoRet asociarProveedorProducto(int rutProveedor, int codigoProducto, float precioCompra, Fecha* fechaEntrega);
 
     vector<ProveedorProducto*> listarProveedorProductos() const;
 };
