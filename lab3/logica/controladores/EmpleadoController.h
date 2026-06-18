@@ -1,28 +1,28 @@
 #pragma once
-
+#include "tipoRetorno.h"
 #include <vector>
 
 #include "logica/dominio/ClienteRegistrado.h"
 #include "logica/dominio/OrdenCompra.h"
+#include "logica/dominio/Producto.h"
 
 class AdminController;
 
 using namespace std;
 
-class EmpleadoController {
+class EmpleadoController
+{
 
 private:
+    vector<ClienteRegistrado *> clientes;
+    vector<OrdenCompra *> ordenesCompra;
+    vector<Producto *> productos;
 
-    vector<ClienteRegistrado*> clientes;
-    vector<OrdenCompra*> ordenesCompra;
-
-    AdminController& adminController;
+    AdminController &adminController;
 
 public:
-
     EmpleadoController(
-        AdminController& adminController
-    );
+        AdminController &adminController);
 
     ~EmpleadoController();
 
@@ -30,23 +30,20 @@ public:
     // CLIENTES REGISTRADOS
     // ====================================
 
-    bool agregarCliente(
-        ClienteRegistrado* cliente
-    );
+    TipoRet registrarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, int contrasenia, float totalFacturado);
+    TipoRet modificarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, int contrasenia);
+    TipoRet registrarVenta(int rut, int codigoProducto, int cantidad);
 
-    ClienteRegistrado* buscarCliente(
-        int rut
-    ) const;
+    ClienteRegistrado *buscarCliente(int rut) const;
 
-    vector<ClienteRegistrado*> listarClientes() const;
+    vector<ClienteRegistrado *> listarClientes() const;
 
     // ====================================
     // ORDENES DE COMPRA
     // ====================================
 
     bool crearOrdenCompra(
-        OrdenCompra* orden
-    );
+        OrdenCompra *orden);
 
-    vector<OrdenCompra*> listarOrdenes() const;
+    vector<OrdenCompra *> listarOrdenes() const;
 };
