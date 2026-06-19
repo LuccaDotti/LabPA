@@ -40,7 +40,7 @@ TipoRet AdminController::agregarProducto(int codigo, const string& nombre, const
         return ERROR_STOCK_NEGATIVO;
 
     productos.push_back(
-        new Producto(codigo, nombre, descripción, precioUnitario, stockActual, stockMinimo, 0.0, 0, false, categoria)
+        new Producto(codigo, nombre, descripcion, precioUnitario, stockActual, stockMinimo, 0.0, 0, false, categoria)
     );
 
     return OK;
