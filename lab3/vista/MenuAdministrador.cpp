@@ -436,7 +436,7 @@ void MenuAdministrador::registrarProveedorProducto()
     cin >> anio;
 
     Fecha* fechaEntrega =
-        new Fecha(dia, mes, anio);
+        new Fecha(dia, mes, anio, 0, 0, 0);
 
     TipoRet ret =
         adminController.asociarProveedorProducto(rutProveedor, codigoProducto, precioCompra, fechaEntrega);
