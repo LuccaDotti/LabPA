@@ -5,6 +5,7 @@
 using namespace std;
 
 class Venta;
+class Calificacion;
 class AdminController;
 
 class VentaController {
