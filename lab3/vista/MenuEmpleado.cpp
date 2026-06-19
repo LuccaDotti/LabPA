@@ -9,7 +9,6 @@
 
 #include "logica/dominio/Calificacion.h"
 #include "logica/dominio/Producto.h"
-#include "logica/dominio/Cliente.h"
 #include "logica/dominio/ClienteRegistrado.h"
 
 using namespace std;
