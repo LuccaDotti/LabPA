@@ -1,3 +1,9 @@
+#include "vista/MenuPrincipal.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 void MenuPrincipal::mostrar()
 {
     string email;
