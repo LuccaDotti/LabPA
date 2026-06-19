@@ -274,7 +274,7 @@ void MenuAdministrador::modificarProducto()
         adminController.buscarCategoria(nombreCategoria);
 
     TipoRet ret =
-        adminController.modificarProducto(código, nombre, descripcion, precioUnitario, categoria, stockMinimo);
+        adminController.modificarProducto(codigo, nombre, descripcion, precioUnitario, categoria, stockMinimo);
 
     if(ret == OK)
         cout << "Producto modificado correctamente.\n";
