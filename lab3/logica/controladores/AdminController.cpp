@@ -166,7 +166,7 @@ TipoRet AdminController::modificarCategoria(const string& nombreActual, const st
     return OK;
 }
 
-TipoRet AdminController::agregarProveedor(int rut, const string& nombreEmpresa, int teléfono, const string& nombreContacto)
+TipoRet AdminController::agregarProveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto)
 {
     if (buscarProveedor(rut) != NULL)
         return ERROR_PROVEEDOR_EXISTENTE;
