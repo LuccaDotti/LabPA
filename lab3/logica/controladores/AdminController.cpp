@@ -34,7 +34,7 @@ AdminController::~AdminController()
 TipoRet AdminController::agregarProducto(int codigo, const string& nombre, const string& descripcion, float precioUnitario, int stockActual, int stockMinimo, Categoria* categoria)
 {
     if (buscarProducto(codigo) != NULL)
-        return ERROR_PRODUCTO_EXISTENTE;
+        return TipoRet::ERROR_PRODUCTO_EXISTENTE;
 
     if (stockActual < 0)
         return ERROR_STOCK_NEGATIVO;
@@ -43,7 +43,7 @@ TipoRet AdminController::agregarProducto(int codigo, const string& nombre, const
         new Producto(codigo, nombre, descripcion, precioUnitario, stockActual, stockMinimo, 0.0, 0, false, categoria)
     );
 
-    return OK;
+    return TipoRet::OK;
 }
 
 Producto* AdminController::buscarProducto(int codigo) const
@@ -67,7 +67,7 @@ TipoRet AdminController::modificarProducto(int codigo, const string& nuevoNombre
     Producto* producto = buscarProducto(codigo);
 
     if (producto == NULL)
-        return ERROR_PRODUCTO_INEXISTENTE;
+        return TipoRet::ERROR_PRODUCTO_INEXISTENTE;
 
     for (Producto* p : productos)
     {
@@ -76,7 +76,7 @@ TipoRet AdminController::modificarProducto(int codigo, const string& nuevoNombre
             p->getNombre() == nuevoNombre
         )
         {
-            return ERROR_PRODUCTO_EXISTENTE;
+            return TipoRet::ERROR_PRODUCTO_EXISTENTE;
         }
     }
 
@@ -86,7 +86,7 @@ TipoRet AdminController::modificarProducto(int codigo, const string& nuevoNombre
     producto->setCategoria(nuevaCategoria);
     producto->setStockMinimo(nuevoStockMinimo);
 
-    return OK;
+    return TipoRet::OK;
 }
 
 TipoRet AdminController::eliminarProducto(int codigo)
@@ -94,7 +94,7 @@ TipoRet AdminController::eliminarProducto(int codigo)
     Producto* producto = buscarProducto(codigo);
 
     if (producto == NULL)
-        return ERROR_PRODUCTO_INEXISTENTE;
+        return TipoRet::ERROR_PRODUCTO_INEXISTENTE;
 
     for (unsigned int i = 0; i < productos.size(); i++)
     {
@@ -106,23 +106,23 @@ TipoRet AdminController::eliminarProducto(int codigo)
                 productos.begin() + i
             );
 
-            return OK;
+            return TipoRet::OK;
         }
     }
 
-    return ERROR_PRODUCTO_INEXISTENTE;
+    return TipoRet::ERROR_PRODUCTO_INEXISTENTE;
 }
 
 TipoRet AdminController::agregarCategoria(const string& nombre, const string& descripcion)
 {
     if (buscarCategoria(nombre) != NULL)
-        return ERROR_CATEGORIA_EXISTENTE;
+        return TipoRet::ERROR_CATEGORIA_EXISTENTE;
 
     categorias.push_back(
         new Categoria(nombre, descripcion)
     );
 
-    return OK;
+    return TipoRet::OK;
 }
 
 Categoria* AdminController::buscarCategoria(const string& nombre) const
@@ -147,7 +147,7 @@ TipoRet AdminController::modificarCategoria(const string& nombreActual, const st
         buscarCategoria(nombreActual);
 
     if (categoria == NULL)
-        return ERROR_CATEGORIA_INEXISTENTE;
+        return TipoRet::ERROR_CATEGORIA_INEXISTENTE;
 
     for (Categoria* c : categorias)
     {
@@ -156,26 +156,26 @@ TipoRet AdminController::modificarCategoria(const string& nombreActual, const st
             c->getNombre() == nuevoNombre
         )
         {
-            return ERROR_CATEGORIA_EXISTENTE;
+            return TipoRet::ERROR_CATEGORIA_EXISTENTE;
         }
     }
 
     categoria->setNombre(nuevoNombre);
     categoria->setDescripcion(nuevaDescripcion);
 
-    return OK;
+    return TipoRet::OK;
 }
 
 TipoRet AdminController::agregarProveedor(int rut, const string& nombreEmpresa, int telefono, const string& nombreContacto)
 {
     if (buscarProveedor(rut) != NULL)
-        return ERROR_PROVEEDOR_EXISTENTE;
+        return TipoRet::ERROR_PROVEEDOR_EXISTENTE;
 
     proveedores.push_back(
         new Proveedor(rut, nombreEmpresa, telefono, nombreContacto)
     );
 
-    return OK;
+    return TipoRet::OK;
 }
 
 Proveedor* AdminController::buscarProveedor(int rut) const
@@ -200,7 +200,7 @@ TipoRet AdminController::modificarProveedor(int rut, const string& nuevoNombreEm
         buscarProveedor(rut);
 
     if (proveedor == NULL)
-        return ERROR_PROVEEDOR_INEXISTENTE;
+        return TipoRet::ERROR_PROVEEDOR_INEXISTENTE;
 
     proveedor->setNombreEmpresa(
         nuevoNombreEmpresa
@@ -214,7 +214,7 @@ TipoRet AdminController::modificarProveedor(int rut, const string& nuevoNombreEm
         nuevoNombreContacto
     );
 
-    return OK;
+    return TipoRet::OK;
 }
 
 TipoRet AdminController::asociarProveedorProducto(int rutProveedor, int codigoProducto, float precioCompra, Fecha* fechaEntrega)
@@ -223,13 +223,13 @@ TipoRet AdminController::asociarProveedorProducto(int rutProveedor, int codigoPr
         buscarProveedor(rutProveedor);
 
     if (proveedor == NULL)
-        return ERROR_PROVEEDOR_INEXISTENTE;
+        return TipoRet::ERROR_PROVEEDOR_INEXISTENTE;
 
     Producto* producto =
         buscarProducto(codigoProducto);
 
     if (producto == NULL)
-        return ERROR_PRODUCTO_INEXISTENTE;
+        return TipoRet::ERROR_PRODUCTO_INEXISTENTE;
 
     for (ProveedorProducto* pp : proveedorProductos)
     {
@@ -242,7 +242,7 @@ TipoRet AdminController::asociarProveedorProducto(int rutProveedor, int codigoPr
                 precioCompra
             );
 
-            return OK;
+            return TipoRet::OK;
         }
     }
 
@@ -261,7 +261,7 @@ TipoRet AdminController::asociarProveedorProducto(int rutProveedor, int codigoPr
         relacion
     );
 
-    return OK;
+    return TipoRet::OK;
 }
 
 vector<ProveedorProducto*> AdminController::listarProveedorProductos() const
