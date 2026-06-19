@@ -1,4 +1,7 @@
 #include "vista/MenuPrincipal.h"
+#include "vista/MenuAdministrador.h"
+#include "vista/MenuEmpleado.h"
+#include "vista/MenuCliente.h"
 #include <iostream>
 #include <string>
 
