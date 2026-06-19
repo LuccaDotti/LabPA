@@ -119,10 +119,10 @@ void MenuAdministrador::agregarCategoria()
     TipoRet ret =
         adminController.agregarCategoria(nombre, descripcion);
 
-    if(ret == OK)
+    if(ret == TipoRet::OK)
         cout << "Categoria agregada correctamente.\n";
 
-    else if(ret == ERROR_CATEGORIA_EXISTENTE)
+    else if(ret == TipoRet::ERROR_CATEGORIA_EXISTENTE)
         cout << "Ya existe una categoria con ese nombre.\n";
 }
 
@@ -144,13 +144,13 @@ void MenuAdministrador::modificarCategoria()
     TipoRet ret =
         adminController.modificarCategoria(nombreActual, nuevoNombre, nuevaDescripcion);
 
-    if(ret == OK)
+    if(ret == TipoRet::OK)
         cout << "Categoria modificada correctamente.\n";
 
-    else if(ret == ERROR_CATEGORIA_INEXISTENTE)
+    else if(ret == TipoRet::ERROR_CATEGORIA_INEXISTENTE)
         cout << "Categoria inexistente.\n";
 
-    else if(ret == ERROR_CATEGORIA_EXISTENTE)
+    else if(ret == TipoRet::ERROR_CATEGORIA_EXISTENTE)
         cout << "Ya existe una categoria con ese nombre.\n";
 }
 
@@ -229,13 +229,13 @@ void MenuAdministrador::agregarProducto()
     TipoRet ret =
         adminController.agregarProducto(codigo, nombre, descripcion, precioUnitario, stockActual, stockMinimo, categoria);
 
-    if(ret == OK)
+    if(ret == TipoRet::OK)
         cout << "Producto agregado correctamente.\n";
 
-    else if(ret == ERROR_PRODUCTO_EXISTENTE)
+    else if(ret == TipoRet::ERROR_PRODUCTO_EXISTENTE)
         cout << "Ya existe un producto con ese codigo.\n";
 
-    else if(ret == ERROR_STOCK_NEGATIVO)
+    else if(ret == TipoRet::ERROR_STOCK_NEGATIVO)
         cout << "El stock no puede ser negativo.\n";
 }
 
@@ -276,13 +276,13 @@ void MenuAdministrador::modificarProducto()
     TipoRet ret =
         adminController.modificarProducto(codigo, nombre, descripcion, precioUnitario, categoria, stockMinimo);
 
-    if(ret == OK)
+    if(ret == TipoRet::OK)
         cout << "Producto modificado correctamente.\n";
 
-    else if(ret == ERROR_PRODUCTO_INEXISTENTE)
+    else if(ret == TipoRet::ERROR_PRODUCTO_INEXISTENTE)
         cout << "Producto inexistente.\n";
 
-    else if(ret == ERROR_PRODUCTO_EXISTENTE)
+    else if(ret == TipoRet::ERROR_PRODUCTO_EXISTENTE)
         cout << "Ya existe un producto con ese nombre.\n";
 }
 
@@ -298,10 +298,10 @@ void MenuAdministrador::eliminarProducto()
     TipoRet ret =
         adminController.eliminarProducto(codigo);
 
-    if(ret == OK)
+    if(ret == TipoRet::OK)
         cout << "Producto eliminado correctamente.\n";
 
-    else if(ret == ERROR_PRODUCTO_INEXISTENTE)
+    else if(ret == TipoRet::ERROR_PRODUCTO_INEXISTENTE)
         cout << "Producto inexistente.\n";
 }
 
@@ -365,10 +365,10 @@ void MenuAdministrador::altaProveedor()
     TipoRet ret =
         adminController.agregarProveedor(rut, nombreEmpresa, telefono, nombreContacto);
 
-    if(ret == OK)
+    if(ret == TipoRet::OK)
         cout << "Proveedor agregado correctamente.\n";
 
-    else if(ret == ERROR_PROVEEDOR_EXISTENTE)
+    else if(ret == TipoRet::ERROR_PROVEEDOR_EXISTENTE)
         cout << "Ya existe un proveedor con ese RUT.\n";
 }
 
@@ -398,10 +398,10 @@ void MenuAdministrador::modificarProveedor()
     TipoRet ret =
         adminController.modificarProveedor(rut, nombreEmpresa, telefono, nombreContacto);
 
-    if(ret == OK)
+    if(ret == TipoRet::OK)
         cout << "Proveedor modificado correctamente.\n";
 
-    else if(ret == ERROR_PROVEEDOR_INEXISTENTE)
+    else if(ret == TipoRet::ERROR_PROVEEDOR_INEXISTENTE)
         cout << "Proveedor inexistente.\n";
 }
 
@@ -443,13 +443,13 @@ void MenuAdministrador::registrarProveedorProducto()
 
     delete fechaEntrega;
 
-    if(ret == OK)
+    if(ret == TipoRet::OK)
         cout << "Asociacion registrada correctamente.\n";
 
-    else if(ret == ERROR_PROVEEDOR_INEXISTENTE)
+    else if(ret == TipoRet::ERROR_PROVEEDOR_INEXISTENTE)
         cout << "Proveedor inexistente.\n";
 
-    else if(ret == ERROR_PRODUCTO_INEXISTENTE)
+    else if(ret == TipoRet::ERROR_PRODUCTO_INEXISTENTE)
         cout << "Producto inexistente.\n";
 }
 
