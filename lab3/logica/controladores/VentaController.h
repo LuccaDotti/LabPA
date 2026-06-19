@@ -1,9 +1,11 @@
 #pragma once
 
-class Venta;
-class AdminController;
+#include <vector>
 
 using namespace std;
+
+class Venta;
+class AdminController;
 
 class VentaController {
 
