@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class Categoria; // forward declaration
 class ProveedorProducto; // forward declaration
 
