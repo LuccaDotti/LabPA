@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#include "logica/controladores/TipoRetorno.h"
+#include "logica/controladores/tipoRetorno.h"
 
 #include "logica/dominio/Producto.h"
 #include "logica/dominio/Categoria.h"
