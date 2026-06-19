@@ -11,8 +11,8 @@ class AdminController;
 class VentaController {
 
 private:
-
     AdminController& adminController;
+    vector<Calificacion*> calificaciones;
 
 public:
 
