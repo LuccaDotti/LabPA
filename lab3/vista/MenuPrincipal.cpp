@@ -2,6 +2,11 @@
 #include "vista/MenuAdministrador.h"
 #include "vista/MenuEmpleado.h"
 #include "vista/MenuCliente.h"
+
+#include "logica/controladores/AdminController.h"
+#include "logica/controladores/EmpleadoController.h"
+#include "logica/controladores/VentaController.h"
+
 #include <iostream>
 #include <string>
 
