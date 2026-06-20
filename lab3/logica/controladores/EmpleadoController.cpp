@@ -1,10 +1,11 @@
-#include "logica/controladores/EmpleadoController.h"
 #include "logica/dominio/ClienteRegistrado.h"
 #include "logica/controladores/tipoRetorno.h"
 #include "logica/dominio/Venta.h"
 #include "logica/dominio/LineaDetalle.h"
 #include "logica/dominio/Fecha.h"
 #include "logica/dominio/LineaOrdenCompra.h"
+#include "logica/controladores/EmpleadoController.h"
+#include "logica/controladores/AdminController.h"
 
 EmpleadoController* EmpleadoController::instancia = nullptr;  // ← INICIALIZAR
 
