@@ -12,9 +12,8 @@ class Calificacion
 private:
     int puntaje;
     string comentarioOpcional;
-
-    Fecha* fecha;
-    Producto* producto;
+    Fecha *fecha;
+    Producto *producto;
 
 public:
     Calificacion(
@@ -30,13 +29,11 @@ public:
     void setPuntaje(int puntaje);
 
     string getComentarioOpcional() const;
-    void setComentarioOpcional(
-        const string& comentarioOpcional
-    );
+    void setComentarioOpcional(const string &comentarioOpcional);
 
-    Fecha* getFecha() const;
-    void setFecha(Fecha* fecha);
+    Fecha *getFecha() const;
+    void setFecha(Fecha *fecha);
 
-    Producto* getProducto() const;
-    void setProducto(Producto* producto);
+    Producto *getProducto() const;
+    void setProducto(Producto *producto);
 };
