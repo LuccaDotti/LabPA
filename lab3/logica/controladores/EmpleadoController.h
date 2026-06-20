@@ -39,6 +39,7 @@ public:
     TipoRet consultarHistorialCompraCliente(int rut, vector<Venta *> &ventas);
     TipoRet emitirOrdenCompra(int codigoProducto, int cantidad, int rutProveedor);
     TipoRet cancelarOrdenCompra(int idOrdenCompra);
+    TipoRet registrarRecepcionOrdenCompra(int idOodenCompra, vector<int> cantidadesRecibidas);
 
     Proveedor *buscarProveedor(int codigoProveedor) const;
     Producto *buscarProducto(int codigoProducto) const;
