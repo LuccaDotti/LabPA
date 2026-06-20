@@ -3,6 +3,7 @@
 #include "logica/dominio/Venta.h"
 #include "logica/dominio/Calificacion.h"
 #include "logica/controladores/tipoRetorno.h"
+#include "logica/dominio/ClienteRegistrado.h"
 
 using namespace std;
 
