@@ -25,10 +25,11 @@ void MenuAdministrador::mostrar()
         cout << "1. Gestion de Categorias\n";
         cout << "2. Gestion de Productos\n";
         cout << "3. Gestion de Proveedores\n";
-        cout << "4. Consulta de Calificaciones\n";
-        cout << "5. Gestion de Stock\n";
-        cout << "6. Reportes\n";
-        cout << "7. Informacion de Productos\n";
+        cout << "4. Gestion de Empleados\n";
+        cout << "5. Consulta de Calificaciones\n";
+        cout << "6. Gestion de Stock\n";
+        cout << "7. Reportes\n";
+        cout << "8. Informacion de Productos\n";
         cout << "0. Cerrar Sesion\n";
         cout << "Opcion: ";
 
@@ -50,18 +51,22 @@ void MenuAdministrador::mostrar()
                 break;
 
             case 4:
-                menuCalificaciones();
+                menuEmpleados();
                 break;
 
             case 5:
-                menuStock();
+                menuCalificaciones();
                 break;
 
             case 6:
-                menuReportes();
+                menuStock();
                 break;
 
             case 7:
+                menuReportes();
+                break;
+
+            case 8:
                 menuInfoProducto();
                 break;
 
