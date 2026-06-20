@@ -2,15 +2,22 @@
 
 #include "logica/controladores/VentaController.h"
 #include "logica/controladores/AdminController.h"
+#include "logica/controladores/tipoRetorno.h"
+
+#include "logica/dominio/ClienteRegistrado.h"
+#include "logica/dominio/Producto.h"
+#include "logica/dominio/Venta.h"
+#include "logica/dominio/LineaDetalle.h"
+#include "logica/dominio/Categoria.h"
 
 #include <iostream>
-
-#include "logica/dominio/Producto.h"
-#include "logica/dominio/Categoria.h"
+#include <string>
+#include <vector>
 
 using namespace std;
 
-MenuCliente::MenuCliente(VentaController& ventaController, AdminController& adminController) : ventaController(ventaController), adminController(adminController)
+MenuCliente::MenuCliente(VentaController& ventaController, AdminController& adminController, ClienteRegistrado* cliente)
+: ventaController(ventaController), adminController(adminController), clienteActual(cliente)
 {
 }
 
@@ -22,9 +29,8 @@ void MenuCliente::mostrar() {
         cout << "\n=====================================\n";
         cout << "         MENU CLIENTE\n";
         cout << "=====================================\n";
-        cout << "1. Realizar Venta\n";
-        cout << "2. Ver Productos\n";
-        cout << "3. Calificar Producto\n";
+        cout << "1. Calificar Producto\n";
+        cout << "2. Consultar Informacion de Producto\n";
         cout << "0. Cerrar Sesion\n";
         cout << "Opcion: ";
 
@@ -33,18 +39,15 @@ void MenuCliente::mostrar() {
         switch(opcion) {
 
             case 1:
-                realizarVenta();
+                calificarProducto();
                 break;
 
             case 2:
                 consultarDetalleProducto();
                 break;
 
-            case 3:
-                calificarProducto();
-                break;
-
             case 0:
+                cout << "\nSesion cerrada.\n";
                 break;
 
             default:
@@ -54,17 +57,73 @@ void MenuCliente::mostrar() {
     } while(opcion != 0);
 }
 
-void MenuCliente::consultarDetalleProducto() {
-    int codigo;
+void MenuCliente::calificarProducto() {
 
-    cout << "\n===== INFORMACION DE PRODUCTO =====\n";
+    vector<Venta*> ventas = clienteActual->getVentas();
+
+    if (ventas.empty()) {
+        cout << "\nNo tenes compras registradas para calificar.\n";
+        return;
+    }
+
+    cout << "\n===== CALIFICAR PRODUCTO =====\n";
+    cout << "Productos disponibles para calificar:\n";
+
+    for (Venta* v : ventas) {
+        for (LineaDetalle* l : v->getLineas()) {
+            cout << "  Codigo: " << l->getProducto()->getCodigo()
+                 << " - " << l->getProducto()->getNombre() << "\n";
+        }
+    }
+
+    int codigo, puntaje;
+    string comentario;
+
+    cout << "Ingrese codigo del producto: ";
+    cin >> codigo;
+    cout << "Ingrese puntaje (1-5): ";
+    cin >> puntaje;
+    cin.ignore();
+    cout << "Ingrese comentario (opcional, Enter para omitir): ";
+    getline(cin, comentario);
+
+    TipoRet resultado = clienteActual->calificarProducto(codigo, puntaje, comentario);
+
+    if (resultado == TipoRet::OK)
+        cout << "Calificacion registrada correctamente.\n";
+    else if (resultado == TipoRet::ERROR_PRODUCTO_NO_COMPRADO)
+        cout << "Error: solo podes calificar productos que hayas comprado.\n";
+    else if (resultado == TipoRet::ERROR_CALIFICACION_INVALIDA)
+        cout << "Error: el puntaje debe ser un entero entre 1 y 5.\n";
+}
+
+void MenuCliente::consultarDetalleProducto() {
+
+    vector<Venta*> ventas = clienteActual->getVentas();
+
+    if (ventas.empty()) {
+        cout << "\nNo tenes compras registradas.\n";
+        return;
+    }
+
+    cout << "\n===== CONSULTAR INFORMACION DE PRODUCTO =====\n";
+    cout << "Productos disponibles:\n";
+
+    for (Venta* v : ventas) {
+        for (LineaDetalle* l : v->getLineas()) {
+            cout << "  Codigo: " << l->getProducto()->getCodigo()
+                 << " - " << l->getProducto()->getNombre() << "\n";
+        }
+    }
+
+    int codigo;
     cout << "Ingrese codigo del producto: ";
     cin >> codigo;
 
-    Producto* producto = adminController.buscarProducto(codigo);
+    Producto* producto = clienteActual->consultarInformacionDetalladaProducto(codigo);
 
     if (producto == nullptr) {
-        cout << "Producto no encontrado.\n";
+        cout << "Error: solo podes consultar productos que hayas comprado.\n";
         return;
     }
 
