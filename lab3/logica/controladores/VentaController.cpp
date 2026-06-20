@@ -7,6 +7,20 @@
 
 using namespace std;
 
+VentaController* VentaController::instancia = nullptr;
+
+VentaController* VentaController::getInstancia()
+{
+    if (instancia == nullptr)
+    {
+        instancia = new VentaController(
+            *AdminController::getInstancia()
+        );
+    }
+
+    return instancia;
+}
+
 VentaController::VentaController(
     AdminController& adminController
 )
