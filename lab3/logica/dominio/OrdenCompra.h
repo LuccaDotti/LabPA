@@ -18,49 +18,31 @@ enum EstadoOrden
 class OrdenCompra
 {
 private:
-    Fecha* fechaEmision;
+    static int proximoId;
+
+    Fecha *fechaEmision;
     EstadoOrden estado;
-
-    Proveedor* proveedor;
-
-    vector<LineaCompra*> lineasCompra;
-
-    // Lista de todas las órdenes de compra
-    vector<OrdenCompra*> ordenesCompra;
+    int id;
+    Proveedor *proveedor;
+    vector<LineaCompra *> lineasCompra;
 
 public:
-    OrdenCompra(
-        Fecha* fechaEmision,
-        EstadoOrden estado,
-        Proveedor* proveedor
-    );
+    OrdenCompra(Fecha *fechaEmision, EstadoOrden estado, Proveedor *proveedor);
 
     ~OrdenCompra();
 
-    Fecha* getFechaEmision() const;
-    void setFechaEmision(
-        Fecha* fechaEmision
-    );
+    int getId() const;
+    void setId(int id);
+
+    Fecha *getFechaEmision() const;
+    void setFechaEmision(Fecha *fechaEmision);
 
     EstadoOrden getEstado() const;
-    void setEstado(
-        EstadoOrden estado
-    );
+    void setEstado(EstadoOrden estado);
 
-    Proveedor* getProveedor() const;
-    void setProveedor(
-        Proveedor* proveedor
-    );
+    Proveedor *getProveedor() const;
+    void setProveedor(Proveedor *proveedor);
 
-    vector<LineaCompra*> getLineasCompra() const;
-
-    void agregarLineaCompra(
-        LineaCompra* lineaCompra
-    );
-
-    vector<OrdenCompra*> getOrdenesCompra() const;
-
-    void agregarOrdenCompra(
-        OrdenCompra* ordenCompra
-    );
+    vector<LineaCompra *> getLineasCompra() const;
+    void agregarLineaCompra(LineaCompra *lineaCompra);
 };
