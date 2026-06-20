@@ -1,7 +1,9 @@
 #pragma once
 
 #include <vector>
-
+#include "logica/dominio/Calificacion.h"
+#include "logica/dominio/Direccion.h"
+#include "logica/controladores/tipoRetorno.h"
 using namespace std;
 
 class Venta;
