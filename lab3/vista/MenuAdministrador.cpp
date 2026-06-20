@@ -609,20 +609,125 @@ void MenuAdministrador::eliminarUsuario()
 
 void MenuAdministrador::menuCalificaciones()
 {
-    cout << "\nConsulta de calificaciones.\n";
+    int codigo;
+
+    cout << "\n===== CONSULTA DE CALIFICACIONES =====\n";
+
+    cout << "Codigo del producto: ";
+    cin >> codigo;
+
+    Producto* producto =
+        adminController.buscarProducto(codigo);
+
+    if(producto == nullptr)
+    {
+        cout << "Producto inexistente.\n";
+        return;
+    }
+
+    cout << "\nProducto: " << producto->getNombre() << endl;
+    cout << "Puntaje promedio: " << producto->getPuntajePromedio() << " / 5\n";
 }
 
 void MenuAdministrador::menuStock()
 {
-    cout << "\nGestion de stock.\n";
+    cout << "\n===== GESTION DE STOCK =====\n";
+
+    vector<Producto*> productos =
+        adminController.listarProductos();
+
+    if(productos.empty())
+    {
+        cout << "No hay productos registrados.\n";
+        return;
+    }
+
+    cout << "\n" << productos.size() << " producto(s) encontrado(s):\n";
+    cout << "-------------------------------------------\n";
+
+    for(int i = 0; i < productos.size(); i++)
+    {
+        cout << "Codigo: " << productos[i]->getCodigo() << endl;
+        cout << "Nombre: " << productos[i]->getNombre() << endl;
+        cout << "Stock actual: " << productos[i]->getStockActual() << endl;
+        cout << "Stock minimo: " << productos[i]->getStockMinimo() << endl;
+        cout << "Bajo stock: " << (productos[i]->isBajoStock() ? "Si" : "No") << endl;
+        cout << "-------------------------------------------\n";
+    }
 }
 
 void MenuAdministrador::menuReportes()
 {
-    cout << "\nReportes.\n";
+    cout << "\n===== REPORTES =====\n";
+
+    vector<Producto*> productos =
+        adminController.listarProductos();
+
+    if(productos.empty())
+    {
+        cout << "No hay productos registrados.\n";
+        return;
+    }
+
+    cout << "\n--- Productos bajo stock minimo ---\n";
+
+    bool hayBajoStock = false;
+
+    for(int i = 0; i < productos.size(); i++)
+    {
+        if(productos[i]->isBajoStock())
+        {
+            hayBajoStock = true;
+            cout << "Codigo: " << productos[i]->getCodigo()
+                 << " - " << productos[i]->getNombre()
+                 << " (Stock: " << productos[i]->getStockActual()
+                 << ", Minimo: " << productos[i]->getStockMinimo() << ")\n";
+        }
+    }
+
+    if(!hayBajoStock)
+        cout << "No hay productos bajo el stock minimo.\n";
+
+    cout << "\n--- Unidades vendidas por producto ---\n";
+
+    for(int i = 0; i < productos.size(); i++)
+    {
+        cout << "Codigo: " << productos[i]->getCodigo()
+             << " - " << productos[i]->getNombre()
+             << " - Vendidas: " << productos[i]->getUnidadesVendidas() << endl;
+    }
 }
 
 void MenuAdministrador::menuInfoProducto()
 {
-    cout << "\nInformacion detallada de productos.\n";
+    int codigo;
+
+    cout << "\n===== INFORMACION DETALLADA DE PRODUCTO =====\n";
+
+    cout << "Codigo del producto: ";
+    cin >> codigo;
+
+    Producto* producto =
+        adminController.buscarProducto(codigo);
+
+    if(producto == nullptr)
+    {
+        cout << "Producto inexistente.\n";
+        return;
+    }
+
+    cout << "\nCodigo: " << producto->getCodigo() << endl;
+    cout << "Nombre: " << producto->getNombre() << endl;
+    cout << "Descripcion: " << producto->getDescripcion() << endl;
+    cout << "Precio unitario: " << producto->getPrecioUnitario() << endl;
+    cout << "Stock actual: " << producto->getStockActual() << endl;
+    cout << "Stock minimo: " << producto->getStockMinimo() << endl;
+    cout << "Bajo stock: " << (producto->isBajoStock() ? "Si" : "No") << endl;
+    cout << "Puntaje promedio: " << producto->getPuntajePromedio() << " / 5\n";
+    cout << "Unidades vendidas: " << producto->getUnidadesVendidas() << endl;
+
+    if(producto->getCategoria() != nullptr)
+        cout << "Categoria: " << producto->getCategoria()->getNombre() << endl;
+    else
+        cout << "Categoria: Sin categoria\n";
 }
