@@ -31,6 +31,8 @@ public:
 
     ~ClienteRegistrado();
 
+    TipoRet calificarProducto(int codigoProducto, int calificacion, string comentario);
+
     int getContrasenia() const;
     void setContrasenia(int contrasenia);
 
