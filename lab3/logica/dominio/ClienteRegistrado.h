@@ -61,5 +61,5 @@ public:
 
     void agregarFacturacion(float monto);
 
-    string consultarInformacionDetalladaProducto(int codigoProducto) const;
+    Producto* consultarInformacionDetalladaProducto(int codigoProducto) const;
 };
