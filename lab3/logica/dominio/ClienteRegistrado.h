@@ -65,4 +65,3 @@ public:
     void agregarFacturacion(
         float monto);
 };
-
