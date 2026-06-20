@@ -48,7 +48,7 @@ void MenuEmpleado::mostrar() {
                 break;
 
             case 2:
-                cout << "Gestion de Ordenes\n";
+                menuGestionarOrdenesCompra();
                 break;
 
             case 3:
