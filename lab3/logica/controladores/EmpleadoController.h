@@ -50,4 +50,11 @@ public:
     
     bool crearOrdenCompra(OrdenCompra *orden);
     vector<OrdenCompra *> listarOrdenes() const;
+
+    vector<Calificacion*> consultarCalificacionesDeProducto(int codigoProducto) const;
+    int consultarStockActual(int codigoProducto) const;
+    vector<Producto*> consultarProductoBajoMinimo() const;
+    float montoTotalFacturadoACliente(int rut) const;
+    int unidadesVendidasDeProducto(int codigoProducto) const;
+
 };
