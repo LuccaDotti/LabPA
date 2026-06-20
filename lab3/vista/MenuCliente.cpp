@@ -33,7 +33,7 @@ void MenuCliente::mostrar() {
         switch(opcion) {
 
             case 1:
-                cout << "Registrar Venta\n";
+                realizarVenta();
                 break;
 
             case 2:
@@ -41,7 +41,7 @@ void MenuCliente::mostrar() {
                 break;
 
             case 3:
-                cout << "Calificar Producto\n";
+                calificarProducto();
                 break;
 
             case 0:
