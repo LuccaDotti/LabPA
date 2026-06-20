@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 class EmpleadoController;
 class AdminController;
 class VentaController;
@@ -13,15 +15,26 @@ private:
     VentaController& ventaController;
 
     void menuGestionarClientes();
-    void consultarTotalFacturado();
-    void menuConsultarProductos();
-    void consultarStockActual();
-    void consultarProductosBajoMinimo();
-    void consultarUnidadesVendidas();
-    void consultarCalificacionesProducto();
-    void menuGestionarOrdenesCompra();
+    void altaCliente();
+    void modificarCliente();
+
+    void menuVentas();
     void registrarVenta();
     void consultarHistorialCompras();
+
+    void menuGestionarOrdenesCompra();
+    void emitirOrdenCompra();
+    void cancelarOrdenCompra();
+    void registrarRecepcionOrden();
+
+    void menuReportes();
+    void consultarStockActual();
+    void consultarProductosBajoMinimo();
+    void consultarTotalFacturado();
+    void consultarUnidadesVendidas();
+
+    void consultarCalificacionesProducto();
+    void consultarDetalleProducto();
 
 public:
 
