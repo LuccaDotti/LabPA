@@ -2,6 +2,7 @@
 
 class VentaController;
 class AdminController;
+class ClienteRegistrado;
 
 class MenuCliente {
 
@@ -9,14 +10,14 @@ private:
 
     VentaController& ventaController;
     AdminController& adminController;
+    ClienteRegistrado* clienteActual;
 
-    void consultarDetalleProducto();
-    void realizarVenta();
     void calificarProducto();
+    void consultarDetalleProducto();
 
 public:
 
-    MenuCliente(VentaController& ventaController, AdminController& adminController);
+    MenuCliente(VentaController& ventaController, AdminController& adminController, ClienteRegistrado* cliente);
 
     void mostrar();
 };
