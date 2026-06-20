@@ -1,27 +1,24 @@
 #pragma once
 
 #include <vector>
-#include "logica/dominio/Calificacion.h"
-#include "logica/dominio/Direccion.h"
-#include "logica/controladores/tipoRetorno.h"
-#include "logica/dominio/ClienteRegistrado.h"
-using namespace std;
 
+class AdminController;
 class Venta;
 class Calificacion;
-class AdminController;
 
-class VentaController {
-
+class VentaController
+{
 private:
-    AdminController& adminController;
-    vector<Calificacion*> calificaciones;
+    static VentaController* instancia;
 
-public:
+    AdminController& adminController;
 
     VentaController(
         AdminController& adminController
     );
+
+public:
+    static VentaController* getInstancia();
 
     ~VentaController();
 
@@ -29,15 +26,12 @@ public:
         Venta* venta
     );
 
-    vector<Venta*> listarVentas() const;
+    std::vector<Calificacion*> listarCalificaciones() const;
 
-    bool agregarCalificacion(
-        Calificacion* calificacion
-    );
-
-    vector<Calificacion*> listarCalificaciones() const;
-
-    vector<Calificacion*> getCalificacionesPorProducto(
+    std::vector<Calificacion*> getCalificacionesPorProducto(
         int codigoProducto
     ) const;
+
+private:
+    std::vector<Calificacion*> calificaciones;
 };
