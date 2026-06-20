@@ -33,14 +33,13 @@ void MenuPrincipal::mostrar()
         cout << "Email: ";
         cin >> email;
 
-        cout << "Contrasenia: ";
+        cout << "Contrasena: ";
         cin >> password;
 
+        // Hardcodeados por defecto
         if (email == "admin@gmail.com" && password == "admin2026")
         {
-            MenuAdministrador menuAdmin(
-                *AdminController::getInstancia()
-            );
+            MenuAdministrador menuAdmin(*AdminController::getInstancia());
             menuAdmin.mostrar();
         }
         else if (email == "empleado@gmail.com" && password == "empleado1234")
@@ -55,7 +54,6 @@ void MenuPrincipal::mostrar()
         else if (email == "cliente@gmail.com" && password == "cliente5678")
         {
             ClienteRegistrado* cliente = EmpleadoController::getInstancia()->buscarClientePorCorreo(email, password);
-
             if (cliente != nullptr)
             {
                 MenuCliente menuCliente(
@@ -72,18 +70,17 @@ void MenuPrincipal::mostrar()
         }
         else
         {
+            // Buscar en usuarios dados de alta por el admin
             Usuario* usuario = AdminController::getInstancia()->buscarUsuarioPorEmail(email);
 
             if (usuario != nullptr && usuario->getPassword() == password)
             {
                 if (usuario->getRol() == Rol::ADMINISTRADOR)
                 {
-                    MenuAdministrador menuAdmin(
-                        *AdminController::getInstancia()
-                    );
+                    MenuAdministrador menuAdmin(*AdminController::getInstancia());
                     menuAdmin.mostrar();
                 }
-                else if (usuario->getRol() == Rol::EMPLEADO)
+                else
                 {
                     MenuEmpleado menuEmpleado(
                         *EmpleadoController::getInstancia(),
@@ -95,6 +92,7 @@ void MenuPrincipal::mostrar()
             }
             else
             {
+                // Buscar en clientes registrados
                 ClienteRegistrado* cliente = EmpleadoController::getInstancia()->buscarClientePorCorreo(email, password);
 
                 if (cliente != nullptr)
