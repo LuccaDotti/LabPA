@@ -4,6 +4,7 @@
 #include "logica/dominio/Venta.h"
 #include "logica/dominio/LineaDetalle.h"
 #include "logica/dominio/Fecha.h"
+#include "logica/dominio/LineaOrdenCompra.h"
 
 EmpleadoController::EmpleadoController(AdminController &adminController) : adminController(adminController) {}
 
@@ -158,6 +159,42 @@ TipoRet EmpleadoController::cancelarOrdenCompra(int idOrdenCompra)
         return TipoRet::ERROR_ORDEN_NO_PENDIENTE;
     }
     orden->setEstado(CANCELADA);
+
+    return TipoRet::OK;
+}
+
+TipoRet EmpleadoController::registrarRecepcionOrdenCompra(int idOrden, vector<int> cantidadesRecibidas)
+{
+    OrdenCompra *orden = buscarOrdenCompra(idOrden);
+
+    if (orden == nullptr)
+    {
+        return TipoRet::ERROR_ORDEN_INEXISTENTE;
+    }
+
+    if (orden->getEstado() != PENDIENTE)
+    {
+        return TipoRet::ERROR_ORDEN_NO_PENDIENTE;
+    }
+
+    vector<LineaOrdenCompra *> lineas = orden->getLineasCompra();
+
+    for (int i = 0; i < lineas.size(); i++)
+    {
+        if (lineas[i]->getCantidad() != cantidadesRecibidas[i])
+        {
+            return TipoRet::ERROR_CANTIDAD_NO_COINCIDE;
+        }
+    }
+
+    orden->setEstado(RECIBIDA);
+
+    orden->setFechaRecepcion(new Fecha());
+
+    for (int i = 0; i < lineas.size(); i++)
+    {
+        lineas[i]->getProducto()->setStockActual(cantidadesRecibidas[i]);
+    }
 
     return TipoRet::OK;
 }
