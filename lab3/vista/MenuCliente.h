@@ -11,6 +11,8 @@ private:
     AdminController& adminController;
 
     void consultarDetalleProducto();
+    void realizarVenta();
+    void calificarProducto();
 
 public:
 
