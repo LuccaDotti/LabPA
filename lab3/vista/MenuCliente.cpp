@@ -25,7 +25,7 @@ void MenuCliente::mostrar() {
         cout << "1. Realizar Venta\n";
         cout << "2. Ver Productos\n";
         cout << "3. Calificar Producto\n";
-        cout << "0. Volver\n";
+        cout << "0. Cerrar Sesion\n";
         cout << "Opcion: ";
 
         cin >> opcion;
