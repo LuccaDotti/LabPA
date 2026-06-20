@@ -1,6 +1,8 @@
 #include "vista/MenuAdministrador.h"
 #include "logica/controladores/AdminController.h"
 #include "logica/controladores/tipoRetorno.h"
+#include "logica/controladores/Rol.h"
+#include "logica/dominio/Usuario.h"
 
 #include <iostream>
 
