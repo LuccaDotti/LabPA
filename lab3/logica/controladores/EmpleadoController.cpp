@@ -279,3 +279,58 @@ vector<OrdenCompra *> EmpleadoController::listarOrdenes() const
 {
     return ordenesCompra;
 }
+
+vector<Calificacion*> EmpleadoController::consultarCalificacionesDeProducto(int codigoProducto) const
+{
+    vector<Calificacion*> calificaciones;
+    
+    for (ClienteRegistrado* cliente : clientes) {
+        for (Calificacion* cal : cliente->getCalificaciones()) {
+            if (cal->getProducto()->getCodigo() == codigoProducto) {
+                calificaciones.push_back(cal);
+            }
+        }
+    }
+    
+    return calificaciones;
+}
+
+int EmpleadoController::consultarStockActual(int codigoProducto) const
+{
+    Producto* producto = buscarProducto(codigoProducto);
+    if (producto == nullptr) {
+        return -1;  // Producto no existe
+    }
+    return producto->getStockActual();
+}
+
+vector<Producto*> EmpleadoController::consultarProductoBajoMinimo() const
+{
+    vector<Producto*> productosBajos;
+    
+    for (Producto* producto : productos) {
+        if (producto->getStockActual() < producto->getStockMinimo()) {
+            productosBajos.push_back(producto);
+        }
+    }
+    
+    return productosBajos;
+}
+
+float EmpleadoController::montoTotalFacturadoACliente(int rut) const
+{
+    ClienteRegistrado* cliente = buscarCliente(rut);
+    if (cliente == nullptr) {
+        return 0.0;
+    }
+    return cliente->getTotalFacturado();
+}
+
+int EmpleadoController::unidadesVendidasDeProducto(int codigoProducto) const
+{
+    Producto* producto = buscarProducto(codigoProducto);
+    if (producto == nullptr) {
+        return -1;  // Producto no existe
+    }
+    return producto->getUnidadesVendidas();
+}
