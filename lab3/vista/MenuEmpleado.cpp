@@ -34,7 +34,7 @@ void MenuEmpleado::mostrar() {
         cout << "1. Gestionar Clientes\n";
         cout << "2. Gestionar Ordenes de Compra\n";
         cout << "3. Consultar Productos\n";
-        cout << "4. Consultar Calificaciones de Producto (CU 19)\n";
+        cout << "4. Consultar Calificaciones de Producto\n";
         cout << "0. Volver\n";
         cout << "Opcion: ";
 
