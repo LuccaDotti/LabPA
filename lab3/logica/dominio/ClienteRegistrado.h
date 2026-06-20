@@ -40,30 +40,26 @@ public:
     void setRut(int rut);
 
     Direccion getDireccion() const;
-    void setDireccion(
-        const Direccion &direccion);
+    void setDireccion(const Direccion &direccion);
 
     string getCorreo() const;
-    void setCorreo(
-        const string &correo);
+    void setCorreo(const string &correo);
 
     string getNombreCompleto() const;
-    void setNombreCompleto(
-        const string &nombreCompleto);
+    void setNombreCompleto(const string &nombreCompleto);
 
     float getTotalFacturado() const;
-    void setTotalFacturado(
-        float totalFacturado);
+    void setTotalFacturado(float totalFacturado);
 
     vector<Venta *> getVentas() const;
 
-    void agregarVenta(
-        Venta *venta);
+    void agregarVenta(Venta *venta);
 
     vector<Calificacion *> getCalificaciones() const;
 
-    void agregarCalificacion(
-        Calificacion *calificacion);
+    void agregarCalificacion(Calificacion *calificacion);
 
     void agregarFacturacion(float monto);
+
+    string consultarInformacionDetalladaProducto(int codigoProducto) const;
 };
