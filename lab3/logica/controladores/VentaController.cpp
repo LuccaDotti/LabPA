@@ -2,6 +2,7 @@
 #include "logica/controladores/AdminController.h"
 #include "logica/dominio/Venta.h"
 #include "logica/dominio/Calificacion.h"
+#include "logica/controladores/tipoRetorno.h"
 
 using namespace std;
 
