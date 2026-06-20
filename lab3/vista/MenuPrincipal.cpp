@@ -12,6 +12,10 @@
 
 using namespace std;
 
+MenuPrincipal::MenuPrincipal()
+{
+}
+
 void MenuPrincipal::mostrar()
 {
     string email;
