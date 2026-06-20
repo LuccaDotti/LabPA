@@ -56,5 +56,5 @@ public:
     vector<Producto*> consultarProductoBajoMinimo() const;
     float montoTotalFacturadoACliente(int rut) const;
     int unidadesVendidasDeProducto(int codigoProducto) const;
-
+    ClienteRegistrado* buscarClientePorCorreo(const string& correo, const string& password) const;
 };
