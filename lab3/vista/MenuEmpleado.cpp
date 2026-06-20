@@ -112,13 +112,13 @@ void MenuEmpleado::consultarTotalFacturado() {
         return;
     }
 
-    if (cr == nullptr) {
+    if (cliente == nullptr) {
         cout << "El cliente no es un cliente registrado.\n";
         return;
     }
 
-    cout << "\nCliente: " << cr->getNombreCompleto() << "\n";
-    cout << "Total facturado: $" << cr->getTotalFacturado() << "\n";
+    cout << "\nCliente: " << cliente->getNombreCompleto() << "\n";
+    cout << "Total facturado: $" << cliente->getTotalFacturado() << "\n";
 }
 
 void MenuEmpleado::menuConsultarProductos() {
