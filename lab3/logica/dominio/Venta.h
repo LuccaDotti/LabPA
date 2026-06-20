@@ -18,12 +18,20 @@ private:
 
     vector<LineaDetalle *> lineas;
 
-public:
+    vector<Venta*> ventas;
+
+public:    
     Venta(
         const Fecha &fecha,
         ClienteRegistrado *cliente);
 
     ~Venta();
+
+    vector<Venta*> getVentas() const;
+
+    void agregarVenta(
+        Venta* venta
+    );
 
     Fecha getFecha() const;
 
