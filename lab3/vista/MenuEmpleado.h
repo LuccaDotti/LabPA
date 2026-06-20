@@ -19,6 +19,9 @@ private:
     void consultarProductosBajoMinimo();
     void consultarUnidadesVendidas();
     void consultarCalificacionesProducto();
+    void menuGestionarOrdenesCompra();
+    void registrarVenta();
+    void consultarHistorialCompras();
 
 public:
 
