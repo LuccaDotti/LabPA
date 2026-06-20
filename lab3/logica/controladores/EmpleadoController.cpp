@@ -334,3 +334,13 @@ int EmpleadoController::unidadesVendidasDeProducto(int codigoProducto) const
     }
     return producto->getUnidadesVendidas();
 }
+
+ClienteRegistrado* EmpleadoController::buscarClientePorCorreo(const string& correo, const string& password) const
+{
+    for (ClienteRegistrado* c : clientes)
+    {
+        if (c->getCorreo() == correo && to_string(c->getContrasenia()) == password)
+            return c;
+    }
+    return nullptr;
+}
