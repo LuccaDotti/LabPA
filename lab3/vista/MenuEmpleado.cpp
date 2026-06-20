@@ -104,14 +104,13 @@ void MenuEmpleado::consultarTotalFacturado() {
     cout << "Ingrese RUT del cliente: ";
     cin >> rut;
 
-    Cliente* cliente = empleadoController.buscarCliente(rut);
+    ClienteRegistrado* cliente =
+    empleadoController.buscarCliente(rut);
 
     if (cliente == nullptr) {
         cout << "Cliente no encontrado.\n";
         return;
     }
-
-    ClienteRegistrado* cr = dynamic_cast<ClienteRegistrado*>(cliente);
 
     if (cr == nullptr) {
         cout << "El cliente no es un cliente registrado.\n";
