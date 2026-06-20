@@ -47,7 +47,8 @@ void MenuPrincipal::mostrar()
         {
             MenuEmpleado menuEmpleado(
                 *EmpleadoController::getInstancia(),
-                *AdminController::getInstancia()
+                *AdminController::getInstancia(),
+                *VentaController::getInstancia()
             );
 
             menuEmpleado.mostrar();
