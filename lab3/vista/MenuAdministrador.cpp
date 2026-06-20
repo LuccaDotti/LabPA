@@ -460,6 +460,153 @@ void MenuAdministrador::registrarProveedorProducto()
         cout << "Producto inexistente.\n";
 }
 
+void MenuAdministrador::menuUsuarios()
+{
+    int opcion = 0;
+    while (opcion != 4)
+    {
+        cout << "\n=== MENÚ GESTIÓN DE USUARIOS ===\n";
+        cout << "1. Alta de usuario\n";
+        cout << "2. Listar usuarios\n";
+        cout << "3. Eliminar usuario\n";
+        cout << "4. Volver\n";
+        cout << "Seleccione opción: ";
+        cin >> opcion;
+
+        switch (opcion)
+        {
+        case 1:
+            altaUsuario();
+            break;
+        case 2:
+            listarUsuarios();
+            break;
+        case 3:
+            eliminarUsuario();
+            break;
+        case 4:
+            break;
+        default:
+            cout << "Opción inválida\n";
+        }
+    }
+}
+
+void MenuAdministrador::altaUsuario()
+{
+    string nombre;
+    string email;
+    string password;
+    int opcionRol;
+
+    cout << "\n=== ALTA DE USUARIO ===\n";
+
+    cout << "Nombre completo: ";
+    cin.ignore();
+    getline(cin, nombre);
+
+    cout << "Email: ";
+    getline(cin, email);
+
+    cout << "Contraseña: ";
+    getline(cin, password);
+
+    cout << "\nSeleccione el rol:\n";
+    cout << "1 - Empleado\n";
+    cout << "2 - Administrador\n";
+    cout << "Opción: ";
+    cin >> opcionRol;
+
+    Rol rol = (opcionRol == 2) ? Rol::ADMINISTRADOR : Rol::EMPLEADO;
+
+    cout << "\n=== RESUMEN ===\n";
+    cout << "Nombre: " << nombre << endl;
+    cout << "Email: " << email << endl;
+    cout << "Rol: " << (rol == Rol::ADMINISTRADOR ? "Administrador" : "Empleado") << endl;
+
+    char confirmar;
+    cout << "\n¿Confirmar la creación del usuario? (S/N): ";
+    cin >> confirmar;
+
+    if (toupper(confirmar) != 'S')
+    {
+        cout << "Operación cancelada\n";
+        return;
+    }
+
+    TipoRet ret = adminController.agregarUsuario(nombre, email, password, rol);
+
+    if (ret == TipoRet::OK)
+        cout << "\nUsuario registrado correctamente\n";
+    else
+        cout << "\nYa existe un usuario con ese email\n";
+}
+
+void MenuAdministrador::listarUsuarios()
+{
+    cout << "\n=== LISTADO DE USUARIOS ===\n";
+
+    vector<Usuario*> usuarios = adminController.listarUsuarios();
+
+    if (usuarios.empty())
+    {
+        cout << "No hay usuarios registrados\n";
+        return;
+    }
+
+    cout << "\n" << usuarios.size() << " usuario(s) encontrado(s):\n\n";
+    cout << "-------------------------------------------\n";
+
+    for (int i = 0; i < usuarios.size(); i++)
+    {
+        cout << "Usuario " << (i + 1) << ":\n";
+        cout << "  Nombre: " << usuarios[i]->getNombreCompleto() << endl;
+        cout << "  Email: " << usuarios[i]->getEmail() << endl;
+        cout << "  Rol: " << (usuarios[i]->getRol() == Rol::ADMINISTRADOR ? "Administrador" : "Empleado") << endl;
+        cout << "-------------------------------------------\n";
+    }
+}
+
+void MenuAdministrador::eliminarUsuario()
+{
+    string email;
+
+    cout << "\n=== ELIMINAR USUARIO ===\n";
+    cout << "Email del usuario a eliminar: ";
+    cin.ignore();
+    getline(cin, email);
+
+    Usuario* usuario = adminController.buscarUsuarioPorEmail(email);
+
+    if (usuario == nullptr)
+    {
+        cout << "Usuario no encontrado\n";
+        return;
+    }
+
+    cout << "\nDatos del usuario a eliminar:\n";
+    cout << "Nombre: " << usuario->getNombreCompleto() << endl;
+    cout << "Email: " << usuario->getEmail() << endl;
+    cout << "Rol: " << (usuario->getRol() == Rol::ADMINISTRADOR ? "Administrador" : "Empleado") << endl;
+
+    char confirmar;
+    cout << "\n¿Confirmar la eliminación? (S/N): ";
+    cin >> confirmar;
+
+    if (toupper(confirmar) != 'S')
+    {
+        cout << "Operación cancelada\n";
+        return;
+    }
+
+    TipoRet ret = adminController.eliminarUsuario(email);
+
+    if (ret == TipoRet::OK)
+        cout << "Usuario eliminado correctamente\n";
+    else
+        cout << "Error al eliminar el usuario\n";
+}
+
 void MenuAdministrador::menuCalificaciones()
 {
     cout << "\nConsulta de calificaciones.\n";
