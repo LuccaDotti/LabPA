@@ -6,7 +6,7 @@ using namespace std;
 
 class Fecha;
 class Proveedor;
-class LineaCompra;
+class LineaOrdenCompra;
 
 enum EstadoOrden
 {
@@ -19,12 +19,12 @@ class OrdenCompra
 {
 private:
     static int proximoId;
-
+    Fecha *fechaRecepcion;
     Fecha *fechaEmision;
     EstadoOrden estado;
     int id;
     Proveedor *proveedor;
-    vector<LineaCompra *> lineasCompra;
+    vector<LineaOrdenCompra *> lineasCompra;
 
 public:
     OrdenCompra(Fecha *fechaEmision, EstadoOrden estado, Proveedor *proveedor);
@@ -43,6 +43,9 @@ public:
     Proveedor *getProveedor() const;
     void setProveedor(Proveedor *proveedor);
 
-    vector<LineaCompra *> getLineasCompra() const;
-    void agregarLineaCompra(LineaCompra *lineaCompra);
+    vector<LineaOrdenCompra *> getLineasCompra() const;
+    void agregarLineaCompra(LineaOrdenCompra *lineaCompra);
+
+    Fecha *getFechaRecepcion() const;
+    void setFechaRecepcion(Fecha *fechaRecepcion);
 };
