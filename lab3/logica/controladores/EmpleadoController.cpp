@@ -1,6 +1,9 @@
 #include "logica/controladores/EmpleadoController.h"
 #include "logica/dominio/ClienteRegistrado.h"
 #include "logica/controladores/tipoRetorno.h"
+#include "logica/dominio/Venta.h"
+#include "logica/dominio/LineaDetalle.h"
+#include "logica/dominio/Fecha.h"
 
 EmpleadoController::EmpleadoController(AdminController &adminController) : adminController(adminController) {}
 
@@ -58,20 +61,119 @@ TipoRet EmpleadoController::modificarCliente(int rut, string nombreCompleto, str
 
 TipoRet EmpleadoController::registrarVenta(int rut, int codigoProducto, int cantidad)
 {
+    ClienteRegistrado *cliente = buscarCliente(rut);
+    if (cliente == nullptr)
+    {
+        return TipoRet::ERROR_CLIENTE_INEXISTENTE;
+    }
+
+    Producto *producto = buscarProducto(codigoProducto); // ← producto, no productos
+    if (producto == nullptr)
+    {
+        return TipoRet::ERROR_PRODUCTO_INEXISTENTE;
+    }
+
+    if (producto->getStockActual() < cantidad)
+    {
+        return TipoRet::ERROR_STOCK_INSUFICIENTE;
+    }
+
+    Venta *venta = new Venta(Fecha(), cliente);
+    LineaDetalle *linea = new LineaDetalle(producto, cantidad, producto->getPrecioUnitario());
+    venta->agregarLineaDetalle(linea);
+
+    cliente->agregarVenta(venta);
+    producto->vender(cantidad);
+
+    return TipoRet::OK;
+}
+
+TipoRet EmpleadoController::consultarHistorialCompraCliente(int rut, vector<Venta *> &ventas)
+{
     if (buscarCliente(rut) == nullptr)
     {
         return TipoRet::ERROR_CLIENTE_INEXISTENTE;
     }
 
-    for (int x = 0; x < productos.size(); x++)
+    ClienteRegistrado *cliente = buscarCliente(rut);
+    ventas = cliente->getVentas();
+
+    if (ventas.empty())
     {
-        if (productos[x]->getCodigo() == codigoProducto)
+        return TipoRet::ERROR_VENTA_SIN_DETALLES;
+    }
+
+    // se pasa por referencia el vector de ventas para que la vista pueda acceder a él
+    ventas = cliente->getVentas();
+    return TipoRet::OK;
+}
+
+TipoRet EmpleadoController::emitirOrdenCompra(int codigoProducto, int cantidad, int rutProveedor)
+{
+    if (buscarProducto(codigoProducto) == nullptr)
+    {
+        return TipoRet::ERROR_PRODUCTO_INEXISTENTE;
+    }
+
+    if (buscarProveedor(rutProveedor) == nullptr)
+    {
+        return TipoRet::ERROR_PROVEEDOR_INEXISTENTE;
+    }
+
+    Proveedor *proveedorEncontrado = nullptr;
+    Producto *productoEncontrado = nullptr;
+
+    for (int x = 0; x < proveedorProductos.size(); x++)
+    {
+        if (proveedorProductos[x]->getProducto()->getCodigo() == codigoProducto && proveedorProductos[x]->getProveedor()->getRut() == rutProveedor)
         {
-            return TipoRet::ERROR_PRODUCTO_INEXISTENTE;
+            proveedorEncontrado = proveedorProductos[x]->getProveedor();
+            productoEncontrado = proveedorProductos[x]->getProducto();
+            break;
         }
     }
 
+    if (proveedorEncontrado == nullptr)
+    {
+        return TipoRet::ERROR_PROVEEDOR_PRODUCTO_INEXISTENTE;
+    }
+
+    OrdenCompra *ordenCompra = new OrdenCompra(new Fecha(), PENDIENTE, proveedorEncontrado);
+    ordenesCompra.push_back(ordenCompra);
+
     return TipoRet::OK;
+}
+
+TipoRet EmpleadoController::cancelarOrdenCompra(int idOrdenCompra)
+{
+    if (buscarOrdenCompra(idOrdenCompra) == nullptr)
+    {
+        return TipoRet::ERROR_ORDEN_INEXISTENTE;
+    }
+
+    OrdenCompra *orden = buscarOrdenCompra(idOrdenCompra);
+
+    if (orden->getEstado() != PENDIENTE)
+    {
+        return TipoRet::ERROR_ORDEN_NO_PENDIENTE;
+    }
+    orden->setEstado(CANCELADA);
+
+    return TipoRet::OK;
+}
+
+OrdenCompra *EmpleadoController::buscarOrdenCompra(int idOrdenCompra) const
+{
+
+    for (OrdenCompra *c : ordenesCompra)
+    {
+        if (c->getId() == idOrdenCompra)
+        {
+            return c;
+        }
+    }
+
+    return nullptr;
 }
 
 ClienteRegistrado *EmpleadoController::buscarCliente(int rut) const
@@ -81,6 +183,28 @@ ClienteRegistrado *EmpleadoController::buscarCliente(int rut) const
     {
         if (c->getRut() == rut)
             return c;
+    }
+
+    return nullptr;
+}
+
+Proveedor *EmpleadoController::buscarProveedor(int codigoProveedor) const
+{
+    for (Proveedor *p : proveedores)
+    {
+        if (p->getRut() == codigoProveedor)
+            return p;
+    }
+
+    return nullptr;
+}
+
+Producto *EmpleadoController::buscarProducto(int codigoProducto) const
+{
+    for (Producto *p : productos)
+    {
+        if (p->getCodigo() == codigoProducto)
+            return p;
     }
 
     return nullptr;
