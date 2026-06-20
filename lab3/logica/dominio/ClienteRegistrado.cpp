@@ -93,6 +93,41 @@ vector<Venta *> ClienteRegistrado::getVentas() const
     return ventas;
 }
 
+// Calificar Producto
+TipoRet ClienteRegistrado::calificarProducto(int codigoProducto, int calificacion, string comentario)
+{
+    Producto *productoEncontrado = nullptr;
+
+    for (Venta *venta : ventas)
+    {
+        for (LineaDetalle *linea : venta->getLineas())
+        {
+            if (linea->getProducto()->getCodigo() == codigoProducto)
+            {
+                productoEncontrado = linea->getProducto();
+                break;
+            }
+        }
+        if (productoEncontrado != nullptr)
+            break;
+    }
+
+    if (productoEncontrado == nullptr)
+    {
+        return TipoRet::ERROR_PRODUCTO_NO_COMPRADO;
+    }
+
+    if (calificacion < 1 || calificacion > 5)
+    {
+        return TipoRet::ERROR_CALIFICACION_INVALIDA;
+    }
+
+    Calificacion *nuevaCalificacion = new Calificacion(calificacion, comentario, new Fecha(), productoEncontrado);
+    agregarCalificacion(nuevaCalificacion);
+
+    return TipoRet::OK;
+}
+
 void ClienteRegistrado::agregarVenta(
     Venta *venta)
 {
