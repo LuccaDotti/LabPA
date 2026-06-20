@@ -53,7 +53,7 @@ void MenuAdministrador::mostrar()
                 break;
 
             case 4:
-                menuEmpleados();
+                menuUsuarios();
                 break;
 
             case 5:
