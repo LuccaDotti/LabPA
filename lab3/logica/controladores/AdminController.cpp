@@ -271,3 +271,45 @@ vector<ProveedorProducto*> AdminController::listarProveedorProductos() const
 {
     return proveedorProductos;
 }
+
+TipoRet AdminController::agregarUsuario(const string& nombre, const string& email, const string& password, Rol rol)
+{
+    for (Usuario* u : usuarios)
+    {
+        if (u->getEmail() == email)
+            return TipoRet::ERROR_USUARIO_EXISTENTE;
+    }
+
+    Usuario* nuevo = new Usuario(nombre, email, password, rol);
+    usuarios.push_back(nuevo);
+    return TipoRet::OK;
+}
+
+Usuario* AdminController::buscarUsuarioPorEmail(const string& email) const
+{
+    for (Usuario* u : usuarios)
+    {
+        if (u->getEmail() == email)
+            return u;
+    }
+    return nullptr;
+}
+
+vector<Usuario*> AdminController::listarUsuarios() const
+{
+    return usuarios;
+}
+
+TipoRet AdminController::eliminarUsuario(const string& email)
+{
+    for (int i = 0; i < usuarios.size(); i++)
+    {
+        if (usuarios[i]->getEmail() == email)
+        {
+            delete usuarios[i];
+            usuarios.erase(usuarios.begin() + i);
+            return TipoRet::OK;
+        }
+    }
+    return TipoRet::ERROR_CREDENCIALES_INVALIDAS;
+}
