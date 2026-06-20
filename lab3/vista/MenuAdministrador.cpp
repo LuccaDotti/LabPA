@@ -465,7 +465,7 @@ void MenuAdministrador::menuUsuarios()
     int opcion = 0;
     while (opcion != 4)
     {
-        cout << "\n=== MENÚ GESTIÓN DE USUARIOS ===\n";
+        cout << "\n=== MENU GESTION DE USUARIOS ===\n";
         cout << "1. Alta de usuario\n";
         cout << "2. Listar usuarios\n";
         cout << "3. Eliminar usuario\n";
@@ -487,7 +487,7 @@ void MenuAdministrador::menuUsuarios()
         case 4:
             break;
         default:
-            cout << "Opción inválida\n";
+            cout << "Opcion invalida\n";
         }
     }
 }
@@ -508,13 +508,13 @@ void MenuAdministrador::altaUsuario()
     cout << "Email: ";
     getline(cin, email);
 
-    cout << "Contraseña: ";
+    cout << "Contrasenia: ";
     getline(cin, password);
 
     cout << "\nSeleccione el rol:\n";
     cout << "1 - Empleado\n";
     cout << "2 - Administrador\n";
-    cout << "Opción: ";
+    cout << "Opcion: ";
     cin >> opcionRol;
 
     Rol rol = (opcionRol == 2) ? Rol::ADMINISTRADOR : Rol::EMPLEADO;
@@ -525,12 +525,12 @@ void MenuAdministrador::altaUsuario()
     cout << "Rol: " << (rol == Rol::ADMINISTRADOR ? "Administrador" : "Empleado") << endl;
 
     char confirmar;
-    cout << "\n¿Confirmar la creación del usuario? (S/N): ";
+    cout << "\n¿Confirmar la creacion del usuario? (S/N): ";
     cin >> confirmar;
 
     if (toupper(confirmar) != 'S')
     {
-        cout << "Operación cancelada\n";
+        cout << "Operacion cancelada\n";
         return;
     }
 
@@ -590,12 +590,12 @@ void MenuAdministrador::eliminarUsuario()
     cout << "Rol: " << (usuario->getRol() == Rol::ADMINISTRADOR ? "Administrador" : "Empleado") << endl;
 
     char confirmar;
-    cout << "\n¿Confirmar la eliminación? (S/N): ";
+    cout << "\n¿Confirmar la eliminacion? (S/N): ";
     cin >> confirmar;
 
     if (toupper(confirmar) != 'S')
     {
-        cout << "Operación cancelada\n";
+        cout << "Operacion cancelada\n";
         return;
     }
 
