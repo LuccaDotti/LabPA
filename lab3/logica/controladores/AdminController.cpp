@@ -17,19 +17,22 @@ AdminController* AdminController::getInstancia()
 }
 
 AdminController::~AdminController()
-{
-    for (Producto* p : productos)
-        delete p;
+    {
+        for (Producto* p : productos)
+            delete p;
 
-    for (Categoria* c : categorias)
-        delete c;
+        for (Categoria* c : categorias)
+            delete c;
 
-    for (Proveedor* p : proveedores)
-        delete p;
+        for (Proveedor* p : proveedores)
+            delete p;
 
-    for (ProveedorProducto* pp : proveedorProductos)
-        delete pp;
-}
+        for (ProveedorProducto* pp : proveedorProductos)
+            delete pp;
+
+         for (Usuario* u : usuarios)
+            delete u;
+    }
 
 TipoRet AdminController::agregarProducto(int codigo, const string& nombre, const string& descripcion, float precioUnitario, int stockActual, int stockMinimo, Categoria* categoria)
 {
