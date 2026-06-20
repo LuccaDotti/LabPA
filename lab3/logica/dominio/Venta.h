@@ -12,44 +12,30 @@ class ClienteRegistrado;
 class Venta
 {
 private:
-
     Fecha fecha;
 
-    ClienteRegistrado* cliente;
+    ClienteRegistrado *cliente;
 
-    vector<LineaDetalle*> lineas;
-
-    // Lista de ventas
-    vector<Venta*> ventas;
+    vector<LineaDetalle *> lineas;
 
 public:
-
     Venta(
-        const Fecha& fecha,
-        ClienteRegistrado* cliente
-    );
+        const Fecha &fecha,
+        ClienteRegistrado *cliente);
 
     ~Venta();
 
     Fecha getFecha() const;
 
-    ClienteRegistrado* getCliente() const;
+    ClienteRegistrado *getCliente() const;
 
     void setCliente(
-        ClienteRegistrado* cliente
-    );
+        ClienteRegistrado *cliente);
 
     void agregarLineaDetalle(
-        LineaDetalle* linea
-    );
+        LineaDetalle *linea);
 
-    const vector<LineaDetalle*>& getLineas() const;
+    const vector<LineaDetalle *> &getLineas() const;
 
     float getTotal() const;
-
-    vector<Venta*> getVentas() const;
-
-    void agregarVenta(
-        Venta* venta
-    );
 };
