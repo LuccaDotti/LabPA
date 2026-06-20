@@ -152,3 +152,17 @@ void ClienteRegistrado::agregarFacturacion(
 {
     totalFacturado += monto;
 }
+
+Producto* ClienteRegistrado::consultarInformacionDetalladaProducto(int codigoProducto) const
+{
+    // Buscar el producto en las compras del cliente
+    for (Venta* venta : ventas) {
+        for (LineaDetalle* linea : venta->getLineas()) {
+            if (linea->getProducto()->getCodigo() == codigoProducto) {
+                return linea->getProducto();  // Retorna el producto, nada más
+            }
+        }
+    }
+    
+    return nullptr;  // No encontrado
+}
