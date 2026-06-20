@@ -36,7 +36,7 @@ void MenuEmpleado::mostrar() {
         cout << "2. Gestionar Ordenes de Compra\n";
         cout << "3. Consultar Productos\n";
         cout << "4. Consultar Calificaciones de Producto\n";
-        cout << "0. Volver\n";
+        cout << "0. Cerrar Sesion\n";
         cout << "Opcion: ";
 
         cin >> opcion;
