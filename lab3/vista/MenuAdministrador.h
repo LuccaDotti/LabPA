@@ -15,6 +15,7 @@ private:
     void menuStock();
     void menuReportes();
     void menuInfoProducto();
+    void menuUsuarios();
 
     void agregarCategoria();
     void modificarCategoria();
@@ -26,6 +27,10 @@ private:
     void altaProveedor();
     void modificarProveedor();
     void registrarProveedorProducto();
+
+    void altaUsuario();
+    void listarUsuarios();
+    void eliminarUsuario();
 
 public:
 
