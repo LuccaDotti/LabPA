@@ -4,6 +4,7 @@
 #include "logica/dominio/Calificacion.h"
 #include "logica/dominio/Direccion.h"
 #include "logica/controladores/tipoRetorno.h"
+#include "logica/dominio/ClienteRegistrado.h"
 using namespace std;
 
 class Venta;
