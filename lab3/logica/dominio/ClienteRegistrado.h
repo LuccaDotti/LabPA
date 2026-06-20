@@ -5,6 +5,7 @@
 
 #include "logica/dominio/Calificacion.h"
 #include "logica/dominio/Direccion.h"
+#include "logica/controladores/tipoRetorno.h"
 
 using namespace std;
 
@@ -29,6 +30,8 @@ public:
     ClienteRegistrado(int rut, const Direccion &direccion, const string &correo, const string &nombreCompleto, int contrasenia, float totalFacturado);
 
     ~ClienteRegistrado();
+
+    TipoRet calificarProducto(int codigoProducto, int calificacion, string comentario);
 
     int getContrasenia() const;
     void setContrasenia(int contrasenia);
@@ -62,6 +65,5 @@ public:
     void agregarCalificacion(
         Calificacion *calificacion);
 
-    void agregarFacturacion(
-        float monto);
+    void agregarFacturacion(float monto);
 };
