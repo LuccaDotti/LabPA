@@ -4,12 +4,14 @@
 #include <string>
 
 #include "logica/controladores/tipoRetorno.h"
+#include "logica/controladores/Rol.h"
 
 #include "logica/dominio/Producto.h"
 #include "logica/dominio/Categoria.h"
 #include "logica/dominio/Proveedor.h"
 #include "logica/dominio/ProveedorProducto.h"
 #include "logica/dominio/Fecha.h"
+#include "logica/dominio/Usuario.h"
 
 using namespace std;
 
@@ -23,6 +25,7 @@ private:
     vector<Categoria*> categorias;
     vector<Proveedor*> proveedores;
     vector<ProveedorProducto*> proveedorProductos;
+    vector<Usuario*> usuarios;
 
     AdminController();
 
@@ -64,4 +67,12 @@ public:
     TipoRet asociarProveedorProducto(int rutProveedor, int codigoProducto, float precioCompra, Fecha* fechaEntrega);
 
     vector<ProveedorProducto*> listarProveedorProductos() const;
+
+    TipoRet agregarUsuario(const string& nombre, const string& email, const string& password, Rol rol);
+
+    Usuario* buscarUsuarioPorEmail(const string& email) const;
+
+    vector<Usuario*> listarUsuarios() const;
+
+    TipoRet eliminarUsuario(const string& email);
 };
