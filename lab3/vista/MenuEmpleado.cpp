@@ -29,8 +29,9 @@ void MenuEmpleado::mostrar() {
     int opcion;
 
     do {
-
-        cout << "\n===== MENU EMPLEADO =====\n";
+        cout << "\n=====================================\n";
+        cout << "         MENU EMPLEADO\n";
+        cout << "=====================================\n";
         cout << "1. Gestionar Clientes\n";
         cout << "2. Gestionar Ordenes de Compra\n";
         cout << "3. Consultar Productos\n";
