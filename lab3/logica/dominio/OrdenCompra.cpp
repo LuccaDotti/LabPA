@@ -8,6 +8,7 @@ OrdenCompra::OrdenCompra(
     Proveedor *proveedor)
 {
     this->fechaEmision = fechaEmision;
+    this->fechaRecepcion = nullptr;
     this->estado = estado;
     this->proveedor = proveedor;
     this->id = proximoId++;
@@ -60,14 +61,24 @@ void OrdenCompra::setProveedor(
     this->proveedor = proveedor;
 }
 
-vector<LineaCompra *> OrdenCompra::getLineasCompra() const
+vector<LineaOrdenCompra *> OrdenCompra::getLineasCompra() const
 {
     return lineasCompra;
 }
 
 void OrdenCompra::agregarLineaCompra(
-    LineaCompra *lineaCompra)
+    LineaOrdenCompra *lineaCompra)
 {
     lineasCompra.push_back(
         lineaCompra);
+}
+
+Fecha *OrdenCompra::getFechaRecepcion() const
+{
+    return fechaRecepcion;
+}
+
+void OrdenCompra::setFechaRecepcion(Fecha *fechaRecepcion)
+{
+    this->fechaRecepcion = fechaRecepcion;
 }
