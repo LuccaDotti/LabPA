@@ -22,6 +22,8 @@ public:
 
     ~VentaController();
 
+    TipoRet calificarProducto(int codigoProducto, int calificacion, string comentario);
+
     bool registrarVenta(
         Venta* venta
     );
