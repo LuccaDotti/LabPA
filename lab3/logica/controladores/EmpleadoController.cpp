@@ -6,14 +6,25 @@
 #include "logica/dominio/Fecha.h"
 #include "logica/dominio/LineaOrdenCompra.h"
 
-EmpleadoController::EmpleadoController(AdminController &adminController) : adminController(adminController) {}
+EmpleadoController* EmpleadoController::instancia = nullptr;  // ← INICIALIZAR
+
+EmpleadoController* EmpleadoController::getInstancia()  // ← SINGLETON
+{
+    if (instancia == nullptr) {
+        instancia = new EmpleadoController();
+    }
+    return instancia;
+}
+
+EmpleadoController::EmpleadoController()  // ← Constructor privado
+{
+    adminController = AdminController::getInstancia();
+}
 
 EmpleadoController::~EmpleadoController()
 {
-
     for (ClienteRegistrado *c : clientes)
         delete c;
-
     for (OrdenCompra *o : ordenesCompra)
         delete o;
 }
