@@ -14,42 +14,39 @@ using namespace std;
 class EmpleadoController
 {
 private:
-    static EmpleadoController* instancia;  // ← SINGLETON
-    
-    vector<ClienteRegistrado *> clientes;
-    vector<OrdenCompra *> ordenesCompra;
-    vector<Producto *> productos;
-    vector<Proveedor *> proveedores;
-    vector<ProveedorProducto *> proveedorProductos;
-    
-    AdminController *adminController;  // ← Cambiar de referencia a puntero
-    
-    EmpleadoController();  // ← Constructor privado
+    static EmpleadoController* instancia;
+
+    vector<ClienteRegistrado*> clientes;
+    vector<OrdenCompra*> ordenesCompra;
+
+    AdminController* adminController;
+
+    EmpleadoController();
 
 public:
-    static EmpleadoController* getInstancia();  // ← SINGLETON
+    static EmpleadoController* getInstancia();
     ~EmpleadoController();
-    
-    EmpleadoController(const EmpleadoController&) = delete;  // ← Eliminar copia
-    EmpleadoController& operator=(const EmpleadoController&) = delete;  // ← Eliminar asignación
-    
+
+    EmpleadoController(const EmpleadoController&) = delete;
+    EmpleadoController& operator=(const EmpleadoController&) = delete;
+
     TipoRet registrarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, int contrasenia, float totalFacturado);
     TipoRet modificarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, int contrasenia);
     TipoRet registrarVenta(int rut, int codigoProducto, int cantidad);
-    TipoRet consultarHistorialCompraCliente(int rut, vector<Venta *> &ventas);
+    TipoRet consultarHistorialCompraCliente(int rut, vector<Venta*>& ventas);
     TipoRet emitirOrdenCompra(int codigoProducto, int cantidad, int rutProveedor);
     TipoRet cancelarOrdenCompra(int idOrdenCompra);
-    TipoRet registrarRecepcionOrdenCompra(int idOodenCompra, vector<int> cantidadesRecibidas);
-    
-    Proveedor *buscarProveedor(int codigoProveedor) const;
-    Producto *buscarProducto(int codigoProducto) const;
-    OrdenCompra *buscarOrdenCompra(int idOrdenCompra) const;
-    ClienteRegistrado *buscarCliente(int rut) const;
-    
-    vector<ClienteRegistrado *> listarClientes() const;
-    
-    bool crearOrdenCompra(OrdenCompra *orden);
-    vector<OrdenCompra *> listarOrdenes() const;
+    TipoRet registrarRecepcionOrdenCompra(int idOrden, vector<int> cantidadesRecibidas);
+    TipoRet eliminarProducto(int codigo);
+
+    Proveedor* buscarProveedor(int rutProveedor) const;
+    Producto* buscarProducto(int codigoProducto) const;
+    OrdenCompra* buscarOrdenCompra(int idOrdenCompra) const;
+    ClienteRegistrado* buscarCliente(int rut) const;
+
+    vector<ClienteRegistrado*> listarClientes() const;
+    vector<OrdenCompra*> listarOrdenes() const;
+    bool crearOrdenCompra(OrdenCompra* orden);
 
     vector<Calificacion*> consultarCalificacionesDeProducto(int codigoProducto) const;
     int consultarStockActual(int codigoProducto) const;
