@@ -30,7 +30,6 @@ MenuEmpleado::MenuEmpleado(
 
 void MenuEmpleado::mostrar()
 {
-
     int opcion;
 
     do
@@ -47,10 +46,10 @@ void MenuEmpleado::mostrar()
         cout << "Opcion: ";
 
         cin >> opcion;
+        cin.ignore();
 
         switch (opcion)
         {
-
         case 1:
             menuGestionarClientes();
             break;
@@ -82,11 +81,10 @@ void MenuEmpleado::mostrar()
     } while (opcion != 0);
 }
 
-// ===== CLIENTES (CU 12-13) =====
+// ===== CLIENTES =====
 
 void MenuEmpleado::menuGestionarClientes()
 {
-
     int opcion;
 
     do
@@ -99,10 +97,10 @@ void MenuEmpleado::menuGestionarClientes()
         cout << "Opcion: ";
 
         cin >> opcion;
+        cin.ignore();
 
         switch (opcion)
         {
-
         case 1:
             altaCliente();
             break;
@@ -147,6 +145,7 @@ void MenuEmpleado::altaCliente()
     getline(cin, ciudad);
     cout << "Contrasenia: ";
     cin >> contrasenia;
+    cin.ignore();
 
     TipoRet resultado = empleadoController.registrarCliente(rut, nombre, correo, nroPuerta, calle, ciudad, contrasenia, 0.0f);
 
@@ -178,6 +177,7 @@ void MenuEmpleado::modificarCliente()
     getline(cin, ciudad);
     cout << "Nueva contrasenia: ";
     cin >> contrasenia;
+    cin.ignore();
 
     TipoRet resultado = empleadoController.modificarCliente(rut, nombre, correo, nroPuerta, calle, ciudad, contrasenia);
 
@@ -189,11 +189,10 @@ void MenuEmpleado::modificarCliente()
         cout << "Error: ese correo ya esta en uso.\n";
 }
 
-// ===== VENTAS (CU 14-15) =====
+// ===== VENTAS =====
 
 void MenuEmpleado::menuVentas()
 {
-
     int opcion;
 
     do
@@ -205,10 +204,10 @@ void MenuEmpleado::menuVentas()
         cout << "Opcion: ";
 
         cin >> opcion;
+        cin.ignore();
 
         switch (opcion)
         {
-
         case 1:
             registrarVenta();
             break;
@@ -238,6 +237,7 @@ void MenuEmpleado::registrarVenta()
     cin >> codigo;
     cout << "Cantidad: ";
     cin >> cantidad;
+    cin.ignore();
 
     TipoRet resultado = empleadoController.registrarVenta(rut, codigo, cantidad);
 
@@ -258,6 +258,7 @@ void MenuEmpleado::consultarHistorialCompras()
     cout << "\n===== HISTORIAL DE COMPRAS =====\n";
     cout << "RUT del cliente: ";
     cin >> rut;
+    cin.ignore();
 
     vector<Venta *> ventas;
     TipoRet resultado = empleadoController.consultarHistorialCompraCliente(rut, ventas);
@@ -287,11 +288,10 @@ void MenuEmpleado::consultarHistorialCompras()
     }
 }
 
-// ===== ORDENES DE COMPRA (CU 16-18) =====
+// ===== ORDENES DE COMPRA =====
 
 void MenuEmpleado::menuGestionarOrdenesCompra()
 {
-
     int opcion;
 
     do
@@ -304,10 +304,10 @@ void MenuEmpleado::menuGestionarOrdenesCompra()
         cout << "Opcion: ";
 
         cin >> opcion;
+        cin.ignore();
 
         switch (opcion)
         {
-
         case 1:
             emitirOrdenCompra();
             break;
@@ -341,6 +341,7 @@ void MenuEmpleado::emitirOrdenCompra()
     cin >> cantidad;
     cout << "RUT del proveedor: ";
     cin >> rutProveedor;
+    cin.ignore();
 
     TipoRet resultado = empleadoController.emitirOrdenCompra(codigo, cantidad, rutProveedor);
 
@@ -361,6 +362,7 @@ void MenuEmpleado::cancelarOrdenCompra()
     cout << "\n===== CANCELAR ORDEN DE COMPRA =====\n";
     cout << "ID de la orden: ";
     cin >> id;
+    cin.ignore();
 
     TipoRet resultado = empleadoController.cancelarOrdenCompra(id);
 
@@ -388,6 +390,7 @@ void MenuEmpleado::registrarRecepcionOrden()
         cout << "Cantidad recibida para linea " << (i + 1) << ": ";
         cin >> cantidades[i];
     }
+    cin.ignore();
 
     TipoRet resultado = empleadoController.registrarRecepcionOrdenCompra(id, cantidades);
 
@@ -401,11 +404,10 @@ void MenuEmpleado::registrarRecepcionOrden()
         cout << "Error: las cantidades no coinciden con la orden.\n";
 }
 
-// ===== REPORTES (CU 21-24) =====
+// ===== REPORTES =====
 
 void MenuEmpleado::menuReportes()
 {
-
     int opcion;
 
     do
@@ -419,10 +421,10 @@ void MenuEmpleado::menuReportes()
         cout << "Opcion: ";
 
         cin >> opcion;
+        cin.ignore();
 
         switch (opcion)
         {
-
         case 1:
             consultarStockActual();
             break;
@@ -456,6 +458,7 @@ void MenuEmpleado::consultarStockActual()
     cout << "\n===== CONSULTAR STOCK ACTUAL =====\n";
     cout << "Ingrese codigo del producto: ";
     cin >> codigo;
+    cin.ignore();
 
     int stock = empleadoController.consultarStockActual(codigo);
 
@@ -472,7 +475,6 @@ void MenuEmpleado::consultarStockActual()
 
 void MenuEmpleado::consultarProductosBajoMinimo()
 {
-
     cout << "\n===== PRODUCTOS BAJO MINIMO =====\n";
 
     vector<Producto *> productos = empleadoController.consultarProductoBajoMinimo();
@@ -498,6 +500,7 @@ void MenuEmpleado::consultarTotalFacturado()
     cout << "\n===== MONTO TOTAL FACTURADO =====\n";
     cout << "Ingrese RUT del cliente: ";
     cin >> rut;
+    cin.ignore();
 
     ClienteRegistrado *cliente = empleadoController.buscarCliente(rut);
 
@@ -518,6 +521,7 @@ void MenuEmpleado::consultarUnidadesVendidas()
     cout << "\n===== UNIDADES VENDIDAS =====\n";
     cout << "Ingrese codigo del producto: ";
     cin >> codigo;
+    cin.ignore();
 
     int unidades = empleadoController.unidadesVendidasDeProducto(codigo);
 
@@ -532,7 +536,7 @@ void MenuEmpleado::consultarUnidadesVendidas()
     cout << "Unidades vendidas: " << unidades << "\n";
 }
 
-// ===== CALIFICACIONES / INFO PRODUCTO (CU 20, 25) =====
+// ===== CALIFICACIONES / INFO PRODUCTO =====
 
 void MenuEmpleado::consultarCalificacionesProducto()
 {
@@ -541,6 +545,7 @@ void MenuEmpleado::consultarCalificacionesProducto()
     cout << "\n===== CALIFICACIONES DE PRODUCTO =====\n";
     cout << "Ingrese codigo del producto: ";
     cin >> codigo;
+    cin.ignore();
 
     Producto *producto = adminController.buscarProducto(codigo);
 
@@ -576,6 +581,7 @@ void MenuEmpleado::consultarDetalleProducto()
     cout << "\n===== INFORMACION DETALLADA DE PRODUCTO =====\n";
     cout << "Ingrese codigo del producto: ";
     cin >> codigo;
+    cin.ignore();
 
     Producto *producto = adminController.buscarProducto(codigo);
 
