@@ -3,15 +3,15 @@
 #include "logica/controladores/tipoRetorno.h"
 #include "logica/controladores/Rol.h"
 #include "logica/dominio/Usuario.h"
+#include "logica/controladores/EmpleadoController.h"
 
 #include <iostream>
 
 using namespace std;
 
 MenuAdministrador::MenuAdministrador(
-    AdminController& adminController
-)
-: adminController(adminController)
+    AdminController &adminController)
+    : adminController(adminController)
 {
 }
 
@@ -38,49 +38,49 @@ void MenuAdministrador::mostrar()
         cin >> opcion;
         cin.ignore();
 
-        switch(opcion)
+        switch (opcion)
         {
-            case 1:
-                menuCategorias();
-                break;
+        case 1:
+            menuCategorias();
+            break;
 
-            case 2:
-                menuProductos();
-                break;
+        case 2:
+            menuProductos();
+            break;
 
-            case 3:
-                menuProveedores();
-                break;
+        case 3:
+            menuProveedores();
+            break;
 
-            case 4:
-                menuUsuarios();
-                break;
+        case 4:
+            menuUsuarios();
+            break;
 
-            case 5:
-                menuCalificaciones();
-                break;
+        case 5:
+            menuCalificaciones();
+            break;
 
-            case 6:
-                menuStock();
-                break;
+        case 6:
+            menuStock();
+            break;
 
-            case 7:
-                menuReportes();
-                break;
+        case 7:
+            menuReportes();
+            break;
 
-            case 8:
-                menuInfoProducto();
-                break;
+        case 8:
+            menuInfoProducto();
+            break;
 
-            case 0:
-                cout << "\nSesion cerrada.\n";
-                break;
+        case 0:
+            cout << "\nSesion cerrada.\n";
+            break;
 
-            default:
-                cout << "\nOpcion invalida.\n";
+        default:
+            cout << "\nOpcion invalida.\n";
         }
 
-    } while(opcion != 0);
+    } while (opcion != 0);
 }
 
 void MenuAdministrador::menuCategorias()
@@ -98,18 +98,18 @@ void MenuAdministrador::menuCategorias()
         cin >> opcion;
         cin.ignore();
 
-        switch(opcion)
+        switch (opcion)
         {
-            case 1:
-                agregarCategoria();
-                break;
+        case 1:
+            agregarCategoria();
+            break;
 
-            case 2:
-                modificarCategoria();
-                break;
+        case 2:
+            modificarCategoria();
+            break;
         }
 
-    } while(opcion != 0);
+    } while (opcion != 0);
 }
 
 void MenuAdministrador::agregarCategoria()
@@ -126,10 +126,10 @@ void MenuAdministrador::agregarCategoria()
     TipoRet ret =
         adminController.agregarCategoria(nombre, descripcion);
 
-    if(ret == TipoRet::OK)
+    if (ret == TipoRet::OK)
         cout << "Categoria agregada correctamente.\n";
 
-    else if(ret == TipoRet::ERROR_CATEGORIA_EXISTENTE)
+    else if (ret == TipoRet::ERROR_CATEGORIA_EXISTENTE)
         cout << "Ya existe una categoria con ese nombre.\n";
 }
 
@@ -151,13 +151,13 @@ void MenuAdministrador::modificarCategoria()
     TipoRet ret =
         adminController.modificarCategoria(nombreActual, nuevoNombre, nuevaDescripcion);
 
-    if(ret == TipoRet::OK)
+    if (ret == TipoRet::OK)
         cout << "Categoria modificada correctamente.\n";
 
-    else if(ret == TipoRet::ERROR_CATEGORIA_INEXISTENTE)
+    else if (ret == TipoRet::ERROR_CATEGORIA_INEXISTENTE)
         cout << "Categoria inexistente.\n";
 
-    else if(ret == TipoRet::ERROR_CATEGORIA_EXISTENTE)
+    else if (ret == TipoRet::ERROR_CATEGORIA_EXISTENTE)
         cout << "Ya existe una categoria con ese nombre.\n";
 }
 
@@ -177,22 +177,22 @@ void MenuAdministrador::menuProductos()
         cin >> opcion;
         cin.ignore();
 
-        switch(opcion)
+        switch (opcion)
         {
-            case 1:
-                agregarProducto();
-                break;
+        case 1:
+            agregarProducto();
+            break;
 
-            case 2:
-                modificarProducto();
-                break;
+        case 2:
+            modificarProducto();
+            break;
 
-            case 3:
-                eliminarProducto();
-                break;
+        case 3:
+            eliminarProducto();
+            break;
         }
 
-    } while(opcion != 0);
+    } while (opcion != 0);
 }
 
 void MenuAdministrador::agregarProducto()
@@ -230,19 +230,19 @@ void MenuAdministrador::agregarProducto()
     cout << "Categoria: ";
     getline(cin, nombreCategoria);
 
-    Categoria* categoria =
+    Categoria *categoria =
         adminController.buscarCategoria(nombreCategoria);
 
     TipoRet ret =
         adminController.agregarProducto(codigo, nombre, descripcion, precioUnitario, stockActual, stockMinimo, categoria);
 
-    if(ret == TipoRet::OK)
+    if (ret == TipoRet::OK)
         cout << "Producto agregado correctamente.\n";
 
-    else if(ret == TipoRet::ERROR_PRODUCTO_EXISTENTE)
+    else if (ret == TipoRet::ERROR_PRODUCTO_EXISTENTE)
         cout << "Ya existe un producto con ese codigo.\n";
 
-    else if(ret == TipoRet::ERROR_STOCK_NEGATIVO)
+    else if (ret == TipoRet::ERROR_STOCK_NEGATIVO)
         cout << "El stock no puede ser negativo.\n";
 }
 
@@ -277,19 +277,19 @@ void MenuAdministrador::modificarProducto()
     cout << "Nueva categoria: ";
     getline(cin, nombreCategoria);
 
-    Categoria* categoria =
+    Categoria *categoria =
         adminController.buscarCategoria(nombreCategoria);
 
     TipoRet ret =
         adminController.modificarProducto(codigo, nombre, descripcion, precioUnitario, categoria, stockMinimo);
 
-    if(ret == TipoRet::OK)
+    if (ret == TipoRet::OK)
         cout << "Producto modificado correctamente.\n";
 
-    else if(ret == TipoRet::ERROR_PRODUCTO_INEXISTENTE)
+    else if (ret == TipoRet::ERROR_PRODUCTO_INEXISTENTE)
         cout << "Producto inexistente.\n";
 
-    else if(ret == TipoRet::ERROR_PRODUCTO_EXISTENTE)
+    else if (ret == TipoRet::ERROR_PRODUCTO_EXISTENTE)
         cout << "Ya existe un producto con ese nombre.\n";
 }
 
@@ -298,18 +298,19 @@ void MenuAdministrador::eliminarProducto()
     int codigo;
 
     cout << "\n===== ELIMINAR PRODUCTO =====\n";
-
     cout << "Codigo del producto: ";
     cin >> codigo;
 
-    TipoRet ret =
-        adminController.eliminarProducto(codigo);
+    TipoRet ret = EmpleadoController::getInstancia()->eliminarProducto(codigo);
 
-    if(ret == TipoRet::OK)
+    if (ret == TipoRet::OK)
         cout << "Producto eliminado correctamente.\n";
-
-    else if(ret == TipoRet::ERROR_PRODUCTO_INEXISTENTE)
+    else if (ret == TipoRet::ERROR_PRODUCTO_INEXISTENTE)
         cout << "Producto inexistente.\n";
+    else if (ret == TipoRet::ERROR_PRODUCTO_CON_VENTAS)
+        cout << "No se puede eliminar: el producto tiene ventas registradas.\n";
+    else if (ret == TipoRet::ERROR_ORDEN_PENDIENTE)
+        cout << "No se puede eliminar: el producto tiene ordenes de compra pendientes.\n";
 }
 
 void MenuAdministrador::menuProveedores()
@@ -328,22 +329,22 @@ void MenuAdministrador::menuProveedores()
         cin >> opcion;
         cin.ignore();
 
-        switch(opcion)
+        switch (opcion)
         {
-            case 1:
-                altaProveedor();
-                break;
+        case 1:
+            altaProveedor();
+            break;
 
-            case 2:
-                modificarProveedor();
-                break;
+        case 2:
+            modificarProveedor();
+            break;
 
-            case 3:
-                registrarProveedorProducto();
-                break;
+        case 3:
+            registrarProveedorProducto();
+            break;
         }
 
-    } while(opcion != 0);
+    } while (opcion != 0);
 }
 
 void MenuAdministrador::altaProveedor()
@@ -372,10 +373,10 @@ void MenuAdministrador::altaProveedor()
     TipoRet ret =
         adminController.agregarProveedor(rut, nombreEmpresa, telefono, nombreContacto);
 
-    if(ret == TipoRet::OK)
+    if (ret == TipoRet::OK)
         cout << "Proveedor agregado correctamente.\n";
 
-    else if(ret == TipoRet::ERROR_PROVEEDOR_EXISTENTE)
+    else if (ret == TipoRet::ERROR_PROVEEDOR_EXISTENTE)
         cout << "Ya existe un proveedor con ese RUT.\n";
 }
 
@@ -405,10 +406,10 @@ void MenuAdministrador::modificarProveedor()
     TipoRet ret =
         adminController.modificarProveedor(rut, nombreEmpresa, telefono, nombreContacto);
 
-    if(ret == TipoRet::OK)
+    if (ret == TipoRet::OK)
         cout << "Proveedor modificado correctamente.\n";
 
-    else if(ret == TipoRet::ERROR_PROVEEDOR_INEXISTENTE)
+    else if (ret == TipoRet::ERROR_PROVEEDOR_INEXISTENTE)
         cout << "Proveedor inexistente.\n";
 }
 
@@ -442,7 +443,7 @@ void MenuAdministrador::registrarProveedorProducto()
     cout << "Anio entrega: ";
     cin >> anio;
 
-    Fecha* fechaEntrega =
+    Fecha *fechaEntrega =
         new Fecha(dia, mes, anio, 0, 0, 0);
 
     TipoRet ret =
@@ -450,13 +451,13 @@ void MenuAdministrador::registrarProveedorProducto()
 
     delete fechaEntrega;
 
-    if(ret == TipoRet::OK)
+    if (ret == TipoRet::OK)
         cout << "Asociacion registrada correctamente.\n";
 
-    else if(ret == TipoRet::ERROR_PROVEEDOR_INEXISTENTE)
+    else if (ret == TipoRet::ERROR_PROVEEDOR_INEXISTENTE)
         cout << "Proveedor inexistente.\n";
 
-    else if(ret == TipoRet::ERROR_PRODUCTO_INEXISTENTE)
+    else if (ret == TipoRet::ERROR_PRODUCTO_INEXISTENTE)
         cout << "Producto inexistente.\n";
 }
 
@@ -546,7 +547,7 @@ void MenuAdministrador::listarUsuarios()
 {
     cout << "\n=== LISTADO DE USUARIOS ===\n";
 
-    vector<Usuario*> usuarios = adminController.listarUsuarios();
+    vector<Usuario *> usuarios = adminController.listarUsuarios();
 
     if (usuarios.empty())
     {
@@ -554,7 +555,8 @@ void MenuAdministrador::listarUsuarios()
         return;
     }
 
-    cout << "\n" << usuarios.size() << " usuario(s) encontrado(s):\n\n";
+    cout << "\n"
+         << usuarios.size() << " usuario(s) encontrado(s):\n\n";
     cout << "-------------------------------------------\n";
 
     for (int i = 0; i < usuarios.size(); i++)
@@ -576,7 +578,7 @@ void MenuAdministrador::eliminarUsuario()
     cin.ignore();
     getline(cin, email);
 
-    Usuario* usuario = adminController.buscarUsuarioPorEmail(email);
+    Usuario *usuario = adminController.buscarUsuarioPorEmail(email);
 
     if (usuario == nullptr)
     {
@@ -616,10 +618,10 @@ void MenuAdministrador::menuCalificaciones()
     cout << "Codigo del producto: ";
     cin >> codigo;
 
-    Producto* producto =
+    Producto *producto =
         adminController.buscarProducto(codigo);
 
-    if(producto == nullptr)
+    if (producto == nullptr)
     {
         cout << "Producto inexistente.\n";
         return;
@@ -633,19 +635,20 @@ void MenuAdministrador::menuStock()
 {
     cout << "\n===== GESTION DE STOCK =====\n";
 
-    vector<Producto*> productos =
+    vector<Producto *> productos =
         adminController.listarProductos();
 
-    if(productos.empty())
+    if (productos.empty())
     {
         cout << "No hay productos registrados.\n";
         return;
     }
 
-    cout << "\n" << productos.size() << " producto(s) encontrado(s):\n";
+    cout << "\n"
+         << productos.size() << " producto(s) encontrado(s):\n";
     cout << "-------------------------------------------\n";
 
-    for(int i = 0; i < productos.size(); i++)
+    for (int i = 0; i < productos.size(); i++)
     {
         cout << "Codigo: " << productos[i]->getCodigo() << endl;
         cout << "Nombre: " << productos[i]->getNombre() << endl;
@@ -660,10 +663,10 @@ void MenuAdministrador::menuReportes()
 {
     cout << "\n===== REPORTES =====\n";
 
-    vector<Producto*> productos =
+    vector<Producto *> productos =
         adminController.listarProductos();
 
-    if(productos.empty())
+    if (productos.empty())
     {
         cout << "No hay productos registrados.\n";
         return;
@@ -673,9 +676,9 @@ void MenuAdministrador::menuReportes()
 
     bool hayBajoStock = false;
 
-    for(int i = 0; i < productos.size(); i++)
+    for (int i = 0; i < productos.size(); i++)
     {
-        if(productos[i]->isBajoStock())
+        if (productos[i]->isBajoStock())
         {
             hayBajoStock = true;
             cout << "Codigo: " << productos[i]->getCodigo()
@@ -685,12 +688,12 @@ void MenuAdministrador::menuReportes()
         }
     }
 
-    if(!hayBajoStock)
+    if (!hayBajoStock)
         cout << "No hay productos bajo el stock minimo.\n";
 
     cout << "\n--- Unidades vendidas por producto ---\n";
 
-    for(int i = 0; i < productos.size(); i++)
+    for (int i = 0; i < productos.size(); i++)
     {
         cout << "Codigo: " << productos[i]->getCodigo()
              << " - " << productos[i]->getNombre()
@@ -707,10 +710,10 @@ void MenuAdministrador::menuInfoProducto()
     cout << "Codigo del producto: ";
     cin >> codigo;
 
-    Producto* producto =
+    Producto *producto =
         adminController.buscarProducto(codigo);
 
-    if(producto == nullptr)
+    if (producto == nullptr)
     {
         cout << "Producto inexistente.\n";
         return;
@@ -726,7 +729,7 @@ void MenuAdministrador::menuInfoProducto()
     cout << "Puntaje promedio: " << producto->getPuntajePromedio() << " / 5\n";
     cout << "Unidades vendidas: " << producto->getUnidadesVendidas() << endl;
 
-    if(producto->getCategoria() != nullptr)
+    if (producto->getCategoria() != nullptr)
         cout << "Categoria: " << producto->getCategoria()->getNombre() << endl;
     else
         cout << "Categoria: Sin categoria\n";
