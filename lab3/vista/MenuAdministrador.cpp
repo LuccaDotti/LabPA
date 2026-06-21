@@ -107,6 +107,12 @@ void MenuAdministrador::menuCategorias()
         case 2:
             modificarCategoria();
             break;
+
+        case 0:
+            break;
+
+        default:
+            cout << "\nOpcion invalida.\n";
         }
 
     } while (opcion != 0);
@@ -190,6 +196,12 @@ void MenuAdministrador::menuProductos()
         case 3:
             eliminarProducto();
             break;
+
+        case 0:
+            break;
+
+        default:
+            cout << "\nOpcion invalida.\n";
         }
 
     } while (opcion != 0);
@@ -342,6 +354,12 @@ void MenuAdministrador::menuProveedores()
         case 3:
             registrarProveedorProducto();
             break;
+
+        case 0:
+            break;
+
+        default:
+            cout << "\nOpcion invalida.\n";
         }
 
     } while (opcion != 0);
@@ -463,15 +481,16 @@ void MenuAdministrador::registrarProveedorProducto()
 
 void MenuAdministrador::menuUsuarios()
 {
-    int opcion = 0;
-    while (opcion != 4)
+    int opcion;
+
+    do
     {
         cout << "\n=== MENU GESTION DE USUARIOS ===\n";
         cout << "1. Alta de usuario\n";
         cout << "2. Listar usuarios\n";
         cout << "3. Eliminar usuario\n";
-        cout << "4. Volver\n";
-        cout << "Seleccione opción: ";
+        cout << "0. Volver\n";
+        cout << "Seleccione opcion: ";
         cin >> opcion;
 
         switch (opcion)
@@ -485,12 +504,13 @@ void MenuAdministrador::menuUsuarios()
         case 3:
             eliminarUsuario();
             break;
-        case 4:
+        case 0:
             break;
         default:
             cout << "Opcion invalida\n";
         }
-    }
+
+    } while (opcion != 0);
 }
 
 void MenuAdministrador::altaUsuario()
