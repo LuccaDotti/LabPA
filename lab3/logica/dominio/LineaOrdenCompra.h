@@ -1,28 +1,29 @@
 #pragma once
 #include "logica/dominio/Producto.h"
-#include "logica/dominio/ordenCompra.h"
+#include "logica/dominio/OrdenCompra.h"
 using namespace std;
 
 class OrdenCompra;
 
-class LineaOrdenCompra {
+class LineaOrdenCompra
+{
 public:
-    LineaOrdenCompra(Producto* producto, int cantidad, float precioUnitario);
+    LineaOrdenCompra(Producto *producto, int cantidad, float precioUnitario);
 
-    OrdenCompra* getOrdenCompra() const;
-    Producto* getProducto() const;
-   
+    OrdenCompra *getOrdenCompra() const;
+    Producto *getProducto() const;
+
     int getCantidad() const;
     float getPrecioUnitario() const;
     float getSubtotal() const;
 
     void setCantidad(int cantidad);
-    void setOrdenCompra(OrdenCompra* orden);
+    void setOrdenCompra(OrdenCompra *orden);
 
 private:
-    OrdenCompra* ordenCompra;
-    Producto* producto;
-    ProveedorProducto* proveedorProducto;
+    OrdenCompra *ordenCompra;
+    Producto *producto;
+    ProveedorProducto *proveedorProducto;
     int cantidad;
     float precioUnitario;
 };
