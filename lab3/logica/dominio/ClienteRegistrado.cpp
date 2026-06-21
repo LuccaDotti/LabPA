@@ -113,17 +113,26 @@ TipoRet ClienteRegistrado::calificarProducto(int codigoProducto, int calificacio
     }
 
     if (productoEncontrado == nullptr)
-    {
         return TipoRet::ERROR_PRODUCTO_NO_COMPRADO;
-    }
 
     if (calificacion < 1 || calificacion > 5)
-    {
         return TipoRet::ERROR_CALIFICACION_INVALIDA;
-    }
 
     Calificacion *nuevaCalificacion = new Calificacion(calificacion, comentario, new Fecha(), productoEncontrado);
     agregarCalificacion(nuevaCalificacion);
+
+    // Recalcular promedio considerando todas las calificaciones históricas del producto
+    float suma = 0;
+    int count = 0;
+    for (Calificacion *c : calificaciones)
+    {
+        if (c->getProducto()->getCodigo() == codigoProducto)
+        {
+            suma += c->getPuntaje();
+            count++;
+        }
+    }
+    productoEncontrado->setPuntajePromedio(suma / count);
 
     return TipoRet::OK;
 }
@@ -153,16 +162,19 @@ void ClienteRegistrado::agregarFacturacion(
     totalFacturado += monto;
 }
 
-Producto* ClienteRegistrado::consultarInformacionDetalladaProducto(int codigoProducto) const
+Producto *ClienteRegistrado::consultarInformacionDetalladaProducto(int codigoProducto) const
 {
     // Buscar el producto en las compras del cliente
-    for (Venta* venta : ventas) {
-        for (LineaDetalle* linea : venta->getLineas()) {
-            if (linea->getProducto()->getCodigo() == codigoProducto) {
-                return linea->getProducto();  // Retorna el producto, nada más
+    for (Venta *venta : ventas)
+    {
+        for (LineaDetalle *linea : venta->getLineas())
+        {
+            if (linea->getProducto()->getCodigo() == codigoProducto)
+            {
+                return linea->getProducto(); // Retorna el producto, nada más
             }
         }
     }
-    
-    return nullptr;  // No encontrado
+
+    return nullptr; // No encontrado
 }
