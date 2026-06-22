@@ -4,6 +4,8 @@ AdminController* AdminController::instancia = NULL;
 
 AdminController::AdminController()
 {
+    usuarios.push_back(new Usuario("Administrador", "admin@gmail.com", "admin2026", Rol::ADMINISTRADOR));
+    usuarios.push_back(new Usuario("Empleado Default", "empleado@gmail.com", "empleado1234", Rol::EMPLEADO));
 }
 
 AdminController* AdminController::getInstancia()
