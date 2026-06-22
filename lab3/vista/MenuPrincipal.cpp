@@ -29,29 +29,30 @@ void MenuPrincipal::mostrar()
         cout << "\n=============================\n";
         cout << " SISTEMA STOCK Y VENTAS\n";
         cout << "=============================\n";
-
         cout << "Email: ";
         cin >> email;
-
         cout << "Contrasena: ";
         cin >> password;
 
-        // Hardcodeados por defecto
-        if (email == "admin@gmail.com" && password == "admin2026")
+        Usuario* usuario = AdminController::getInstancia()->buscarUsuarioPorEmail(email);
+        if (usuario != nullptr && usuario->getPassword() == password)
         {
-            MenuAdministrador menuAdmin(*AdminController::getInstancia());
-            menuAdmin.mostrar();
+            if (usuario->getRol() == Rol::ADMINISTRADOR)
+            {
+                MenuAdministrador menuAdmin(*AdminController::getInstancia());
+                menuAdmin.mostrar();
+            }
+            else
+            {
+                MenuEmpleado menuEmpleado(
+                    *EmpleadoController::getInstancia(),
+                    *AdminController::getInstancia(),
+                    *VentaController::getInstancia()
+                );
+                menuEmpleado.mostrar();
+            }
         }
-        else if (email == "empleado@gmail.com" && password == "empleado1234")
-        {
-            MenuEmpleado menuEmpleado(
-                *EmpleadoController::getInstancia(),
-                *AdminController::getInstancia(),
-                *VentaController::getInstancia()
-            );
-            menuEmpleado.mostrar();
-        }
-        else if (email == "cliente@gmail.com" && password == "cliente5678")
+        else
         {
             ClienteRegistrado* cliente = EmpleadoController::getInstancia()->buscarClientePorCorreo(email, password);
             if (cliente != nullptr)
@@ -65,49 +66,7 @@ void MenuPrincipal::mostrar()
             }
             else
             {
-                cout << "\nERROR: Cliente no registrado en el sistema.\n";
-            }
-        }
-        else
-        {
-            // Buscar en usuarios dados de alta por el admin
-            Usuario* usuario = AdminController::getInstancia()->buscarUsuarioPorEmail(email);
-
-            if (usuario != nullptr && usuario->getPassword() == password)
-            {
-                if (usuario->getRol() == Rol::ADMINISTRADOR)
-                {
-                    MenuAdministrador menuAdmin(*AdminController::getInstancia());
-                    menuAdmin.mostrar();
-                }
-                else
-                {
-                    MenuEmpleado menuEmpleado(
-                        *EmpleadoController::getInstancia(),
-                        *AdminController::getInstancia(),
-                        *VentaController::getInstancia()
-                    );
-                    menuEmpleado.mostrar();
-                }
-            }
-            else
-            {
-                // Buscar en clientes registrados
-                ClienteRegistrado* cliente = EmpleadoController::getInstancia()->buscarClientePorCorreo(email, password);
-
-                if (cliente != nullptr)
-                {
-                    MenuCliente menuCliente(
-                        *VentaController::getInstancia(),
-                        *AdminController::getInstancia(),
-                        cliente
-                    );
-                    menuCliente.mostrar();
-                }
-                else
-                {
-                    cout << "\nERROR: Credenciales invalidas.\n";
-                }
+                cout << "\nERROR: Credenciales invalidas.\n";
             }
         }
     }
