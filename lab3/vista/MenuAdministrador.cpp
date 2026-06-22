@@ -546,7 +546,7 @@ void MenuAdministrador::altaUsuario()
     cout << "Rol: " << (rol == Rol::ADMINISTRADOR ? "Administrador" : "Empleado") << endl;
 
     char confirmar;
-    cout << "\n¿Confirmar la creacion del usuario? (S/N): ";
+    cout << "\n ¿Confirmar la creacion del usuario? (S/N): ";
     cin >> confirmar;
 
     if (toupper(confirmar) != 'S')
@@ -612,7 +612,7 @@ void MenuAdministrador::eliminarUsuario()
     cout << "Rol: " << (usuario->getRol() == Rol::ADMINISTRADOR ? "Administrador" : "Empleado") << endl;
 
     char confirmar;
-    cout << "\n¿Confirmar la eliminacion? (S/N): ";
+    cout << "\n ¿Confirmar la eliminacion? (S/N): ";
     cin >> confirmar;
 
     if (toupper(confirmar) != 'S')
