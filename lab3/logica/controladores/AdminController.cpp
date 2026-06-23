@@ -5,7 +5,7 @@ AdminController* AdminController::instancia = NULL;
 AdminController::AdminController()
 {
     usuarios.push_back(new Usuario("Administrador", "admin@gmail.com", "admin2026", Rol::ADMINISTRADOR));
-    usuarios.push_back(new Usuario("Empleado Default", "empleado@gmail.com", "empleado1234", Rol::EMPLEADO));
+    usuarios.push_back(new Usuario("Empleado", "empleado@gmail.com", "empleado1234", Rol::EMPLEADO));
 }
 
 AdminController* AdminController::getInstancia()
@@ -41,7 +41,7 @@ TipoRet AdminController::agregarProducto(int codigo, const string& nombre, const
     if (buscarProducto(codigo) != NULL)
         return TipoRet::ERROR_PRODUCTO_EXISTENTE;
 
-    if (stockActual < 0)
+    if (stockActual < 0 || stockMinimo < 0)
         return TipoRet::ERROR_STOCK_NEGATIVO;
 
     productos.push_back(
@@ -84,6 +84,9 @@ TipoRet AdminController::modificarProducto(int codigo, const string& nuevoNombre
             return TipoRet::ERROR_PRODUCTO_EXISTENTE;
         }
     }
+
+    if (nuevoStockMinimo < 0)
+        return TipoRet::ERROR_STOCK_NEGATIVO;
 
     producto->setNombre(nuevoNombre);
     producto->setDescripcion(nuevaDescripcion);
@@ -310,7 +313,7 @@ TipoRet AdminController::eliminarUsuario(const string& email)
         {
             delete usuarios[i];
             usuarios.erase(usuarios.begin() + i);
-            return TipoRet::OK;
+                return TipoRet::OK;
         }
     }
     return TipoRet::ERROR_CREDENCIALES_INVALIDAS;

@@ -1,0 +1,19 @@
+# Archivos objeto
+*.o
+
+# Ejecutables
+*.exe
+programa
+
+# Directorios de build
+build/
+cmake-build-*/
+
+# VS Code
+.vscode/
+
+# Archivos de compilación de CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile

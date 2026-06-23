@@ -8,7 +8,7 @@ ClienteRegistrado::ClienteRegistrado(
     const Direccion &direccion,
     const string &correo,
     const string &nombreCompleto,
-    int contrasenia,
+    const string &contrasenia,
     float totalFacturado)
     : rut(rut),
       direccion(direccion),
@@ -23,12 +23,12 @@ ClienteRegistrado::~ClienteRegistrado()
 {
 }
 
-int ClienteRegistrado::getContrasenia() const
+string ClienteRegistrado::getContrasenia() const
 {
     return contrasenia;
 }
 
-void ClienteRegistrado::setContrasenia(int contrasenia)
+void ClienteRegistrado::setContrasenia(const string &contrasenia)
 {
     this->contrasenia = contrasenia;
 }

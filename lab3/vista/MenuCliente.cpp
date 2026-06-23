@@ -1,4 +1,5 @@
 #include "vista/MenuCliente.h"
+#include "vista/InputUtils.h"
 
 #include "logica/controladores/VentaController.h"
 #include "logica/controladores/AdminController.h"
@@ -12,6 +13,7 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
 #include <vector>
 
 using namespace std;
@@ -34,7 +36,7 @@ void MenuCliente::mostrar() {
         cout << "0. Cerrar Sesion\n";
         cout << "Opcion: ";
 
-        cin >> opcion;
+        opcion = leerEntero();
 
         switch(opcion) {
 
@@ -80,11 +82,11 @@ void MenuCliente::calificarProducto() {
     string comentario;
 
     cout << "Ingrese codigo del producto: ";
-    cin >> codigo;
+    codigo = leerEntero();
     cout << "Ingrese puntaje (1-5): ";
-    cin >> puntaje;
-    cin.ignore();
+    puntaje = leerEntero();
     cout << "Ingrese comentario (opcional, Enter para omitir): ";
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     getline(cin, comentario);
 
     TipoRet resultado = clienteActual->calificarProducto(codigo, puntaje, comentario);
@@ -118,7 +120,7 @@ void MenuCliente::consultarDetalleProducto() {
 
     int codigo;
     cout << "Ingrese codigo del producto: ";
-    cin >> codigo;
+    codigo = leerEntero();
 
     Producto* producto = clienteActual->consultarInformacionDetalladaProducto(codigo);
 

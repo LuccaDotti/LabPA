@@ -15,14 +15,17 @@ private:
     VentaController& ventaController;
 
     void menuGestionarClientes();
+    void listarClientes();
     void altaCliente();
     void modificarCliente();
+    void consultarTotalFacturado();
 
     void menuVentas();
     void registrarVenta();
     void consultarHistorialCompras();
 
     void menuGestionarOrdenesCompra();
+    void listarOrdenesCompra();
     void emitirOrdenCompra();
     void cancelarOrdenCompra();
     void registrarRecepcionOrden();
@@ -30,7 +33,6 @@ private:
     void menuReportes();
     void consultarStockActual();
     void consultarProductosBajoMinimo();
-    void consultarTotalFacturado();
     void consultarUnidadesVendidas();
 
     void consultarCalificacionesProducto();

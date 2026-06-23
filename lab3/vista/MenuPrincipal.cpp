@@ -1,7 +1,11 @@
 #include "vista/MenuPrincipal.h"
+#include "vista/InputUtils.h"
 #include "vista/MenuAdministrador.h"
+#include "vista/InputUtils.h"
 #include "vista/MenuEmpleado.h"
+#include "vista/InputUtils.h"
 #include "vista/MenuCliente.h"
+#include "vista/InputUtils.h"
 
 #include "logica/controladores/AdminController.h"
 #include "logica/controladores/EmpleadoController.h"

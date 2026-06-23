@@ -18,7 +18,7 @@ private:
     Direccion direccion;
     string correo;
     string nombreCompleto;
-    int contrasenia;
+    string contrasenia;
 
     float totalFacturado;
 
@@ -27,14 +27,14 @@ private:
     vector<Calificacion *> calificaciones;
 
 public:
-    ClienteRegistrado(int rut, const Direccion &direccion, const string &correo, const string &nombreCompleto, int contrasenia, float totalFacturado);
+    ClienteRegistrado(int rut, const Direccion &direccion, const string &correo, const string &nombreCompleto, const string &contrasenia, float totalFacturado);
 
     ~ClienteRegistrado();
 
     TipoRet calificarProducto(int codigoProducto, int calificacion, string comentario);
 
-    int getContrasenia() const;
-    void setContrasenia(int contrasenia);
+    string getContrasenia() const;
+    void setContrasenia(const string &contrasenia);
 
     int getRut() const;
     void setRut(int rut);

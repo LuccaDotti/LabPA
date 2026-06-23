@@ -21,7 +21,7 @@ EmpleadoController::EmpleadoController()
     adminController = AdminController::getInstancia();
 
     Direccion dir(0, "Sin calle", "Sin ciudad");
-    clientes.push_back(new ClienteRegistrado(0, dir, "cliente@gmail.com", "Cliente Default", 5678, 0.0f));
+    clientes.push_back(new ClienteRegistrado(0, dir, "cliente@gmail.com", "Cliente Default", "5678", 0.0f));
 }
 
 EmpleadoController::~EmpleadoController()
@@ -36,10 +36,14 @@ EmpleadoController::~EmpleadoController()
 // CLIENTES
 // ====================================
 
-TipoRet EmpleadoController::registrarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, int contrasenia, float totalFacturado)
+TipoRet EmpleadoController::registrarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, string contrasenia, float totalFacturado)
 {
     if (buscarCliente(rut) != nullptr)
         return TipoRet::ERROR_CLIENTE_EXISTENTE;
+
+    for (ClienteRegistrado *c : clientes)
+        if (c->getCorreo() == correo)
+            return TipoRet::ERROR_CORREO_EXISTENTE;
 
     Direccion direccion(nroPuerta, calle, ciudad);
     ClienteRegistrado *cliente = new ClienteRegistrado(rut, direccion, correo, nombreCompleto, contrasenia, totalFacturado);
@@ -48,12 +52,12 @@ TipoRet EmpleadoController::registrarCliente(int rut, string nombreCompleto, str
     return TipoRet::OK;
 }
 
-TipoRet EmpleadoController::modificarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, int contrasenia)
+TipoRet EmpleadoController::modificarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, string contrasenia)
 {
     if (buscarCliente(rut) == nullptr)
         return TipoRet::ERROR_CLIENTE_INEXISTENTE;
 
-    for (int x = 0; x < clientes.size(); x++)
+    for (int x = 0; x < (int)clientes.size(); x++)
     {
         if (clientes[x]->getCorreo() == correo && clientes[x]->getRut() != rut)
             return TipoRet::ERROR_CORREO_EXISTENTE;
@@ -70,6 +74,9 @@ TipoRet EmpleadoController::modificarCliente(int rut, string nombreCompleto, str
 
 TipoRet EmpleadoController::registrarVenta(int rut, int codigoProducto, int cantidad)
 {
+    if (cantidad <= 0)
+        return TipoRet::ERROR_CANTIDAD_INVALIDA;
+
     ClienteRegistrado *cliente = buscarCliente(rut);
     if (cliente == nullptr)
         return TipoRet::ERROR_CLIENTE_INEXISTENTE;
@@ -110,6 +117,9 @@ TipoRet EmpleadoController::consultarHistorialCompraCliente(int rut, vector<Vent
 
 TipoRet EmpleadoController::emitirOrdenCompra(int codigoProducto, int cantidad, int rutProveedor)
 {
+    if (cantidad <= 0)
+        return TipoRet::ERROR_CANTIDAD_INVALIDA;
+
     if (buscarProducto(codigoProducto) == nullptr)
         return TipoRet::ERROR_PRODUCTO_INEXISTENTE;
 
@@ -166,7 +176,7 @@ TipoRet EmpleadoController::registrarRecepcionOrdenCompra(int idOrden, vector<in
 
     vector<LineaOrdenCompra *> lineas = orden->getLineasCompra();
 
-    for (int i = 0; i < lineas.size(); i++)
+    for (int i = 0; i < (int)lineas.size(); i++)
     {
         if (lineas[i]->getCantidad() != cantidadesRecibidas[i])
             return TipoRet::ERROR_CANTIDAD_NO_COINCIDE;
@@ -175,7 +185,7 @@ TipoRet EmpleadoController::registrarRecepcionOrdenCompra(int idOrden, vector<in
     orden->setEstado(RECIBIDA);
     orden->setFechaRecepcion(new Fecha());
 
-    for (int i = 0; i < lineas.size(); i++)
+    for (int i = 0; i < (int)lineas.size(); i++)
     {
         int stockActual = lineas[i]->getProducto()->getStockActual();
         lineas[i]->getProducto()->setStockActual(stockActual + cantidadesRecibidas[i]);
@@ -202,7 +212,7 @@ TipoRet EmpleadoController::eliminarProducto(int codigo)
 }
 
 // ====================================
-// BÚSQUEDAS — delegan en AdminController
+// BUSQUEDAS - delegan en AdminController
 // ====================================
 
 Producto *EmpleadoController::buscarProducto(int codigoProducto) const
@@ -273,7 +283,7 @@ vector<Producto *> EmpleadoController::consultarProductoBajoMinimo() const
 {
     vector<Producto *> productosBajos;
     for (Producto *producto : adminController->listarProductos())
-        if (producto->getStockActual() < producto->getStockMinimo())
+        if (producto->getStockActual() <= producto->getStockMinimo())
             productosBajos.push_back(producto);
     return productosBajos;
 }
@@ -297,7 +307,7 @@ int EmpleadoController::unidadesVendidasDeProducto(int codigoProducto) const
 ClienteRegistrado *EmpleadoController::buscarClientePorCorreo(const string &correo, const string &password) const
 {
     for (ClienteRegistrado *c : clientes)
-        if (c->getCorreo() == correo && to_string(c->getContrasenia()) == password)
+        if (c->getCorreo() == correo && c->getContrasenia() == password)
             return c;
     return nullptr;
 }

@@ -30,8 +30,8 @@ public:
     EmpleadoController(const EmpleadoController&) = delete;
     EmpleadoController& operator=(const EmpleadoController&) = delete;
 
-    TipoRet registrarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, int contrasenia, float totalFacturado);
-    TipoRet modificarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, int contrasenia);
+    TipoRet registrarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, string contrasenia, float totalFacturado);
+    TipoRet modificarCliente(int rut, string nombreCompleto, string correo, int nroPuerta, string calle, string ciudad, string contrasenia);
     TipoRet registrarVenta(int rut, int codigoProducto, int cantidad);
     TipoRet consultarHistorialCompraCliente(int rut, vector<Venta*>& ventas);
     TipoRet emitirOrdenCompra(int codigoProducto, int cantidad, int rutProveedor);
