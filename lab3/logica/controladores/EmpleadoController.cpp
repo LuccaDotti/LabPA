@@ -21,7 +21,7 @@ EmpleadoController::EmpleadoController()
     adminController = AdminController::getInstancia();
 
     Direccion dir(0, "Sin calle", "Sin ciudad");
-    clientes.push_back(new ClienteRegistrado(0, dir, "cliente@gmail.com", "Cliente Default", "5678", 0.0f));
+    clientes.push_back(new ClienteRegistrado(0, dir, "cliente@gmail.com", "Cliente", "5678", 0.0f));
 }
 
 EmpleadoController::~EmpleadoController()
