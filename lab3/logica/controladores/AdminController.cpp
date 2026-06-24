@@ -343,7 +343,7 @@ vector<Usuario*> AdminController::listarUsuarios() const
 
 TipoRet AdminController::eliminarUsuario(const string& email)
 {
-    for (int i = 0; i < usuarios.size(); i++)
+    for (size_t i = 0; i < usuarios.size(); i++)
     {
         if (usuarios[i]->getEmail() == email)
         {
