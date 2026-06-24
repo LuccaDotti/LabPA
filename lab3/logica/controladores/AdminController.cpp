@@ -34,8 +34,8 @@ AdminController::AdminController()
     proveedores.push_back(prov2);
 
     // ===== ProveedorProducto (asociaciones) =====
-    ProveedorProducto* pp1 = new ProveedorProducto(prov1, p1, 70.0f, new Fecha(2026, 7, 1));
-    ProveedorProducto* pp2 = new ProveedorProducto(prov2, p3, 40.0f, new Fecha(2026, 7, 5));
+    ProveedorProducto* pp1 = new ProveedorProducto(prov1, p1, 70.0f, Fecha(1, 7, 2026, 0, 0, 0));
+    ProveedorProducto* pp2 = new ProveedorProducto(prov2, p3, 40.0f, Fecha(5, 7, 2026, 0, 0, 0));
     proveedorProductos.push_back(pp1);
     proveedorProductos.push_back(pp2);
     p1->agregarProveedor(pp1);
