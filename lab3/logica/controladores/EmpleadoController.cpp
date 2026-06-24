@@ -20,8 +20,28 @@ EmpleadoController::EmpleadoController()
 {
     adminController = AdminController::getInstancia();
 
-    Direccion dir(0, "Sin calle", "Sin ciudad");
-    clientes.push_back(new ClienteRegistrado(0, dir, "cliente@gmail.com", "Cliente", "5678", 0.0f));
+    Direccion dir1(0, "Sin calle", "Sin ciudad");
+    clientes.push_back(new ClienteRegistrado(0, dir1, "cliente@gmail.com", "Cliente", "5678", 0.0f));
+
+    Direccion dir2(1234, "18 de Julio", "Montevideo");
+    ClienteRegistrado* cliente2 = new ClienteRegistrado(11223344, dir2, "ana.perez@gmail.com", "Ana Perez", "ana1234", 0.0f);
+    clientes.push_back(cliente2);
+
+    Direccion dir3(987, "Av. Italia", "Montevideo");
+    ClienteRegistrado* cliente3 = new ClienteRegistrado(55667788, dir3, "carlos.diaz@gmail.com", "Carlos Diaz", "carlos1234", 0.0f);
+    clientes.push_back(cliente3);
+
+    // Venta inicial precargada para cliente2, asi ya tiene historial y puede calificar
+    Producto* producto = buscarProducto(1001);
+    if (producto != nullptr)
+    {
+        Venta* ventaSeed = new Venta(Fecha(), cliente2);
+        LineaDetalle* linea = new LineaDetalle(producto, 2, producto->getPrecioUnitario());
+        ventaSeed->agregarLineaDetalle(linea);
+        cliente2->agregarVenta(ventaSeed);
+        producto->vender(2);
+        cliente2->agregarFacturacion(2 * producto->getPrecioUnitario());
+    }
 }
 
 EmpleadoController::~EmpleadoController()
