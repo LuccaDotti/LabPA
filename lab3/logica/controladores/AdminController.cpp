@@ -6,6 +6,42 @@ AdminController::AdminController()
 {
     usuarios.push_back(new Usuario("Administrador", "admin@gmail.com", "admin2026", Rol::ADMINISTRADOR));
     usuarios.push_back(new Usuario("Empleado", "empleado@gmail.com", "empleado1234", Rol::EMPLEADO));
+
+    // ===== Categorías =====
+    Categoria* catBebidas = new Categoria("Bebidas", "Bebidas frias y calientes");
+    Categoria* catAlmacen = new Categoria("Almacen", "Productos no perecederos");
+    Categoria* catLimpieza = new Categoria("Limpieza", "Articulos de limpieza");
+    categorias.push_back(catBebidas);
+    categorias.push_back(catAlmacen);
+    categorias.push_back(catLimpieza);
+
+    // ===== Productos =====
+    Producto* p1 = new Producto(1001, "Coca Cola 1.5L", "Gaseosa cola", 95.0f, 50, 10, 0.0f, 0, false, catBebidas);
+    Producto* p2 = new Producto(1002, "Agua Salus 1.5L", "Agua mineral", 60.0f, 40, 10, 0.0f, 0, false, catBebidas);
+    Producto* p3 = new Producto(2001, "Arroz 1kg", "Arroz blanco", 55.0f, 30, 5, 0.0f, 0, false, catAlmacen);
+    Producto* p4 = new Producto(2002, "Fideos 500g", "Fideos secos", 48.0f, 25, 5, 0.0f, 0, false, catAlmacen);
+    Producto* p5 = new Producto(3001, "Detergente 750ml", "Detergente liquido", 120.0f, 3, 5, 0.0f, 0, true, catLimpieza);
+    productos.push_back(p1);
+    productos.push_back(p2);
+    productos.push_back(p3);
+    productos.push_back(p4);
+    productos.push_back(p5);
+
+    // ===== Proveedores =====
+    Proveedor* prov1 = new Proveedor(100111222, "Distribuidora Norte", 29001122, "Juan Perez");
+    Proveedor* prov2 = new Proveedor(200333444, "Almacen Mayorista SA", 29003344, "Maria Gomez");
+    proveedores.push_back(prov1);
+    proveedores.push_back(prov2);
+
+    // ===== ProveedorProducto (asociaciones) =====
+    ProveedorProducto* pp1 = new ProveedorProducto(prov1, p1, 70.0f, new Fecha(2026, 7, 1));
+    ProveedorProducto* pp2 = new ProveedorProducto(prov2, p3, 40.0f, new Fecha(2026, 7, 5));
+    proveedorProductos.push_back(pp1);
+    proveedorProductos.push_back(pp2);
+    p1->agregarProveedor(pp1);
+    p3->agregarProveedor(pp2);
+    prov1->agregarProducto(pp1);
+    prov2->agregarProducto(pp2);
 }
 
 AdminController* AdminController::getInstancia()
